@@ -8,52 +8,46 @@ link-citations: yes
 ---
 
 
+# **Information**
+
+## Usefull ressource
+Feature engenering : http://www.feat.engineering/review-predictive-modeling-process.html
+Semi supervized learning : https://www.analyticsvidhya.com/blog/2017/09/pseudo-labelling-semi-supervised-learning-technique/  
+    - Machine Learning wth unlabbeled data : psuedo labeling
   
+
+## todo
+  - create Blogdown
+  - tydiverse package
+  - Tensorflow for deep learning : open source software library developed at google for complex computation
   
-# **Summary**
-## 1. Feature Engineering : Usefull techniques
-## 2. Data Visualization : some ggplot  
-## 3. Regression
-  - 3.1. linear
-  - 3.2. logistic
-  - 3.3. Generalized
+## interesting stuff
+  - polynomial regression using kernel smoothing
+  - Logistic regression using 5 fold stratified cross validation
+  - blockchain data science
+  - reinforcement learning
+  - adversarial training 
+  -Deep Learning
+    - microsoft service
+    - Tensorflow  : read exemple
+    - RKWard : free and open source Graphical User Interface for the R software
+  - ML with H2O, lime, Keras
+  - spark R
+  - image recognizing with R
+  - sentiment analysis = microsoft azure
   
-## 4. Decision tree
-## 5. deep learning
-  - 5.1. Neural network
-  
-## 6. Bayesien
-## 7. Unsupervised 
-  - 7.1. PCA
-  - 7.2. Clustering 
-  
-## 8. Other Data Analytics
-  - Support vector machine
-  - 8.1. Boosting
-  - 8.2. Bagging
-  - 8.3. Boostrap
-  - 
 
-## 9. Text mining
-  - 
+- data privacy
+- data quality control
 
-## 10. Time Series
-  - ARMA-Garch Model
-  - VAR
-  - dynamic Factoriel model
-  -
+- Web developpement
+  - Shiny : (microsoft azure serveur pour upload
+  - Rmarckodw : 
+  - blogdown (Hugo)
 
-## 11. Model evaluation
 
-## 12. Ensemble learning
-
-## 12. mySQL
-
-## 13. Usefull R tools
-  - Parallele computation
-  - Building an R Package
-  - Profiling and Optimizing
-  - Real time data traitement
-  - Shiny app
-
-## 14. To do 
+- Insurance
+  - fraud
+  - underwriting models : predict somebody’s insurance risk
+  - marketing predition
+  - customer segmentation
