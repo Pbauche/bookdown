@@ -1,17 +1,59 @@
 --- 
-title: "A Minimal Bookdown Book"
-author: "Sean Kross"
+title: "Handout_V2"
+author: "Pierre Bauche"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
-bibliography: [book.bib]
-biblio-style: apalike
 link-citations: yes
-github-repo: seankross/bookdown-start
-url: 'http\://seankross.com/bookdown-start/'
-description: "Everything you need (and nothing more) to start a bookdown book."
 ---
 
-# Preface {-}
 
-This is the very first part of the book.
+  
+  
+# **Summary**
+## 1. Feature Engineering : Usefull techniques
+## 2. Data Visualization : some ggplot  
+## 3. Regression
+  - 3.1. linear
+  - 3.2. logistic
+  - 3.3. Generalized
+  
+## 4. Decision tree
+## 5. deep learning
+  - 5.1. Neural network
+  
+## 6. Bayesien
+## 7. Unsupervised 
+  - 7.1. PCA
+  - 7.2. Clustering 
+  
+## 8. Other Data Analytics
+  - Support vector machine
+  - 8.1. Boosting
+  - 8.2. Bagging
+  - 8.3. Boostrap
+  - 
+
+## 9. Text mining
+  - 
+
+## 10. Time Series
+  - ARMA-Garch Model
+  - VAR
+  - dynamic Factoriel model
+  -
+
+## 11. Model evaluation
+
+## 12. Ensemble learning
+
+## 12. mySQL
+
+## 13. Usefull R tools
+  - Parallele computation
+  - Building an R Package
+  - Profiling and Optimizing
+  - Real time data traitement
+  - Shiny app
+
+## 14. To do 
