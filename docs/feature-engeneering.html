@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Handout_V2</title>
+  <meta name="description" content="Handout_V2">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Handout_V2" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Handout_V2" />
+  
+  
+  
+
+<meta name="author" content="Pierre Bauche">
+
+
+<meta name="date" content="2018-09-03">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+<link rel="next" href="data-visualization.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.1.17/leaflet-providers.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.1/leaflet-providers-plugin.js"></script>
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.css" rel="stylesheet" />
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.Default.css" rel="stylesheet" />
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.freezable.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.layersupport.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">somethings</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> <strong>Information</strong></a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#usefull-ressource"><i class="fa fa-check"></i><b>1.1</b> Usefull ressource</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#todo"><i class="fa fa-check"></i><b>1.2</b> todo</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#interesting-stuff"><i class="fa fa-check"></i><b>1.3</b> interesting stuff</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#hint"><i class="fa fa-check"></i><b>1.4</b> Hint</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="feature-engeneering.html"><a href="feature-engeneering.html"><i class="fa fa-check"></i><b>2</b> Feature engeneering</a><ul>
+<li class="chapter" data-level="2.1" data-path="feature-engeneering.html"><a href="feature-engeneering.html#input-feature"><i class="fa fa-check"></i><b>2.1</b> Input feature</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="feature-engeneering.html"><a href="feature-engeneering.html#numeric-data"><i class="fa fa-check"></i><b>2.1.1</b> Numeric Data</a></li>
+<li class="chapter" data-level="2.1.2" data-path="feature-engeneering.html"><a href="feature-engeneering.html#count-data"><i class="fa fa-check"></i><b>2.1.2</b> count data</a></li>
+<li class="chapter" data-level="2.1.3" data-path="feature-engeneering.html"><a href="feature-engeneering.html#categorical-data"><i class="fa fa-check"></i><b>2.1.3</b> categorical data</a></li>
+<li class="chapter" data-level="2.1.4" data-path="feature-engeneering.html"><a href="feature-engeneering.html#date-time-lubridate-package"><i class="fa fa-check"></i><b>2.1.4</b> Date Time : Lubridate package</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="feature-engeneering.html"><a href="feature-engeneering.html#missing-value"><i class="fa fa-check"></i><b>2.2</b> Missing Value</a></li>
+<li class="chapter" data-level="2.3" data-path="feature-engeneering.html"><a href="feature-engeneering.html#outlier-detection"><i class="fa fa-check"></i><b>2.3</b> Outlier Detection</a></li>
+<li class="chapter" data-level="2.4" data-path="feature-engeneering.html"><a href="feature-engeneering.html#sampling-and-resampling"><i class="fa fa-check"></i><b>2.4</b> Sampling and resampling</a></li>
+<li class="chapter" data-level="2.5" data-path="feature-engeneering.html"><a href="feature-engeneering.html#variables-selections"><i class="fa fa-check"></i><b>2.5</b> variables selections</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="feature-engeneering.html"><a href="feature-engeneering.html#filter-methods"><i class="fa fa-check"></i><b>2.5.1</b> Filter methods :</a></li>
+<li class="chapter" data-level="2.5.2" data-path="feature-engeneering.html"><a href="feature-engeneering.html#wrapper-methods"><i class="fa fa-check"></i><b>2.5.2</b> Wrapper Methods:</a></li>
+<li class="chapter" data-level="2.5.3" data-path="feature-engeneering.html"><a href="feature-engeneering.html#embedded-methods"><i class="fa fa-check"></i><b>2.5.3</b> Embedded Methods :</a></li>
+<li class="chapter" data-level="2.5.4" data-path="feature-engeneering.html"><a href="feature-engeneering.html#dimension-reduction"><i class="fa fa-check"></i><b>2.5.4</b> Dimension reduction :</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="feature-engeneering.html"><a href="feature-engeneering.html#example"><i class="fa fa-check"></i><b>2.6</b> Example</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="feature-engeneering.html"><a href="feature-engeneering.html#credit-risk-modeling"><i class="fa fa-check"></i><b>2.6.1</b> Credit risk modeling</a></li>
+<li class="chapter" data-level="2.6.2" data-path="feature-engeneering.html"><a href="feature-engeneering.html#variance-treshold-approach"><i class="fa fa-check"></i><b>2.6.2</b> variance treshold approach</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="feature-engeneering.html"><a href="feature-engeneering.html#method-summary"><i class="fa fa-check"></i><b>2.7</b> Method Summary</a></li>
+<li class="chapter" data-level="2.8" data-path="feature-engeneering.html"><a href="feature-engeneering.html#tips"><i class="fa fa-check"></i><b>2.8</b> tips</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>3</b> Data visualization</a><ul>
+<li class="chapter" data-level="3.1" data-path="data-visualization.html"><a href="data-visualization.html#descriptive"><i class="fa fa-check"></i><b>3.1</b> Descriptive</a></li>
+<li class="chapter" data-level="3.2" data-path="data-visualization.html"><a href="data-visualization.html#spacial-map"><i class="fa fa-check"></i><b>3.2</b> Spacial map</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Handout_V2</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="feature-engeneering" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Feature engeneering</h1>
+<div id="input-feature" class="section level2">
+<h2><span class="header-section-number">2.1</span> Input feature</h2>
+<p>A feature is a numeric representation of raw data. Feature engineering is the process of formulating the most appropriate features given the data, the model, and the task. If features are’t good enought then model canot be good.</p>
+<p>Features selection is important. If they are to many fearture, model use noise or irrelevant information or redundant. IF they are not enought feature, model don’t have the information .</p>
+<ul>
+<li><strong>Create new input :</strong>
+<ul>
+<li>Combine feature
+<ul>
+<li>reduire dimention</li>
+<li>reduire colinéarité</li>
+<li>predictor qui ont du sens</li>
+<li>use the input interaction</li>
+</ul></li>
+<li>kmeans clustering as feature : attetion pas inclure la target risque overfitting
+<ul>
+<li>a data point can also be represented by a dense vector of its inverse distance to each cluster center. This retains more information than simple binary cluster assignment</li>
+</ul></li>
+<li>n-day average (in time series) : peut reduire la variabilite etle noise</li>
+<li>ratio</li>
+</ul></li>
+<li><strong>Tips</strong>
+<ul>
+<li>Use knowledge to construct a better set of features (business)</li>
+<li>Visualizing the correlation and check de relation
+<ul>
+<li>between input and output when output is numeric</li>
+<li>between different input</li>
+</ul></li>
+<li>Normalize the feature if metrics differt or unknow</li>
+</ul></li>
+</ul>
+<div id="numeric-data" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> Numeric Data</h3>
+<p>Predictors that are on a continuous scale are subject to somes issues that can be mitigated through the choose of model. Models that are smooth functions of input features or model hat use euclidian distance (regression, clustering, …) are sensitive to the scale. Models based on space-partitioning trees (decision trees, gradient boosted machines, random forests) are not sensitive to scale.</p>
+<p>There are a variety of modifications that can be made to an individual predictor that might improve its utility in a model.</p>
+<ul>
+<li><strong>scaling</strong> : not change the shape of the distribution <span class="math inline">\(/frac{x-min(x)}{max(x)-min(x)}\)</span>
+<ul>
+<li>Feature scaling is useful in situations where a set of input features differs wildly in scale.</li>
+</ul></li>
+<li><strong>standardization on N(0,1)</strong> : <span class="math inline">\(/frac{x-mean(x)}{sqrt(var())}\)</span>
+<ul>
+<li>essential when the distance or dot products between predictors are used (such as K-nearest neighbors or support vector machines)</li>
+<li>essential when the variables are required to be a a common scale in order to apply a penalty (e.g. the lasso or ridge regression)</li>
+</ul></li>
+<li><strong>normalisation</strong> : divide by the euclienne l² norme (=sums the squares of the values of the features across data points). SO the feature column has norm = 1</li>
+<li><strong>Discretization</strong> :
+<ul>
+<li>fixed width</li>
+<li>quantile binning</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>Variables scaled and standardized are comparable Some models need gaussian input : scale + transform</p>
+</blockquote>
+<ul>
+<li><strong>Power transforms</strong> : variance-stabilizing transformations** Power transforms change the distribution of the variable to more symetric distribution
+<ul>
+<li>log</li>
+<li>sqrt</li>
+<li>inverse</li>
+<li>boxcox : generalisation : Only work for positive variable</li>
+<li>johnson transform</li>
+<li>logit transformations : This transformation changes the scale from zero and one to values between negative and positive infinity</li>
+</ul></li>
+</ul>
+</div>
+<div id="count-data" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> count data</h3>
+<p>Raw counts that span several orders of magnitude are problematic for many models.In a linear model, the same linear coefficient would have to work for all possible values of the count. Large counts could also wreak havoc in unsupervised learning methods such as k-means clustering, which uses Euclidean distance as a similarity function to measure the similarity between data points. A large count in one element of the data vector would outweigh the similarity in all other elements, which could throw off the entire similarity measurement.</p>
+<ul>
+<li><strong>count transform</strong>
+<ul>
+<li>binarise 0/1 if value</li>
+<li>quantizing the count or group the counts
+<ul>
+<li>fixed-width binning, each bin contains a specific numeric range (ex age)</li>
+<li>If count have multiple magnitudes, group by powers of 10 ( 0–9, 10–99, 100–999, 1000–9999, etc)</li>
+</ul></li>
+<li>Quantile binning : adaptively positioning the bins based on the distribution of the data</li>
+<li>log transform</li>
+</ul></li>
+</ul>
+</div>
+<div id="categorical-data" class="section level3">
+<h3><span class="header-section-number">2.1.3</span> categorical data</h3>
+<p>Use Dummy or keep factors with somes levels is same for most modeling. It suggest using the predictors without converting to dummy variables and, if the model appears promising, to also try refitting using dummy variables.</p>
+<ul>
+<li><strong>unordered categorical data</strong>
+<ul>
+<li>dummy coding : in Feature engineering, il recommande de flag chaque variable categorielle en varible binaire</li>
+<li>effect coding : -1 0 1 : -1 si different de categorie de reference. Effect coding is very similar to dummy coding, but results in linear regression models that are even simpler to interpret.</li>
+</ul></li>
+<li><strong>Dealing with Large Categorical Variables</strong>
+<ul>
+<li>do nothing</li>
+<li>dummy : create many variable with zero value for rare categories and add zero-variance predictor( computentional intencive )</li>
+<li>delete rare value</li>
+<li>recode and regroup categorical data</li>
+<li>Compress the features. There are two choices:
+<ul>
+<li>Feature hashing, popular with linear models. A hash function is a deterministic function that maps a potentially unbounded integer to a finite integer range [1, m]. Feature hashing compresses the original feature vector into an m-dimensional vector. It Converte large cat var into small hash feature (but hashing feature are uninterpretable)</li>
+<li>Bin counting, popular with linear models as well as trees. Rather than using the value of the categorical variable as the feature, use the conditional probability of the target under that value. In other words, instead of encoding the identity of the categorical value, we compute the association statistics between that value and the target that we wish to predict</li>
+</ul></li>
+</ul></li>
+<li><strong>Ordered data</strong>
+<ul>
+<li>how measure de force to pass between each categorie ?
+<ul>
+<li>linear</li>
+<li>quadratic</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="date-time-lubridate-package" class="section level3">
+<h3><span class="header-section-number">2.1.4</span> Date Time : Lubridate package</h3>
+<ul>
+<li>Use as.POSIXct() and UTC (universal coordinated time)in time zone.</li>
+<li>create new variables : weekend (0/1), bankholiday (0/1), …</li>
+</ul>
+</div>
+</div>
+<div id="missing-value" class="section level2">
+<h2><span class="header-section-number">2.2</span> Missing Value</h2>
+<ul>
+<li>Do nothing</li>
+<li>remove</li>
+<li>impute
+<ul>
+<li>by mean : doesn’t impact analysis</li>
+<li>by singular value decomposition : approximate true value</li>
+<li>by regression :approximate true value</li>
+<li>Check lien 5 methode impute missing value</li>
+</ul></li>
+</ul>
+</div>
+<div id="outlier-detection" class="section level2">
+<h2><span class="header-section-number">2.3</span> Outlier Detection</h2>
+</div>
+<div id="sampling-and-resampling" class="section level2">
+<h2><span class="header-section-number">2.4</span> Sampling and resampling</h2>
+<p>Modern statistical methods assume that the underlying data comes from a random distribution. The performance measurements of models derived from data are also subject to random noise. the sample can be generalized for the population with statistical confidence. Is an approximatation.</p>
+<blockquote>
+<p>Weak law of large numbers : <span class="math inline">\(\bar{X_n} =&gt; \mu\)</span><br />
+Central limit theorem : distribution standardis? tend vers une normale asymptotiquement</p>
+</blockquote>
+<ul>
+<li><strong>model sampling</strong> : population data is already collected and you want to reduce time and the computational cost of analysis, along with improve the inference of your models</li>
+<li><strong>survey sampling</strong> : create a sample design and then survey the population only to collect sample to save data collection costs.</li>
+</ul>
+<p>Type of sampling methods :</p>
+<ul>
+<li>Boostrap sampling : sampling with replacement</li>
+<li>Jackknife = leave one out sampling + calculate average of the estimation</li>
+<li>Vfold crossvalidation : Resampling methods that can generate V different versions of the training set (same size) that can be used to evaluate model on test set. Each of the V assessment sets contains 1/V of the training set and each of these exclude different data points. Suppose V = 10, then there are 10 different versions of 90% of the data and also 10 versions of the remaining 10% for each corresponding resample. in the end, there are V estimates of performance for the model and each was calculated on a different assessment set. The cross-validation estimate of performance is computed by averaging the V individual metrics.</li>
+<li>Monte Carlo : Produces splits that are likely to contain overlap. For each resample, a random sample is taken with π proportion of the training set going into the analysis set and the remaining samples allocated to the assessment set</li>
+<li>bootstrap : A bootstrap resample of the data is defined to be a simple random sample that is the same size as the training set where the data are sampled with replacement</li>
+</ul>
+</div>
+<div id="variables-selections" class="section level2">
+<h2><span class="header-section-number">2.5</span> variables selections</h2>
+<p>How do we cleanly separate the signal from the noise?</p>
+<p><strong>First Filter</strong></p>
+<ul>
+<li>Na filter : column with to many NA</li>
+<li>Variance filter : Column with not enought variance to explain dataset</li>
+<li>corrélation filter : e will remove predictors that are highly correlated (r2 &gt; 0.9) with other predictors. see corrplot</li>
+<li>Variance treshold : Variable with high variability also have higher information in them. We remove all variables havant variance less than a treshold.</li>
+</ul>
+<div id="filter-methods" class="section level3">
+<h3><span class="header-section-number">2.5.1</span> Filter methods :</h3>
+<p>Select variables sans modélisation. Methode univariée. Order feature by importance. Methode robust contre overfitting mais peut selectionner variables redondantes. It is best to do prefiltering conservatively, so as not to inadvertently eliminate useful features before they even make it to the model training step</p>
+<ul>
+<li>Chi square test</li>
+<li>Correlation coefficients</li>
+<li>information gain metrics</li>
+<li>fisher score</li>
+<li>variance treshold</li>
+</ul>
+</div>
+<div id="wrapper-methods" class="section level3">
+<h3><span class="header-section-number">2.5.2</span> Wrapper Methods:</h3>
+<p>Test differentes combinaisons de feature selon crit?re de performance. Predictive model is used to evaluate the set of feature by accurancy metric. Méthode efficace pour la mod?lisation. Peut causé de l’overfitting.</p>
+<ul>
+<li>forward/backward selection</li>
+<li>recursive feature elimation algorithm</li>
+<li>…</li>
+</ul>
+</div>
+<div id="embedded-methods" class="section level3">
+<h3><span class="header-section-number">2.5.3</span> Embedded Methods :</h3>
+<p>Next step to wrapper methods. Introduce a penalty factor to the evaluation criteria of the model to bias the model toward lower complexity. Balance between complexity and accurancy. Less computationally expensive than Wrapper. Less prone to overfitting. These methods perform feature selection as part of the model training process</p>
+<ul>
+<li>Lasso</li>
+<li>Ridge regression</li>
+<li>…</li>
+<li>Decision tree</li>
+<li>Gradiant descent methods</li>
+</ul>
+</div>
+<div id="dimension-reduction" class="section level3">
+<h3><span class="header-section-number">2.5.4</span> Dimension reduction :</h3>
+<p>See unsuppervized section</p>
+<ul>
+<li>PCA see unsupervised analysis : Due to the orthogonality constraint in the objective function, PCA transformation produces a nice side effect: the transformed features are no longer correlated.</li>
+<li>svd</li>
+<li>k-means as a featurization procedure, a data point can be represented by its cluster membership</li>
+</ul>
+</div>
+</div>
+<div id="example" class="section level2">
+<h2><span class="header-section-number">2.6</span> Example</h2>
+<div id="credit-risk-modeling" class="section level3">
+<h3><span class="header-section-number">2.6.1</span> Credit risk modeling</h3>
+<ul>
+<li><strong>Feature ranking</strong>
+<ul>
+<li>Fit logistic model</li>
+<li>Calculate Gini coefficient</li>
+<li>rearrange variables ? combine, weighted sums, etc</li>
+<li>Need to understand variable individually ? use Filtering method</li>
+<li>data dirty ? detect outlier</li>
+<li>Data selection? use first ranking, forward selection and last Embedded method. Compare with crit?rion (misclassi, MSE, AIC, etc)</li>
+<li>improve performance? bootstrap : subsample your data et redo analysis</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### Data Prep <span class="al">###</span>
+#################
+<span class="kw">library</span>(MLmetrics)
+
+data =<span class="st"> </span><span class="kw">get</span>(<span class="kw">load</span>(<span class="st">&quot;C:/Users/007/Desktop/Data science with R/R/Dataset/LoanDefaultPred.RData&quot;</span>))
+
+<span class="co">#Create the default variable</span>
+data[,<span class="st">&quot;default&quot;</span>]=<span class="kw">ifelse</span>(data<span class="op">$</span>loss <span class="op">==</span><span class="dv">0</span>, <span class="dv">0</span>,<span class="dv">1</span>)
+<span class="kw">print</span>(<span class="kw">table</span>(data<span class="op">$</span>default)<span class="op">*</span><span class="dv">100</span><span class="op">/</span><span class="kw">nrow</span>(data))</code></pre></div>
+<pre><code>## 
+##      0      1 
+## 90.635  9.365</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Without prior kwowledge : if more than 30 variable is continuous</span>
+continuous &lt;-<span class="kw">character</span>()
+categorical &lt;-<span class="kw">character</span>()
+i =<span class="st"> </span><span class="kw">names</span>(data)[<span class="dv">1</span>]
+p&lt;-<span class="dv">1</span>
+q&lt;-<span class="dv">1</span>
+
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">names</span>(data)){
+unique_levels =<span class="kw">length</span>(<span class="kw">unique</span>(data[,i]))
+
+  <span class="cf">if</span>(i <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;id&quot;</span>,<span class="st">&quot;loss&quot;</span>,<span class="st">&quot;default&quot;</span>)){
+<span class="cf">next</span>;
+      }<span class="cf">else</span> <span class="cf">if</span> (unique_levels <span class="op">&lt;=</span><span class="dv">30</span> <span class="op">|</span><span class="kw">is.character</span>(data[,i])){
+            categorical[p] &lt;-i
+            p=p<span class="op">+</span><span class="dv">1</span>
+            data[[i]] &lt;-<span class="kw">factor</span>(data[[i]])
+  }<span class="cf">else</span>{
+            continuous[q] &lt;-i
+            q=q<span class="op">+</span><span class="dv">1</span>
+  }}
+
+<span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">Total number of continuous variables in feature set &quot;</span>,<span class="kw">length</span>(continuous) <span class="op">-</span><span class="dv">1</span>)</code></pre></div>
+<pre><code>## 
+## Total number of continuous variables in feature set  714</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">Total number of categorical variable in feature set &quot;</span>,<span class="kw">length</span>(categorical) <span class="op">-</span><span class="dv">2</span>)</code></pre></div>
+<pre><code>## 
+## Total number of categorical variable in feature set  52</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Gini coef</span>
+performance_metric_gini &lt;-<span class="kw">data.frame</span>(<span class="dt">feature =</span><span class="kw">character</span>(), <span class="dt">Gini_value =</span><span class="kw">numeric</span>())
+
+<span class="co"># for (feature in names(data)){</span>
+<span class="co">#     if(feature %in%c(&quot;id&quot;,&quot;loss&quot;,&quot;default&quot;)) {</span>
+<span class="co">#         next</span>
+<span class="co">#       } else {</span>
+<span class="co"># tryCatch(</span>
+<span class="co">#   {glm_model &lt;-glm(default ~get(feature),data=data,family=binomial(link=&quot;logit&quot;));</span>
+<span class="co">#   predicted_values &lt;-predict.glm(glm_model,newdata=data,type=&quot;response&quot;);</span>
+<span class="co">#   Gini_value &lt;-Gini(predicted_values,data$default);</span>
+<span class="co">#   performance_metric_gini &lt;-rbind(performance_metric_gini,cbind(feature,Gini_value));},error=function(e){})</span>
+<span class="co"># }</span>
+<span class="co"># }</span>
+<span class="co"># </span>
+<span class="co"># saveRDS(performance_metric_gini, &quot;performance_metric_gini.rds&quot;)</span>
+performance_metric_gini &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;./save/performance_metric_gini.rds&quot;</span>)
+
+performance_metric_gini<span class="op">$</span>Gini_value &lt;-<span class="kw">as.numeric</span>(<span class="kw">as.character</span>(performance_metric_gini<span class="op">$</span>Gini_value))
+
+Ranked_Features &lt;-performance_metric_gini[<span class="kw">order</span>(<span class="op">-</span>performance_metric_gini<span class="op">$</span>Gini_value),]
+<span class="kw">head</span>(Ranked_Features)</code></pre></div>
+<pre><code>##     feature Gini_value
+## 389    f404  0.2579189
+## 710    f766  0.2578312
+## 585    f630  0.2415352
+## 584    f629  0.2354368
+## 321    f333  0.2352707
+## 56      f64  0.2348747</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Note  : When you are running loops over large datasets, it is possible that the loop might stop due to some errors. to escape that, consider using the trycatch() function in r</span>
+
+###################################################
+### Try logistic regression with top 5 features <span class="al">###</span>
+###################################################
+
+glm_model &lt;-<span class="kw">glm</span>(default <span class="op">~</span>f766 <span class="op">+</span>f404 <span class="op">+</span>f629 <span class="op">+</span>f630 <span class="op">+</span>f281 <span class="op">+</span>f322,<span class="dt">data=</span>data,<span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;logit&quot;</span>))
+predicted_values &lt;-<span class="kw">predict.glm</span>(glm_model,<span class="dt">newdata=</span>data,<span class="dt">type=</span><span class="st">&quot;response&quot;</span>)
+Gini_value &lt;-<span class="kw">Gini</span>(predicted_values,data<span class="op">$</span>default)
+<span class="kw">summary</span>(glm_model)</code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = default ~ f766 + f404 + f629 + f630 + f281 + f322, 
+##     family = binomial(link = &quot;logit&quot;), data = data)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -0.6928  -0.4946  -0.4102  -0.3329   3.0013  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(&gt;|z|)  
+## (Intercept) -1.502550   4.939282  -0.304   0.7610  
+## f766        -0.010228   4.916519  -0.002   0.9983  
+## f404        -1.395602   4.908606  -0.284   0.7762  
+## f629        -0.306456   0.172632  -1.775   0.0759 .
+## f630        -0.165047   0.128300  -1.286   0.1983  
+## f281         0.007759   0.019386   0.400   0.6890  
+## f322         0.264196   0.128472   2.056   0.0397 *
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 12415  on 19938  degrees of freedom
+## Residual deviance: 12040  on 19932  degrees of freedom
+##   (61 observations deleted due to missingness)
+## AIC: 12054
+## 
+## Number of Fisher Scoring iterations: 5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Gini_value</code></pre></div>
+<pre><code>## [1] 0.2697868</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Every features aren&#39;t always significant. Indication that features themselves are highly correlated. Gini coef has not improved. So investigate multicorrelation.</span>
+<span class="co"># Variable ranking method is univariate and lead to the selection of a redundant variables. </span>
+
+top_6_feature &lt;-<span class="kw">data.frame</span>(data<span class="op">$</span>f766,data<span class="op">$</span>f404,data<span class="op">$</span>f629,data<span class="op">$</span>f630,data<span class="op">$</span>f281,data<span class="op">$</span>f322)
+<span class="kw">cor</span>(top_6_feature, <span class="dt">use=</span><span class="st">&quot;complete&quot;</span>)</code></pre></div>
+<pre><code>##            data.f766  data.f404  data.f629  data.f630  data.f281
+## data.f766  1.0000000  0.9996754  0.6777553  0.6378040  0.8205665
+## data.f404  0.9996754  1.0000000  0.6774434  0.6374457  0.8204153
+## data.f629  0.6777553  0.6774434  1.0000000  0.9155376  0.6628148
+## data.f630  0.6378040  0.6374457  0.9155376  1.0000000  0.6202698
+## data.f281  0.8205665  0.8204153  0.6628148  0.6202698  1.0000000
+## data.f322 -0.7706228 -0.7707861 -0.5450001 -0.5048133 -0.7371242
+##            data.f322
+## data.f766 -0.7706228
+## data.f404 -0.7707861
+## data.f629 -0.5450001
+## data.f630 -0.5048133
+## data.f281 -0.7371242
+## data.f322  1.0000000</code></pre>
+</div>
+<div id="variance-treshold-approach" class="section level3">
+<h3><span class="header-section-number">2.6.2</span> variance treshold approach</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Attention, les variables ne sont pas standardisées, on ne peut pas les comparer directement. On utilise le coeficient de variation :$c= \fraq{\sigma}{\mu}$</span>
+
+<span class="co"># Calculate CV</span>
+coefficient_of_variance &lt;-<span class="kw">data.frame</span>(<span class="dt">feature =</span><span class="kw">character</span>(), <span class="dt">cov =</span><span class="kw">numeric</span>())
+
+<span class="cf">for</span> (feature <span class="cf">in</span> <span class="kw">names</span>(data)){
+  <span class="cf">if</span>(feature <span class="op">%in%</span><span class="kw">c</span>(<span class="st">&quot;id&quot;</span>,<span class="st">&quot;loss&quot;</span>,<span class="st">&quot;default&quot;</span>)){<span class="cf">next</span>
+  }<span class="cf">else</span> <span class="cf">if</span>(feature <span class="op">%in%</span><span class="st"> </span>continuous){
+    <span class="kw">tryCatch</span>({
+      cov &lt;-<span class="kw">abs</span>(<span class="kw">sd</span>(data[[feature]], <span class="dt">na.rm =</span><span class="ot">TRUE</span>)<span class="op">/</span><span class="kw">mean</span>(data[[feature]],<span class="dt">na.rm =</span><span class="ot">TRUE</span>));
+      <span class="cf">if</span>(cov <span class="op">!=</span><span class="ot">Inf</span>){
+coefficient_of_variance &lt;-<span class="kw">rbind</span>(coefficient_of_variance,<span class="kw">cbind</span>(feature, cov));
+      } <span class="cf">else</span> {<span class="cf">next</span>}
+              },<span class="dt">error=</span><span class="cf">function</span>(e){})
+  }<span class="cf">else</span>{<span class="cf">next</span>}
+}
+
+coefficient_of_variance<span class="op">$</span>cov &lt;-<span class="kw">as.numeric</span>(<span class="kw">as.character</span>(coefficient_of_variance<span class="op">$</span>cov))
+Ranked_Features_cov &lt;-coefficient_of_variance[<span class="kw">order</span>(<span class="op">-</span>coefficient_of_variance<span class="op">$</span>cov),]
+
+<span class="kw">head</span>(Ranked_Features_cov)</code></pre></div>
+<pre><code>##     feature       cov
+## 294    f338 128.05980
+## 377    f422 111.93083
+## 664    f724  69.64913
+## 349    f393  55.39446
+## 712    f775  47.64456
+## 350    f394  46.68719</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Logistic model
+
+glm_model &lt;-<span class="kw">glm</span>(default <span class="op">~</span>f338 <span class="op">+</span>f422 <span class="op">+</span>f724 <span class="op">+</span>f636 <span class="op">+</span>f775 <span class="op">+</span>f723,<span class="dt">data=</span>data, <span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;logit&quot;</span>));
+predicted_values &lt;-<span class="kw">predict.glm</span>(glm_model,<span class="dt">newdata=</span>data,<span class="dt">type=</span><span class="st">&quot;response&quot;</span>)
+Gini_value &lt;-<span class="kw">Gini</span>(predicted_values,data<span class="op">$</span>default)
+
+<span class="kw">cat</span>(<span class="st">&quot;The Gini Coefficient for the fitted model is &quot;</span>,Gini_value);</code></pre></div>
+<pre><code>## The Gini Coefficient for the fitted model is  0.1465253</code></pre>
+<p>Contrairement au Ranking avec Gini, les variables ne sont pas dominés par leur structure de correlation. Mais les variables ne sont pas toutes significatives individuellement et le coef GINI pas particuliérement amélioré. Avec variance treshlod on espére selectionné des variables indépendantes</p>
+</div>
+</div>
+<div id="method-summary" class="section level2">
+<h2><span class="header-section-number">2.7</span> Method Summary</h2>
+<table style="width:51%;">
+<colgroup>
+<col width="5%" />
+<col width="23%" />
+<col width="22%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Variable quanti</th>
+<th>Variable quali</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Graph</td>
+<td>Time series, barplot, boxplot, histographe, QQplot, scaterplot</td>
+<td>barplot, boxplot</td>
+</tr>
+<tr class="even">
+<td>Test</td>
+<td>t-test sur la moyenne, chi2 sur la variance, test normalité, corrélation, test F variance, test de levene</td>
+<td>test proportion, test ajustement, test indépendance</td>
+</tr>
+<tr class="odd">
+<td>Modélisation</td>
+<td>Régression linéaire</td>
+<td>régression logistique, analyse discriminante, abre décision</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Parametric</strong> : assume thaht sample data is drawn from a known probabilité distribution based on fixed set of parameters. For instance, linear regression assumes normal distribution, whereas logistic assumes binomial distribution, etc. This assumption allows the methods to be applied to small datasets as well.
+<ul>
+<li>involve a two-step model-based approach : Chose model (ex : linear) and estimate (ex: ols)</li>
+<li>reduce the probleme of model estimation to a probleme of parameter estimation</li>
+<li>but if the chosen model is too far from the true f, then the estimate will be poor</li>
+</ul></li>
+<li><strong>Non parametric</strong> : not assume any probabilty distribution or prior. Contruct empirical distributions from data. (= Kernel regression, NPMR)</li>
+</ul>
+<p>Models can also be evaluated in terms of variance and bias.</p>
+<ul>
+<li>A model has high variance if small changes to the underlying data used to estimate the parameters cause a sizable change in those parameters (or in the structure of the model)</li>
+<li>Model bias reflects the ability of a model to conform to the underlying theoretical structure of the data. A low bias model is one that can be highly flexible and has the capacity to fit a variety of different shapes and patterns. A high bias model would be unable to estimate values close to their true theoretical counterparts. Linear methods often have high bias since, without modification, cannot describe nonlinear patterns in the predictor variables. Tree-based models, support vector machines, neural networks, and others can be very adaptable to the data and have low bias.</li>
+</ul>
+</div>
+<div id="tips" class="section level2">
+<h2><span class="header-section-number">2.8</span> tips</h2>
+<ul>
+<li>Tidyverse package</li>
+<li>Given below are some of the rare feature engineering tricks implemented in the winning solutions of several data science competitions. - Transform data to Image - Meta-leaks - Representation learning features Mean encodings - Transforming target variable</li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-visualization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-start.pdf", "bookdown-start.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

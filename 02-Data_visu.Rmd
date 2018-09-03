@@ -1,0 +1,168 @@
+
+# Data visualization
+
+
+```{r datavisu library, message=FALSE, warning=FALSE, include=FALSE}
+library(dplyr)
+library(ggplot2)
+```
+
+
+
+
+## Descriptive
+
+```{r desc1, echo=TRUE}
+#change theme => + theme()
+
+iris %>% qplot(Petal.Width, Petal.Length , color = Species, data = .)
+cars %>% ggplot(aes(x = speed, y = ..count..)) + geom_histogram(bins = 10) + geom_density()
+cars %>% ggplot(aes(x = speed, y = dist)) + geom_point() + geom_smooth(method = "lm")
+
+# If non linear smooth :  method = 'loess'
+```
+
+
+  - **Multiple line**
+
+```{r desc2}
+longley %>% ggplot(aes(x = Year)) +
+geom_point(aes(y = Unemployed)) +
+geom_point(aes(y = Armed.Forces), color = "blue") +
+geom_line(aes(y = Unemployed)) +
+geom_line(aes(y = Armed.Forces), color = "blue")
+```
+
+  - **Scaling** 
+
+```{r scaling}
+cars %>% ggplot(aes(x = speed, y = dist)) +
+geom_point() + geom_smooth(method = "lm") +
+scale_x_reverse("Speed") +
+scale_y_continuous("Stopping Distance")
+
+
+iris %>% ggplot(aes(x = Species, y = Petal.Length)) +
+geom_boxplot() + geom_jitter(width = 0.1, height = 0.1) +
+scale_x_discrete(labels = c("setosa" = "Setosa",
+"versicolor" = "Versicolor",
+"virginica" = "Virginica"))
+```
+
+  - **Correlation plot**
+      - Pearson correlation : relation lin?aire $$\rho(X,Y)=\frac{E[(X-\mu_X)(Y-\mu_Y)]}{\sigma_X \sigma_Y} $$
+      
+  
+```{r corrplot, message=FALSE, warning=FALSE}
+library(corrplot)
+correlation_world <-read.csv("C:/Users/007/Desktop/Data science with R/R/Dataset/Chapter 4/Correlation/Correlation Data.csv")
+corrplot(cor(correlation_world[,2:6],method ="pearson"),diag =FALSE,
+title ="Correlation Plot", method ="ellipse",
+tl.cex =0.7, tl.col ="black", cl.ratio =0.2
+)
+```
+
+## Spacial map
+
+  - **Static map** 
+      - qmap from ggplot
+      - Esay way : Machine learning with R, chap4
+
+```{r spacialmap, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+library(ggmap)
+library(sp)
+
+lat = seq(50, 51 ,by= 0.005)
+lon = seq(4,5, by=0.005)  
+
+coords <- as.data.frame(cbind(Longitude = sample(lon,50), Latitude = sample(lat,50)))
+coords$V3  = as.factor(rep("Amandine",50))
+
+#plot the  hybrid Google Maps basemap
+#  map <- qmap(location ="Louvain-la-neuve, Belgium", zoom = 11, maptype = 'hybrid')
+# saveRDS(map, file = "./save/map.rds")
+
+
+map <- readRDS("./save/map.rds")
+
+map + geom_point(data = coords, aes(x = Longitude, y = Latitude), color="red", size=3, alpha=0.5)
+
+map + geom_polygon(data = coords, aes(x = Longitude, y = Latitude, group = V3),
+                     colour = 'white', fill = 'red', alpha = .4, size = .3)
+
+# Density plots
+map + stat_density2d(
+  aes(x = Longitude, y = Latitude, fill = ..level..), 
+  size = 2, bins = 5, data = coords, geom = "polygon") +
+  scale_fill_gradient(low = "black", high = "red")
+
+
+# Routing
+
+ from <- "rue d'heuval, court-saint-etienne, Belgium"
+ to <- 'chaussee de Hui, Bonlez, Belgium'
+ route_df <- route(from, to, structure = 'route', mode = 'walking')
+# saveRDS(route_df, "./save/route_df.rds")
+# route_df <- readRDS("./save/route_df.rds")
+# 
+ map +  geom_path(  aes(x = lon, y = lat),  colour = 'red', size = 1.5,
+     data = route_df, lineend = 'round')
+
+# to get gps coords from adress, check library sp and route() fonction
+
+```
+       
+
+  - **Interactive map : leaflet**
+      - More information on https://rstudio.github.io/leaflet
+      -  for more complex cartographie, check geoJSON https://rstudio.github.io/leaflet/json.html
+      - gps geolocalisation : https://github.com/AugustT/shiny_geolocation
+
+
+
+```{r leaflet, message=FALSE, warning=FALSE}
+library(leaflet)
+
+lat = seq(50, 51 ,by= 0.005)
+lon = seq(4,5, by=0.005)  
+
+coords <- as.data.frame(cbind(Longitude = sample(lon,50), Latitude = sample(lat,50)))
+coords$V3  = as.factor(rep("Amandine",50))
+coords$V4 = rep(seq(1,5,by=1),10)
+
+# simple use
+# Possibilité d'utilise d'autre map que google open street map
+
+m <- leaflet() %>% setView(lng = 4.8, lat = 50.5, zoom = 10)
+m %>% addProviderTiles(providers$Stamen.Toner)
+m %>% addProviderTiles(providers$Esri.NatGeoWorldMap)
+
+# cartographe 
+library(maps)
+mapStates = map("state", fill = TRUE, plot = FALSE)
+leaflet(data = mapStates) %>% 
+      addTiles() %>%
+      addPolygons(fillColor = topo.colors(10, alpha = NULL), stroke = FALSE)
+
+
+# modifier les markeret pop up 
+
+leaflet(coords) %>% addTiles() %>% 
+  addMarkers(clusterOptions = markerClusterOptions(), popup = coords$V4)
+
+leaflet(coords) %>% addTiles() %>%
+  addCircles(lng = ~Longitude, lat = ~Latitude, weight = 1,
+             radius = ~V4^2 * 30, popup = ~V3  )
+
+# rectangle zone
+leaflet() %>% addTiles() %>%
+  addRectangles(
+    lng1=-118.456554, lat1=34.078039,
+    lng2=-118.436383, lat2=34.062717,
+    fillColor = "transparent"
+  )
+
+
+```
+
+

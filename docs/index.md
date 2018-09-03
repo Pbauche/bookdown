@@ -1,7 +1,7 @@
 --- 
 title: "Handout_V2"
 author: "Pierre Bauche"
-date: "2018-09-01"
+date: "2018-09-03"
 site: bookdown::bookdown_site
 documentclass: book
 link-citations: yes
@@ -15,6 +15,10 @@ Feature engenering : http://www.feat.engineering/review-predictive-modeling-proc
 Semi supervized learning : https://www.analyticsvidhya.com/blog/2017/09/pseudo-labelling-semi-supervised-learning-technique/  
     - Machine Learning wth unlabbeled data : psuedo labeling
   
+- Book 
+    - Artificial Intelligence: A Modern Approach" by Stuart Russell and Peter Norvig.
+
+
 
 ## todo
   - create Blogdown
@@ -51,3 +55,6 @@ Semi supervized learning : https://www.analyticsvidhya.com/blog/2017/09/pseudo-l
   - underwriting models : predict somebody’s insurance risk
   - marketing predition
   - customer segmentation
+
+
+## Hint
