@@ -1,0 +1,546 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+# Regression
+```{r reg library, echo=TRUE, message=FALSE, warning=FALSE}
+load("./save/BreastCancer.Rdata")
+
+#import
+Data_Purchase_Prediction <-read.csv("C:/Users/007/Desktop/Data science with R/R/Dataset/Chapter 6/PurchasePredictionDataset.csv",header=TRUE)
+
+library(IDPmisc)
+library(Metrics)
+library(MASS)
+library("lattice")
+library(car)
+```
+## introduction
+First supervized learning. Supervised learning means we have the (X,Y) and we need to get the function that maps X to Y. Dependante variable is available and regression use others predictives variables to estimate regression coefficient.
+
+## Linear regression
+  - **Model** :   $Y=\alpha + X \beta + \epsilon$
+    * Linéaire: on suppose distribition normal
+    * $\alpha$ :intercepte : la reponse moyenne si les variables explicatives sont zéro
+    
+  -  **Remarque**
+    * Categorical data : set to as factor
+    * Check Missing value : delete, impute, new catégorie
+    
+  - **Hypothèses** :
+    - $rang(X) = p$ => Rang est connu, exclus la multicolinéarité
+    - X est une matrice déterminée
+    + $\epsilon$  sont des erreurs indépendantes
+    + $E(\epsilon) = 0$ => erreur de moyenne nulle (normalité des résidus)
+    + $var(\epsilon) = \sigma_2 In$ => variance Homoskédastique non autocorrélé  
+    
+    
+  - **Estimation et propriétés des estimateurs** : Estimation par moindres carrés ordinaires : Minimise les squares error. Estimateur le plus efficace dans la classe des estimateurs non biaisé :BLUE
+    * $E[Y] = X \beta$
+    * $Var(Y) = \sigma In$ 
+    * $E[\hat(\beta)] = \beta$
+    * $var(\hat(\beta)) = \sigma (X'X)^(-1)$ 
+    * Si $\epsilon ~ N(0, \sigma In)$, alors $\hat(\beta) ~ N(\beta, \sigma^2 (X'X)^(-1))$
+
+$$SSTO = SSR + SSE$$
+$$\sum{(Y_i - \bar{Y})^2} = \sum{(\hat{Y}_i - \bar{Y})^2} + \sum{(Y_i - \hat{Y})^2}$$
+
+ - **Diagnostiques** : 
+    +  **F-test**  : 
+         + $H_0 : \beta_i = 0 \forall i$ 
+         + stat de test  : $\frac{(SSTO - SSE)/(p-1)}{SSE/(n-p)} = \frac{MSR}{MSE} \sim F(p-1,n-1)$
+    + **coefficient de détermination multiple $R^2$** : mesure de qualité d'ajustement 
+          + $\frac{SSR/SSTO}$  
+
+    - **Multicolinéarité** : forte corrélation entre variables explicatives
+        - Conséquence : Interprétation des coéfficients impossibles
+        - Diagnostiques : 
+              + variance des coefficients très larges, 
+              + coefficients varient beaucoup a l'ajouts/retrait de variables, 
+              + coefficients ont signes non intruitifs
+              + Calcule des VIF (variance inflation factor) : si mpoyenne des VIF > 1 ou un VIF >10)
+                  + $tolérance = 1-R²$ et $VIF = \frac{1}{tolérance}$
+
+        - Solution : Supprimer des variables, regression de Ridge (permet l'inversion de la matrice X'X qui est impossible en cas de multicolinéarité parfaite)
+        
+    - **Linéarité** : Graph des résidus Vs régresseurs
+        + Si forme connue : transformer les regressieurs (log, sqrt) ou  ajouté un terme (quadratique, log, d'interaction,  ...)
+    
+    - **Homoskédasticité** : graph résidus vs valeurs prédites, test de Breush et Pagan, BreushPAgan, Berlett test, arch test
+        + Variance des erreurs indépendante des variable explicative
+        + Estimation reste correcte sous homoskédasticité : utilisé une variance corrigé : Régression de white
+  
+    -  **Erreur Non indépendante** : test d'autocorrélation  Dubin watson test, plot acf
+        + If résidual show  definite relationship with prior résidual (like autocorrelation), the noise isn't random and we still have some information that we can extract and put in the model
+        + Problème de modèle : passer en log lin, oubli de régresseur (qui est autocorrélé), inclure des lag de la variable dépendante
+        
+    - **Normalité des erreurs** : QQplot, test de Jarque Berra, KS test
+        + estimation correcte mais interprétation des tests et des IC sont faussées car basé sur la normalité
+        + théorie des grand nombre, si assez observations, estimateur OLS est assymptiquement normal et les test et IC tendent assymptotiquement
+
+    -  **Influential Point Analysis**: Les valeurs abérantes peuvent crée des biais dans les estimateurs. Si trop extreme, on peut les deletes, check, impute, ...
+        + DFFITS
+        + DFBETAS
+        + Distance de Cooks :   
+
+
+$$ D_i = \frac{e²_i}{s²p} [\frac{h_i}{(1-h_i)²}]$$ 
+where $s²= (n-p)^{-1}e^Te$ est la moyenne des erreurs quadratiques de la regression. Et $h_i =x^T(x^Tx)^{-1}$. Avec cutoff $D_i > 4/(n-k-1)$ ou k est le nombre de paramètre
+
+Distance de Cook mesure l'effet of deleting a given observation. Si supprimer des observations cause grosse influence, alors ce point est suppiser etre outlier. 
+
+
+ - **Evaluation** : 
+    * RMSE = sqrt(mean($residuals)^2)  ou  $residuals = actual-predicted
+
+- **Interprétation** : 
+    -  Pour une augmentation de une unité de speed, dist augmente de 3.9324.
+    -  Intercepte donne la dist si speed vaut zero
+
+
+```{r reg lin, echo=TRUE, message=FALSE, warning=FALSE}
+
+reglin = lm(dist~ speed, data=cars)
+summary(reglin)
+
+y =  cars$dist
+x = cars$speed
+
+res <-stack(data.frame(Observed = y, Predicted=fitted(reglin)))
+res <-cbind(res, x =rep(x, 2))
+#Plot using lattice xyplot(function)
+library("lattice")
+xyplot(values ~x, data = res, group = ind, auto.key =TRUE)
+
+
+sqrt(mean(residuals(reglin)^2))
+rmse(cars$dist,predict(reglin))
+
+# Normalité des résidus
+
+sresid = studres(reglin)
+sresid=NaRV.omit(sresid)
+hist(sresid, freq=FALSE, main="Distribution of Studentized Residuals",breaks=25)
+xfit<-seq(min(sresid),max(sresid),length=40)
+yfit<-dnorm(xfit)
+lines(xfit, yfit)
+
+## ADD QQplot
+## test normalité (attention juste indicateur)
+ks.test(reglin$residuals,pnorm,alternative="two.sided")
+shapiro.test(reglin$residuals)
+
+
+# Multicolinnéarité  : VIF 
+# vif(reglin)
+
+# residual autocorrelation : H0 = pas d'autocorrélation 
+durbinWatsonTest(reglin)
+plot(acf(reglin$residuals))
+
+# Homoskédasticité : breush pagan test
+# h0 : variance hétéscedastic
+ncvTest(reglin)
+
+#plot resi vs fit  : detect non liearité, heterocedasticity, outlier
+# if random = ok
+plot(reglin$residuals,reglin$fitted.values)
+
+# cook's distance
+
+cutoff <-4/((nrow(cars)-length(reglin$coefficients)-1))
+plot(reglin, which=4, cook.levels=cutoff)
+
+# taille du cercle proportionnel a la distance de cook
+influencePlot(reglin, id.method="identify",main="Influence Plot", sub="Circle size is proportional to Cook's Distance", id.location=NULL)
+
+outlierTest(reglin)
+
+# now investigate vs mean of data variable
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## ANOVA
+## Polynomiale regression
+Si la relation entre variables explicatives et variable dépendante n'est pas linéaire. Possibilité d'augmenter la relation dans des haut degré polynomials mais will cause overfitting. 
+$$ y_i = \alpha_0 + \alpha_i x_i + \alpha_2 x²_i+ ... + \epsilon_i$$
+
+
+  - Exemple :    
+      - Dependant variable = price of a commodity  
+      - Explicative variable = quantiée vendue
+The general principle is if the price is too cheap, people will not buy the commodity thinking it's not of good quality, but if the price is too high, people will not buy due to cost consideration. Let's try to quantify this relationship using linear and quadratic regression  
+
+```{r reg poly}
+y <-as.numeric(c("3.3","2.8","2.9","2.3","2.6","2.1","2.5","2.9","2.4","3.0","3.1","2.8","3.3","3.5","3"))
+x<-as.numeric(c("50","55","49","68","73","71","80","84","79","92","91","90","110","103","99"));
+
+linear_reg <-lm(y~x)
+summary(linear_reg)
+
+plot(y)
+lines(linear_reg$fitted.values)
+
+quad_reg <-lm(y~x +I(x^2) )
+summary(quad_reg)
+
+plot(y)
+lines(quad_reg$fitted.values)
+
+# improvement in R square, quadratic term significant
+```
+
+
+## Logistique
+### General
+ - **Variable dépendante binaire** : binomially distribued
+binomial distribution probability mass function : $f(k;n,p) = P(X=k) = \left( \begin{array}{c} n \\ k \end{array} \right) p^k (1-p)^{n-k}$
+
+- **Trois classe de modèle logistiques**: 
+    - 1. binomial logistic regression : var dépendante soit 0 soit 1
+    - 2. multinomial logistic regression : 3 ouplus niveu pour la variable dépendante (on utilise ditribution multinomiale)
+    - 3. ordered logistic regression
+
+- **Transformation logit** :  fonction de lien pour la regression : $logit = \frac{e^t}{e^t+1}=\frac{1}{1+e^{-t}}$
+
+- **LA cote** :  représente la relation entre presence/absence d'un event
+    - odd = P(A)/(1-P(A))
+    - un odd de 2 pour un event A mean l'event est deux fois plus probable qu'il se réalise que rien ne se réalise.
+    - Odd Ratio : rapport des cotes = Odd(A) / Odd(B)
+    - SI OR = 2 : Chanque que B se réalise sont deux fois suppérieur a celle de A
+
+### Binomial Logistic MODEL
+
+  - **Model** : 
+$$ logit(p_i) = \ln(\frac{p_i}{1-p_i}) = \beta_0 + \beta X $$
+
+  - **Hypothèses** :
+
+  - **Estimation** par MLE ou  itérative avec optimisation du logLoss
+
+  - **Diagnostiques** : 
+      -  Si but est classification : check les predictions et classement
+      -  Si but est analyse des coefficients : vérification des hypothèsese stat
+          - **Wald test** : same a t-test in reg lin. Test sur les levels des variables sont individuellements significatifs.  Suit une distri chi-square. 
+        
+          - **pseudo R-square** :  Mesure la proportion de variance expliqué par le modele. Mesure la différence entre la déviance un model null et fitted. Calcul par le likelihood ratio :
+$$R²_i  = \frac{D_{null} - D_{fitted}}{D_{null}}$$
+ou D est la déviance : $ D = - 2ln \frac{LH fitted model}{LH saturated model}$
+
+          - **Bivariate plot** : observed and predictied vs variable explicative.  Plot donne info sur comme le model sur comporte selon les différent niveau 
+
+          - **Matrice de classification** : 
+                  - Spécificity = combien de negatif le model prédit correctement
+                  - sensitivity = combien de positif le model prédit correctement
+
+
+```{r reg log}
+library(ggplot2)
+library(mlbench)
+
+  BreastCancer$Cl.thickness = as.numeric(as.character(BreastCancer$Cl.thickness))
+  BreastCancer$IsMalignant = ifelse( BreastCancer$Class== "benign", 0, 1)
+
+  ggplot(data =BreastCancer, aes(x = Cl.thickness, y = IsMalignant)) +
+    geom_jitter(height = 0.05, width = 0.3, alpha=0.4) +
+    geom_smooth(method = "glm", method.args = list(family = "binomial"))
+  
+  
+  
+reglog =  glm(IsMalignant ~ Cl.thickness, family = "binomial",
+      data = BreastCancer)
+summary(reglog)
+table(BreastCancer$Class, ifelse(predict(reglog, BreastCancer) < 0.5, 0, 1))
+
+
+```
+
+```{r reg log2, eval=FALSE, include=FALSE}
+
+dim(Data_Purchase_Prediction)
+
+#set O/1
+Data_Purchase_Prediction$choice <- ifelse(Data_Purchase_Prediction$ProductChoice ==1,1,
+                                          ifelse(Data_Purchase_Prediction$ProductChoice ==3,0,999))
+
+#Subset
+Data_Logistic <-Data_Purchase_Prediction[Data_Purchase_Prediction$choice%in%c("0","1"),c("CUSTOMER_ID","choice","MembershipPoints","IncomeClass","CustomerPropensity","LastPurchaseDuration")]
+
+table(Data_Logistic$choice,useNA="always")
+
+# convert to factor
+Data_Logistic$MembershipPoints <-factor(Data_Logistic$MembershipPoints)
+Data_Logistic$IncomeClass <-factor(Data_Logistic$IncomeClass)
+Data_Logistic$CustomerPropensity <-factor(Data_Logistic$CustomerPropensity)
+Data_Logistic$LastPurchaseDuration <-as.numeric(Data_Logistic$LastPurchaseDuration)
+
+# exploration
+table(Data_Logistic$MembershipPoints,Data_Logistic$choice)
+# IF membershippoints increase, both 0 and 1 decrease
+table(Data_Logistic$CustomerPropensity,Data_Logistic$choice)
+# add plot, boxplot
+
+# remove NA
+Data_Logistic <- na.omit(Data_Logistic)
+
+rownames(Data_Logistic) <-NULL
+
+#Divide the data into Train and Test
+set.seed(917)
+index <-sample(1:nrow(Data_Logistic),round(0.7*nrow(Data_Logistic)))
+train <-Data_Logistic[index,]
+test <-Data_Logistic[-index,]
+
+#Fitting a logistic model
+Model_logistic <-glm( choice ~MembershipPoints +IncomeClass+CustomerPropensity +LastPurchaseDuration, data = train, family=binomial(link ='logit'))
+summary(Model_logistic)
+
+# diagnostic
+library(pROC)
+
+# apply roc function
+cut_off <-roc(response=train$choice, predictor=Model_logistic$fitted.values)
+
+# Find threshold that minimizes error
+e <-cbind(cut_off$thresholds, cut_off$sensitivities+cut_off$specificities)
+best_t <-subset(e,e[,2]==max(e[,2]))[,1]
+
+# The best cutoff is the value on the curve that maximizes sensitivity and minimizes (1-specificity).
+# Basis idea, if > 0.5 then 1 if < 0.5 then 0. But not alway true, it possible to optimize the cutoff for classification
+
+#Plot ROC Curve
+plot(1-cut_off$specificities,cut_off$sensitivities,type="l", ylab="Sensitivity",xlab="1-Specificity",col="green",lwd=2,main ="ROC Curve for Train")
+abline(a=0,b=1)
+abline(v = best_t, col="red") #add optimal t to ROC curve
+
+# Predict the probabilities for test SET and apply the cut-off
+predict_prob <-predict(Model_logistic, newdata=test, type="response")
+
+#Apply the cutoff to get the class
+class_pred <-ifelse(predict_prob >0.41,1,0)
+
+#Classification table
+table(test$choice,class_pred)
+
+#Classification rate
+sum(diag(table(test$choice,class_pred))/nrow(test))
+
+
+#Wald test
+library(survey)
+regTermTest(Model_logistic,"MembershipPoints", method ="Wald")
+# pval < 0 donc RH0 que les coefficients valent zero. donc "MembershipPoints" est significatif
+
+# Pseudo R-square 
+library(pscl)
+pR2(Model_logistic)
+
+# bivariate plot
+MODEL_PREDICTION <-predict(Model_logistic, Data_Logistic, type='response')
+Data_Logistic$MODEL_PREDICTION <-MODEL_PREDICTION
+
+  var.by=as.character("MembershipPoints")
+  var.response='choice'
+  data=Data_Logistic
+  var.predict.current='MODEL_PREDICTION'
+  
+  bivariateplot = function(var.by,  var.response, data,var.predict.current){
+
+        dat.frm <- data.table(data[, c(var.by, var.response, var.predict.current)])
+        setkeyv(dat.frm, var.by)
+        
+        meantable2 <- dat.frm[, lapply(.SD, function(x) mean(x)), by = var.by]
+        counttable <- dat.frm[, list(count=.N), by=var.by]
+    
+        plotme = cbind(meantable2, counttable[,2])
+
+barplot(plotme2$count)
+lines(plotme2$choice*rescale_factor)
+lines(plotme2$MODEL_PREDICTION*rescale_factor)
+}
+
+# bivariateplot(var.by=as.character("MembershipPoints"),var.response='choice',data=Data_Logistic, var.predict.current='MODEL_PREDICTION' )
+  
+# observed and predicted follow each other, c'est bon signe. 
+# Si MembershipPoints diminue, la proba de choix =1 diminue aussi  
+  
+
+# Lift CHart
+library(gains)
+lift =with(Data_Logistic, gains(actual = Data_Logistic$choice, predicted = Data_Logistic$MODEL_PREDICTION , optimal =TRUE))
+
+plot(lift, xlab ='% of customers/population', ylab ='Actual Lift', main =paste('Lift Chart \n', sep =' '), xaxt ='n')
+axis(side =1, at =seq(0, 100, by =10), las =1, hadj =0.4)
+
+
+
+```
+
+
+### Multinomial Logistic Regression 
+Variable dépendante a plus de une catégorie et suit une distribution multinomiale. On fait une regression logistic pour chaque classe et combine dans un seul equation sous contrainte que la somme des probabilités vallent 1. Estimation par iterative optimization of the LogLoss function. 
+
+  - But : clairement de la classification. Deux méthode possible :   
+      - Pick de highest probability : classe dans la classe qui a le plus haute probabilité par rapport au autres classe. Méthode soufre de la "Class imbalance probleme" (si les classes sont non equilibré, tendance à toujours assigner dans la plus grande classe)
+      - Ratio of probabilities : prendre la ratio des probabilité prédite et la prior distribution and choisir la classe basé sur le plus haut ratio. Cette méthode normalise les probabilité par le ratio du prior pour réduire le biais liéà la distribution du pior 
+
+```{r multinormal, echo=TRUE, message=FALSE, warning=FALSE}
+
+Data_Purchase<-na.omit(Data_Purchase_Prediction)
+rownames(Data_Purchase)<-NULL
+#Random Sample for easy computation
+Data_Purchase_Model<-Data_Purchase[sample(nrow(Data_Purchase),10000),]
+# prior distribution
+table(Data_Purchase_Model$ProductChoice)
+
+# multinomial model 
+library(nnet)
+mnl_model <-multinom (ProductChoice ~MembershipPoints +IncomeClass + CustomerPropensity +LastPurchaseDuration +CustomerAge +MartialStatus, data = Data_Purchase)
+
+mnl_model
+
+# Modele converge en 30itérations.
+
+#Predict the probabilities
+predicted_test <-as.data.frame(predict(mnl_model, newdata = Data_Purchase, type="probs"))
+
+## méthode 1 : the prediction based in highest probability
+test_result <-apply(predicted_test,1,which.max)
+
+result <-as.data.frame(cbind(Data_Purchase$ProductChoice,test_result))
+colnames(result) <-c("Actual Class", "Predicted Class")
+table(result$`Actual Class`,result$`Predicted Class`)
+
+# bon résultat pour classe 123 mais pour classe 4 pas un seul case de classé. 
+
+## Methode 2 : normalisation avec la ditribution du prior
+prior <-table(Data_Purchase_Model$ProductChoice)/nrow(Data_Purchase_Model)
+prior_mat <-rep(prior,nrow(Data_Purchase_Model))
+pred_ratio <-predicted_test/prior_mat
+
+test_result <-apply(pred_ratio,1,which.max)
+
+result <-as.data.frame(cbind(Data_Purchase$ProductChoice,test_result))
+colnames(result) <-c("Actual Class", "Predicted Class")
+table(result$`Actual Class`,result$`Predicted Class`)
+
+
+```
+
+
+
+## Generalized Linear Models
+Pour GLM, on suppose que la variable dépendante est issue de la famille de ditribution exponentielle incluant la normal, binomial, poisson, gamma, ... etc. 
+$$ E(Y) = \mu = g^{-1}(X\beta) $$
+In R :  glm(formula, family=familytype(link=linkfunction), data=) 
+    - binomial, (link = "logit")  : modele logistique
+    - gaussian, (link= "identity") : modèle linéaire
+    - Gamma, (link= "inverse") : analyse de survie (time to failure of a machine in the industry)
+    - poisson, (link = "log") : How many calls will the call center receive today?
+    
+  
+## Model Selection 
+    - **Stepwise** : ajoute séquentielement la variables la plus significative. Après chaqeu ajout,le modèle réévalue la significativité des autres variables. Step : Model with 1 best feature, add next variables that maximise the evaluation function, ... Proc?dure tr?s lourde. parfois necessaire d'utiliser FIlter m?thod avant.
+
+```{r model selec step, echo=TRUE, message=FALSE, warning=FALSE}
+### Data prep ###
+#################
+
+## Data with best feature from Filter method
+data = get(load("C:/Users/007/Desktop/Data science with R/R/Dataset/LoanDefaultPred.RData"))
+data[,"default"]=ifelse(data$loss ==0, 0,1)
+
+data_model <-na.omit(data[,c("id","f338","f422","f724","f636","f775","f222","f93","f309","f303","f113","default"),])
+
+### Forward ###
+###############
+full_model <-glm(default ~f338 +f422 +f724 +f636 +f775 +f222 +f93 +f309+f303
+                 +f113,data=data_model,family=binomial(link="logit"))
+
+null_model <-glm(default ~1 ,data=data_model,family=binomial(link="logit"))
+
+forwards <-step(null_model,scope=list(lower=formula(null_model),upper=formula(full_model)), direction="forward")
+
+#best model with AIC criteria
+formula(forwards)
+
+```
+
+    
+
+
+## Regularization Algorithms
+### Ridge regression
+### Least Absolute Shrinkage and Selection Opérator LASSO
+### Elastic Net
+### Leas-Angle Regression LARS
+     - **Lasso**
+dd penalty term against the complexity to reduce the degree of overfittingor the variance of the model by adding additional bas.
+
+Check formul LASSO
+
+Objective function for the penalized logistic regression:
+$ \min - [1/N \sum y (\beta_0 + x^T_t \beta) - \log(1 + \exp{(\beta_0 + x^T_t \beta)}) ] + lambda[(1-\alpha)||\beta||^2_2 ]$
+
+```{r lasso, echo=TRUE, message=FALSE, warning=FALSE}
+library("glmnet")
+
+### Data prep ###
+#################
+data = get(load("C:/Users/007/Desktop/Data science with R/R/Dataset/LoanDefaultPred.RData"))
+data[,"default"]=ifelse(data$loss ==0, 0,1)
+
+data_model <-na.omit(data)
+y <-as.matrix(data_model$default)
+# x <-as.matrix(subset(data_model, select=continuous[250:260]))
+x <-as.matrix(data_model[,250:260])
+
+fit =glmnet(x,y, family="binomial")
+summary(fit)
+
+plot (fit, xvar="dev", label=TRUE)
+
+#Fit a cross validated binomial model
+fit_logistic =cv.glmnet(x,y, family="binomial", type.measure="class")
+
+plot (fit_logistic)
+# on est sens? voir un tendance dans les points rouge. on veut le labda qui minimum le taux de mauvaise classifications
+
+print(fit_logistic$lambda.min)
+
+param <-coef(fit_logistic, s="lambda.min")
+
+param <-as.data.frame(as.matrix(param))
+param$feature<-rownames(param)
+#The list of variables suggested by the embedded method
+param_embeded <-param[param[,2]>0,]
+param_embeded
+
+
+```
+      
+      
+  - **ridge**
+    
+## Locally estimated Scaterplot Smoothing (LOESS)

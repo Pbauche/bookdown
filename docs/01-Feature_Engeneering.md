@@ -9,7 +9,6 @@ A feature is a numeric representation of raw data.  Feature engineering is the p
 Features selection is important. If they are to many fearture,  model use noise or irrelevant information or redundant. IF they are not enought feature, model don't have the information .   
 
 
-
 - **Create new input :** 
      - Combine feature
         - reduire dimention
@@ -154,6 +153,7 @@ Test differentes combinaisons de feature selon crit?re de performance. Predictiv
   - forward/backward selection
   - recursive feature elimation algorithm
   -  ...
+  - see supervised analysis
     
 
     

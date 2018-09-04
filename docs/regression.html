@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Handout_V2</title>
+  <meta name="description" content="Handout_V2">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Handout_V2" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Handout_V2" />
+  
+  
+  
+
+<meta name="author" content="Pierre Bauche">
+
+
+<meta name="date" content="2018-09-04">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="data-visualization.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.1.17/leaflet-providers.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.1/leaflet-providers-plugin.js"></script>
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.css" rel="stylesheet" />
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.Default.css" rel="stylesheet" />
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.freezable.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.layersupport.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">somethings</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> <strong>Information</strong></a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#usefull-ressource"><i class="fa fa-check"></i><b>1.1</b> Usefull ressource</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#todo"><i class="fa fa-check"></i><b>1.2</b> todo</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#interesting-stuff"><i class="fa fa-check"></i><b>1.3</b> interesting stuff</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#hint"><i class="fa fa-check"></i><b>1.4</b> Hint</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="feature-engeneering.html"><a href="feature-engeneering.html"><i class="fa fa-check"></i><b>2</b> Feature engeneering</a><ul>
+<li class="chapter" data-level="2.1" data-path="feature-engeneering.html"><a href="feature-engeneering.html#input-feature"><i class="fa fa-check"></i><b>2.1</b> Input feature</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="feature-engeneering.html"><a href="feature-engeneering.html#numeric-data"><i class="fa fa-check"></i><b>2.1.1</b> Numeric Data</a></li>
+<li class="chapter" data-level="2.1.2" data-path="feature-engeneering.html"><a href="feature-engeneering.html#count-data"><i class="fa fa-check"></i><b>2.1.2</b> count data</a></li>
+<li class="chapter" data-level="2.1.3" data-path="feature-engeneering.html"><a href="feature-engeneering.html#categorical-data"><i class="fa fa-check"></i><b>2.1.3</b> categorical data</a></li>
+<li class="chapter" data-level="2.1.4" data-path="feature-engeneering.html"><a href="feature-engeneering.html#date-time-lubridate-package"><i class="fa fa-check"></i><b>2.1.4</b> Date Time : Lubridate package</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="feature-engeneering.html"><a href="feature-engeneering.html#missing-value"><i class="fa fa-check"></i><b>2.2</b> Missing Value</a></li>
+<li class="chapter" data-level="2.3" data-path="feature-engeneering.html"><a href="feature-engeneering.html#outlier-detection"><i class="fa fa-check"></i><b>2.3</b> Outlier Detection</a></li>
+<li class="chapter" data-level="2.4" data-path="feature-engeneering.html"><a href="feature-engeneering.html#sampling-and-resampling"><i class="fa fa-check"></i><b>2.4</b> Sampling and resampling</a></li>
+<li class="chapter" data-level="2.5" data-path="feature-engeneering.html"><a href="feature-engeneering.html#variables-selections"><i class="fa fa-check"></i><b>2.5</b> variables selections</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="feature-engeneering.html"><a href="feature-engeneering.html#filter-methods"><i class="fa fa-check"></i><b>2.5.1</b> Filter methods :</a></li>
+<li class="chapter" data-level="2.5.2" data-path="feature-engeneering.html"><a href="feature-engeneering.html#wrapper-methods"><i class="fa fa-check"></i><b>2.5.2</b> Wrapper Methods:</a></li>
+<li class="chapter" data-level="2.5.3" data-path="feature-engeneering.html"><a href="feature-engeneering.html#embedded-methods"><i class="fa fa-check"></i><b>2.5.3</b> Embedded Methods :</a></li>
+<li class="chapter" data-level="2.5.4" data-path="feature-engeneering.html"><a href="feature-engeneering.html#dimension-reduction"><i class="fa fa-check"></i><b>2.5.4</b> Dimension reduction :</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="feature-engeneering.html"><a href="feature-engeneering.html#example"><i class="fa fa-check"></i><b>2.6</b> Example</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="feature-engeneering.html"><a href="feature-engeneering.html#credit-risk-modeling"><i class="fa fa-check"></i><b>2.6.1</b> Credit risk modeling</a></li>
+<li class="chapter" data-level="2.6.2" data-path="feature-engeneering.html"><a href="feature-engeneering.html#variance-treshold-approach"><i class="fa fa-check"></i><b>2.6.2</b> variance treshold approach</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="feature-engeneering.html"><a href="feature-engeneering.html#method-summary"><i class="fa fa-check"></i><b>2.7</b> Method Summary</a></li>
+<li class="chapter" data-level="2.8" data-path="feature-engeneering.html"><a href="feature-engeneering.html#tips"><i class="fa fa-check"></i><b>2.8</b> tips</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>3</b> Data visualization</a><ul>
+<li class="chapter" data-level="3.1" data-path="data-visualization.html"><a href="data-visualization.html#descriptive"><i class="fa fa-check"></i><b>3.1</b> Descriptive</a></li>
+<li class="chapter" data-level="3.2" data-path="data-visualization.html"><a href="data-visualization.html#spacial-map"><i class="fa fa-check"></i><b>3.2</b> Spacial map</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>4</b> Regression</a><ul>
+<li class="chapter" data-level="4.1" data-path="regression.html"><a href="regression.html#introduction"><i class="fa fa-check"></i><b>4.1</b> introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="regression.html"><a href="regression.html#linear-regression"><i class="fa fa-check"></i><b>4.2</b> Linear regression</a></li>
+<li class="chapter" data-level="4.3" data-path="regression.html"><a href="regression.html#anova"><i class="fa fa-check"></i><b>4.3</b> ANOVA</a></li>
+<li class="chapter" data-level="4.4" data-path="regression.html"><a href="regression.html#polynomiale-regression"><i class="fa fa-check"></i><b>4.4</b> Polynomiale regression</a></li>
+<li class="chapter" data-level="4.5" data-path="regression.html"><a href="regression.html#logistique"><i class="fa fa-check"></i><b>4.5</b> Logistique</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="regression.html"><a href="regression.html#general"><i class="fa fa-check"></i><b>4.5.1</b> General</a></li>
+<li class="chapter" data-level="4.5.2" data-path="regression.html"><a href="regression.html#binomial-logistic-model"><i class="fa fa-check"></i><b>4.5.2</b> Binomial Logistic MODEL</a></li>
+<li class="chapter" data-level="4.5.3" data-path="regression.html"><a href="regression.html#multinomial-logistic-regression"><i class="fa fa-check"></i><b>4.5.3</b> Multinomial Logistic Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="regression.html"><a href="regression.html#generalized-linear-models"><i class="fa fa-check"></i><b>4.6</b> Generalized Linear Models</a></li>
+<li class="chapter" data-level="4.7" data-path="regression.html"><a href="regression.html#model-selection"><i class="fa fa-check"></i><b>4.7</b> Model Selection</a></li>
+<li class="chapter" data-level="4.8" data-path="regression.html"><a href="regression.html#regularization-algorithms"><i class="fa fa-check"></i><b>4.8</b> Regularization Algorithms</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="regression.html"><a href="regression.html#ridge-regression"><i class="fa fa-check"></i><b>4.8.1</b> Ridge regression</a></li>
+<li class="chapter" data-level="4.8.2" data-path="regression.html"><a href="regression.html#least-absolute-shrinkage-and-selection-operator-lasso"><i class="fa fa-check"></i><b>4.8.2</b> Least Absolute Shrinkage and Selection Opérator LASSO</a></li>
+<li class="chapter" data-level="4.8.3" data-path="regression.html"><a href="regression.html#elastic-net"><i class="fa fa-check"></i><b>4.8.3</b> Elastic Net</a></li>
+<li class="chapter" data-level="4.8.4" data-path="regression.html"><a href="regression.html#leas-angle-regression-lars"><i class="fa fa-check"></i><b>4.8.4</b> Leas-Angle Regression LARS</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="regression.html"><a href="regression.html#locally-estimated-scaterplot-smoothing-loess"><i class="fa fa-check"></i><b>4.9</b> Locally estimated Scaterplot Smoothing (LOESS)</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Handout_V2</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="regression" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Regression</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;./save/BreastCancer.Rdata&quot;</span>)
+
+<span class="co">#import</span>
+Data_Purchase_Prediction &lt;-<span class="kw">read.csv</span>(<span class="st">&quot;C:/Users/007/Desktop/Data science with R/R/Dataset/Chapter 6/PurchasePredictionDataset.csv&quot;</span>,<span class="dt">header=</span><span class="ot">TRUE</span>)
+
+<span class="kw">library</span>(IDPmisc)
+<span class="kw">library</span>(Metrics)
+<span class="kw">library</span>(MASS)
+<span class="kw">library</span>(<span class="st">&quot;lattice&quot;</span>)
+<span class="kw">library</span>(car)</code></pre></div>
+<div id="introduction" class="section level2">
+<h2><span class="header-section-number">4.1</span> introduction</h2>
+<p>First supervized learning. Supervised learning means we have the (X,Y) and we need to get the function that maps X to Y. Dependante variable is available and regression use others predictives variables to estimate regression coefficient.</p>
+</div>
+<div id="linear-regression" class="section level2">
+<h2><span class="header-section-number">4.2</span> Linear regression</h2>
+<ul>
+<li><strong>Model</strong> : <span class="math inline">\(Y=\alpha + X \beta + \epsilon\)</span>
+<ul>
+<li>Linéaire: on suppose distribition normal</li>
+<li><span class="math inline">\(\alpha\)</span> :intercepte : la reponse moyenne si les variables explicatives sont zéro</li>
+</ul></li>
+<li><strong>Remarque</strong>
+<ul>
+<li>Categorical data : set to as factor</li>
+<li>Check Missing value : delete, impute, new catégorie</li>
+</ul></li>
+<li><strong>Hypothèses</strong> :
+<ul>
+<li><span class="math inline">\(rang(X) = p\)</span> =&gt; Rang est connu, exclus la multicolinéarité</li>
+<li>X est une matrice déterminée</li>
+<li><span class="math inline">\(\epsilon\)</span> sont des erreurs indépendantes</li>
+<li><span class="math inline">\(E(\epsilon) = 0\)</span> =&gt; erreur de moyenne nulle (normalité des résidus)</li>
+<li><span class="math inline">\(var(\epsilon) = \sigma_2 In\)</span> =&gt; variance Homoskédastique non autocorrélé</li>
+</ul></li>
+<li><strong>Estimation et propriétés des estimateurs</strong> : Estimation par moindres carrés ordinaires : Minimise les squares error. Estimateur le plus efficace dans la classe des estimateurs non biaisé :BLUE
+<ul>
+<li><span class="math inline">\(E[Y] = X \beta\)</span></li>
+<li><span class="math inline">\(Var(Y) = \sigma In\)</span></li>
+<li><span class="math inline">\(E[\hat(\beta)] = \beta\)</span></li>
+<li><span class="math inline">\(var(\hat(\beta)) = \sigma (X&#39;X)^(-1)\)</span></li>
+<li>Si <span class="math inline">\(\epsilon ~ N(0, \sigma In)\)</span>, alors <span class="math inline">\(\hat(\beta) ~ N(\beta, \sigma^2 (X&#39;X)^(-1))\)</span></li>
+</ul></li>
+</ul>
+<p><span class="math display">\[SSTO = SSR + SSE\]</span> <span class="math display">\[\sum{(Y_i - \bar{Y})^2} = \sum{(\hat{Y}_i - \bar{Y})^2} + \sum{(Y_i - \hat{Y})^2}\]</span></p>
+<ul>
+<li><strong>Diagnostiques</strong> :
+<ul>
+<li><strong>F-test</strong> :
+<ul>
+<li><span class="math inline">\(H_0 : \beta_i = 0 \forall i\)</span></li>
+<li>stat de test : <span class="math inline">\(\frac{(SSTO - SSE)/(p-1)}{SSE/(n-p)} = \frac{MSR}{MSE} \sim F(p-1,n-1)\)</span></li>
+</ul></li>
+<li><strong>coefficient de détermination multiple <span class="math inline">\(R^2\)</span></strong> : mesure de qualité d’ajustement
+<ul>
+<li><span class="math inline">\(\frac{SSR/SSTO}\)</span></li>
+</ul></li>
+<li><strong>Multicolinéarité</strong> : forte corrélation entre variables explicatives
+<ul>
+<li>Conséquence : Interprétation des coéfficients impossibles</li>
+<li>Diagnostiques :
+<ul>
+<li>variance des coefficients très larges,</li>
+<li>coefficients varient beaucoup a l’ajouts/retrait de variables,</li>
+<li>coefficients ont signes non intruitifs</li>
+<li>Calcule des VIF (variance inflation factor) : si mpoyenne des VIF &gt; 1 ou un VIF &gt;10)
+<ul>
+<li><span class="math inline">\(tolérance = 1-R²\)</span> et <span class="math inline">\(VIF = \frac{1}{tolérance}\)</span></li>
+</ul></li>
+</ul></li>
+<li>Solution : Supprimer des variables, regression de Ridge (permet l’inversion de la matrice X’X qui est impossible en cas de multicolinéarité parfaite)</li>
+</ul></li>
+<li><strong>Linéarité</strong> : Graph des résidus Vs régresseurs
+<ul>
+<li>Si forme connue : transformer les regressieurs (log, sqrt) ou ajouté un terme (quadratique, log, d’interaction, …)</li>
+</ul></li>
+<li><strong>Homoskédasticité</strong> : graph résidus vs valeurs prédites, test de Breush et Pagan, BreushPAgan, Berlett test, arch test
+<ul>
+<li>Variance des erreurs indépendante des variable explicative</li>
+<li>Estimation reste correcte sous homoskédasticité : utilisé une variance corrigé : Régression de white</li>
+</ul></li>
+<li><strong>Erreur Non indépendante</strong> : test d’autocorrélation Dubin watson test, plot acf
+<ul>
+<li>If résidual show definite relationship with prior résidual (like autocorrelation), the noise isn’t random and we still have some information that we can extract and put in the model</li>
+<li>Problème de modèle : passer en log lin, oubli de régresseur (qui est autocorrélé), inclure des lag de la variable dépendante</li>
+</ul></li>
+<li><strong>Normalité des erreurs</strong> : QQplot, test de Jarque Berra, KS test
+<ul>
+<li>estimation correcte mais interprétation des tests et des IC sont faussées car basé sur la normalité</li>
+<li>théorie des grand nombre, si assez observations, estimateur OLS est assymptiquement normal et les test et IC tendent assymptotiquement</li>
+</ul></li>
+<li><strong>Influential Point Analysis</strong>: Les valeurs abérantes peuvent crée des biais dans les estimateurs. Si trop extreme, on peut les deletes, check, impute, …
+<ul>
+<li>DFFITS</li>
+<li>DFBETAS</li>
+<li>Distance de Cooks :</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><span class="math display">\[ D_i = \frac{e²_i}{s²p} [\frac{h_i}{(1-h_i)²}]\]</span> where <span class="math inline">\(s²= (n-p)^{-1}e^Te\)</span> est la moyenne des erreurs quadratiques de la regression. Et <span class="math inline">\(h_i =x^T(x^Tx)^{-1}\)</span>. Avec cutoff <span class="math inline">\(D_i &gt; 4/(n-k-1)\)</span> ou k est le nombre de paramètre</p>
+<p>Distance de Cook mesure l’effet of deleting a given observation. Si supprimer des observations cause grosse influence, alors ce point est suppiser etre outlier.</p>
+<ul>
+<li><strong>Evaluation</strong> :
+<ul>
+<li>RMSE = sqrt(mean($residuals)^2) ou $residuals = actual-predicted</li>
+</ul></li>
+<li><strong>Interprétation</strong> :
+<ul>
+<li>Pour une augmentation de une unité de speed, dist augmente de 3.9324.</li>
+<li>Intercepte donne la dist si speed vaut zero</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reglin =<span class="st"> </span><span class="kw">lm</span>(dist<span class="op">~</span><span class="st"> </span>speed, <span class="dt">data=</span>cars)
+<span class="kw">summary</span>(reglin)</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = dist ~ speed, data = cars)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -29.069  -9.525  -2.272   9.215  43.201 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -17.5791     6.7584  -2.601   0.0123 *  
+## speed         3.9324     0.4155   9.464 1.49e-12 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 15.38 on 48 degrees of freedom
+## Multiple R-squared:  0.6511, Adjusted R-squared:  0.6438 
+## F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y =<span class="st">  </span>cars<span class="op">$</span>dist
+x =<span class="st"> </span>cars<span class="op">$</span>speed
+
+res &lt;-<span class="kw">stack</span>(<span class="kw">data.frame</span>(<span class="dt">Observed =</span> y, <span class="dt">Predicted=</span><span class="kw">fitted</span>(reglin)))
+res &lt;-<span class="kw">cbind</span>(res, <span class="dt">x =</span><span class="kw">rep</span>(x, <span class="dv">2</span>))
+<span class="co">#Plot using lattice xyplot(function)</span>
+<span class="kw">library</span>(<span class="st">&quot;lattice&quot;</span>)
+<span class="kw">xyplot</span>(values <span class="op">~</span>x, <span class="dt">data =</span> res, <span class="dt">group =</span> ind, <span class="dt">auto.key =</span><span class="ot">TRUE</span>)</code></pre></div>
+<p><img src="03-regression_files/figure-html/reg%20lin-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt</span>(<span class="kw">mean</span>(<span class="kw">residuals</span>(reglin)<span class="op">^</span><span class="dv">2</span>))</code></pre></div>
+<pre><code>## [1] 15.06886</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rmse</span>(cars<span class="op">$</span>dist,<span class="kw">predict</span>(reglin))</code></pre></div>
+<pre><code>## [1] 15.06886</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Normalité des résidus</span>
+
+sresid =<span class="st"> </span><span class="kw">studres</span>(reglin)
+sresid=<span class="kw">NaRV.omit</span>(sresid)
+<span class="kw">hist</span>(sresid, <span class="dt">freq=</span><span class="ot">FALSE</span>, <span class="dt">main=</span><span class="st">&quot;Distribution of Studentized Residuals&quot;</span>,<span class="dt">breaks=</span><span class="dv">25</span>)
+xfit&lt;-<span class="kw">seq</span>(<span class="kw">min</span>(sresid),<span class="kw">max</span>(sresid),<span class="dt">length=</span><span class="dv">40</span>)
+yfit&lt;-<span class="kw">dnorm</span>(xfit)
+<span class="kw">lines</span>(xfit, yfit)</code></pre></div>
+<p><img src="03-regression_files/figure-html/reg%20lin-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## ADD QQplot
+## test normalité (attention juste indicateur)
+<span class="kw">ks.test</span>(reglin<span class="op">$</span>residuals,pnorm,<span class="dt">alternative=</span><span class="st">&quot;two.sided&quot;</span>)</code></pre></div>
+<pre><code>## 
+##  One-sample Kolmogorov-Smirnov test
+## 
+## data:  reglin$residuals
+## D = 0.49833, p-value = 3.283e-11
+## alternative hypothesis: two-sided</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">shapiro.test</span>(reglin<span class="op">$</span>residuals)</code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  reglin$residuals
+## W = 0.94509, p-value = 0.02152</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Multicolinnéarité  : VIF </span>
+<span class="co"># vif(reglin)</span>
+
+<span class="co"># residual autocorrelation : H0 = pas d&#39;autocorrélation </span>
+<span class="kw">durbinWatsonTest</span>(reglin)</code></pre></div>
+<pre><code>##  lag Autocorrelation D-W Statistic p-value
+##    1       0.1604322      1.676225    0.19
+##  Alternative hypothesis: rho != 0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">acf</span>(reglin<span class="op">$</span>residuals))</code></pre></div>
+<p><img src="03-regression_files/figure-html/reg%20lin-3.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Homoskédasticité : breush pagan test</span>
+<span class="co"># h0 : variance hétéscedastic</span>
+<span class="kw">ncvTest</span>(reglin)</code></pre></div>
+<pre><code>## Non-constant Variance Score Test 
+## Variance formula: ~ fitted.values 
+## Chisquare = 4.650233    Df = 1     p = 0.03104933</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#plot resi vs fit  : detect non liearité, heterocedasticity, outlier</span>
+<span class="co"># if random = ok</span>
+<span class="kw">plot</span>(reglin<span class="op">$</span>residuals,reglin<span class="op">$</span>fitted.values)</code></pre></div>
+<p><img src="03-regression_files/figure-html/reg%20lin-4.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># cook&#39;s distance</span>
+
+cutoff &lt;-<span class="dv">4</span><span class="op">/</span>((<span class="kw">nrow</span>(cars)<span class="op">-</span><span class="kw">length</span>(reglin<span class="op">$</span>coefficients)<span class="op">-</span><span class="dv">1</span>))
+<span class="kw">plot</span>(reglin, <span class="dt">which=</span><span class="dv">4</span>, <span class="dt">cook.levels=</span>cutoff)</code></pre></div>
+<p><img src="03-regression_files/figure-html/reg%20lin-5.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># taille du cercle proportionnel a la distance de cook</span>
+<span class="kw">influencePlot</span>(reglin, <span class="dt">id.method=</span><span class="st">&quot;identify&quot;</span>,<span class="dt">main=</span><span class="st">&quot;Influence Plot&quot;</span>, <span class="dt">sub=</span><span class="st">&quot;Circle size is proportional to Cook&#39;s Distance&quot;</span>, <span class="dt">id.location=</span><span class="ot">NULL</span>)</code></pre></div>
+<p><img src="03-regression_files/figure-html/reg%20lin-6.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">outlierTest</span>(reglin)</code></pre></div>
+<pre><code>## 
+## No Studentized residuals with Bonferonni p &lt; 0.05
+## Largest |rstudent|:
+##    rstudent unadjusted p-value Bonferonni p
+## 49 3.184993          0.0025707      0.12853</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># now investigate vs mean of data variable</span></code></pre></div>
+</div>
+<div id="anova" class="section level2">
+<h2><span class="header-section-number">4.3</span> ANOVA</h2>
+</div>
+<div id="polynomiale-regression" class="section level2">
+<h2><span class="header-section-number">4.4</span> Polynomiale regression</h2>
+<p>Si la relation entre variables explicatives et variable dépendante n’est pas linéaire. Possibilité d’augmenter la relation dans des haut degré polynomials mais will cause overfitting. <span class="math display">\[ y_i = \alpha_0 + \alpha_i x_i + \alpha_2 x²_i+ ... + \epsilon_i\]</span></p>
+<ul>
+<li>Exemple :
+<ul>
+<li>Dependant variable = price of a commodity<br />
+</li>
+<li>Explicative variable = quantiée vendue The general principle is if the price is too cheap, people will not buy the commodity thinking it’s not of good quality, but if the price is too high, people will not buy due to cost consideration. Let’s try to quantify this relationship using linear and quadratic regression</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="kw">as.numeric</span>(<span class="kw">c</span>(<span class="st">&quot;3.3&quot;</span>,<span class="st">&quot;2.8&quot;</span>,<span class="st">&quot;2.9&quot;</span>,<span class="st">&quot;2.3&quot;</span>,<span class="st">&quot;2.6&quot;</span>,<span class="st">&quot;2.1&quot;</span>,<span class="st">&quot;2.5&quot;</span>,<span class="st">&quot;2.9&quot;</span>,<span class="st">&quot;2.4&quot;</span>,<span class="st">&quot;3.0&quot;</span>,<span class="st">&quot;3.1&quot;</span>,<span class="st">&quot;2.8&quot;</span>,<span class="st">&quot;3.3&quot;</span>,<span class="st">&quot;3.5&quot;</span>,<span class="st">&quot;3&quot;</span>))
+x&lt;-<span class="kw">as.numeric</span>(<span class="kw">c</span>(<span class="st">&quot;50&quot;</span>,<span class="st">&quot;55&quot;</span>,<span class="st">&quot;49&quot;</span>,<span class="st">&quot;68&quot;</span>,<span class="st">&quot;73&quot;</span>,<span class="st">&quot;71&quot;</span>,<span class="st">&quot;80&quot;</span>,<span class="st">&quot;84&quot;</span>,<span class="st">&quot;79&quot;</span>,<span class="st">&quot;92&quot;</span>,<span class="st">&quot;91&quot;</span>,<span class="st">&quot;90&quot;</span>,<span class="st">&quot;110&quot;</span>,<span class="st">&quot;103&quot;</span>,<span class="st">&quot;99&quot;</span>));
+
+linear_reg &lt;-<span class="kw">lm</span>(y<span class="op">~</span>x)
+<span class="kw">summary</span>(linear_reg)</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.66844 -0.25994  0.03346  0.20895  0.69004 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 2.232652   0.445995   5.006  0.00024 ***
+## x           0.007546   0.005463   1.381  0.19046    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.3836 on 13 degrees of freedom
+## Multiple R-squared:  0.128,  Adjusted R-squared:  0.06091 
+## F-statistic: 1.908 on 1 and 13 DF,  p-value: 0.1905</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(y)
+<span class="kw">lines</span>(linear_reg<span class="op">$</span>fitted.values)</code></pre></div>
+<p><img src="03-regression_files/figure-html/reg%20poly-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">quad_reg &lt;-<span class="kw">lm</span>(y<span class="op">~</span>x <span class="op">+</span><span class="kw">I</span>(x<span class="op">^</span><span class="dv">2</span>) )
+<span class="kw">summary</span>(quad_reg)</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x + I(x^2))
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.43380 -0.13005  0.00493  0.20701  0.33776 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  6.8737010  1.1648621   5.901 7.24e-05 ***
+## x           -0.1189525  0.0309061  -3.849  0.00232 ** 
+## I(x^2)       0.0008145  0.0001976   4.122  0.00142 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.2569 on 12 degrees of freedom
+## Multiple R-squared:  0.6391, Adjusted R-squared:  0.5789 
+## F-statistic: 10.62 on 2 and 12 DF,  p-value: 0.002211</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(y)
+<span class="kw">lines</span>(quad_reg<span class="op">$</span>fitted.values)</code></pre></div>
+<p><img src="03-regression_files/figure-html/reg%20poly-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># improvement in R square, quadratic term significant</span></code></pre></div>
+</div>
+<div id="logistique" class="section level2">
+<h2><span class="header-section-number">4.5</span> Logistique</h2>
+<div id="general" class="section level3">
+<h3><span class="header-section-number">4.5.1</span> General</h3>
+<ul>
+<li><p><strong>Variable dépendante binaire</strong> : binomially distribued binomial distribution probability mass function : <span class="math inline">\(f(k;n,p) = P(X=k) = \left( \begin{array}{c} n \\ k \end{array} \right) p^k (1-p)^{n-k}\)</span></p></li>
+<li><strong>Trois classe de modèle logistiques</strong>:
+<ul>
+<li><ol style="list-style-type: decimal">
+<li>binomial logistic regression : var dépendante soit 0 soit 1</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: decimal">
+<li>multinomial logistic regression : 3 ouplus niveu pour la variable dépendante (on utilise ditribution multinomiale)</li>
+</ol></li>
+<li><ol start="3" style="list-style-type: decimal">
+<li>ordered logistic regression</li>
+</ol></li>
+</ul></li>
+<li><p><strong>Transformation logit</strong> : fonction de lien pour la regression : <span class="math inline">\(logit = \frac{e^t}{e^t+1}=\frac{1}{1+e^{-t}}\)</span></p></li>
+<li><strong>LA cote</strong> : représente la relation entre presence/absence d’un event
+<ul>
+<li>odd = P(A)/(1-P(A))</li>
+<li>un odd de 2 pour un event A mean l’event est deux fois plus probable qu’il se réalise que rien ne se réalise.</li>
+<li>Odd Ratio : rapport des cotes = Odd(A) / Odd(B)</li>
+<li>SI OR = 2 : Chanque que B se réalise sont deux fois suppérieur a celle de A</li>
+</ul></li>
+</ul>
+</div>
+<div id="binomial-logistic-model" class="section level3">
+<h3><span class="header-section-number">4.5.2</span> Binomial Logistic MODEL</h3>
+<ul>
+<li><p><strong>Model</strong> : <span class="math display">\[ logit(p_i) = \ln(\frac{p_i}{1-p_i}) = \beta_0 + \beta X \]</span></p></li>
+<li><p><strong>Hypothèses</strong> :</p></li>
+<li><p><strong>Estimation</strong> par MLE ou itérative avec optimisation du logLoss</p></li>
+<li><strong>Diagnostiques</strong> :
+<ul>
+<li>Si but est classification : check les predictions et classement</li>
+<li>Si but est analyse des coefficients : vérification des hypothèsese stat
+<ul>
+<li><p><strong>Wald test</strong> : same a t-test in reg lin. Test sur les levels des variables sont individuellements significatifs. Suit une distri chi-square.</p></li>
+<li><p><strong>pseudo R-square</strong> : Mesure la proportion de variance expliqué par le modele. Mesure la différence entre la déviance un model null et fitted. Calcul par le likelihood ratio : <span class="math display">\[R²_i  = \frac{D_{null} - D_{fitted}}{D_{null}}\]</span> ou D est la déviance : $ D = - 2ln $</p></li>
+<li><p><strong>Bivariate plot</strong> : observed and predictied vs variable explicative. Plot donne info sur comme le model sur comporte selon les différent niveau</p></li>
+<li><p><strong>Matrice de classification</strong> : - Spécificity = combien de negatif le model prédit correctement - sensitivity = combien de positif le model prédit correctement</p></li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)</code></pre></div>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.3.3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(mlbench)</code></pre></div>
+<pre><code>## Warning: package &#39;mlbench&#39; was built under R version 3.3.3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  BreastCancer<span class="op">$</span>Cl.thickness =<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">as.character</span>(BreastCancer<span class="op">$</span>Cl.thickness))
+  BreastCancer<span class="op">$</span>IsMalignant =<span class="st"> </span><span class="kw">ifelse</span>( BreastCancer<span class="op">$</span>Class<span class="op">==</span><span class="st"> &quot;benign&quot;</span>, <span class="dv">0</span>, <span class="dv">1</span>)
+
+  <span class="kw">ggplot</span>(<span class="dt">data =</span>BreastCancer, <span class="kw">aes</span>(<span class="dt">x =</span> Cl.thickness, <span class="dt">y =</span> IsMalignant)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_jitter</span>(<span class="dt">height =</span> <span class="fl">0.05</span>, <span class="dt">width =</span> <span class="fl">0.3</span>, <span class="dt">alpha=</span><span class="fl">0.4</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;glm&quot;</span>, <span class="dt">method.args =</span> <span class="kw">list</span>(<span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>))</code></pre></div>
+<p><img src="03-regression_files/figure-html/reg%20log-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reglog =<span class="st">  </span><span class="kw">glm</span>(IsMalignant <span class="op">~</span><span class="st"> </span>Cl.thickness, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>,
+      <span class="dt">data =</span> BreastCancer)
+<span class="kw">summary</span>(reglog)</code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = IsMalignant ~ Cl.thickness, family = &quot;binomial&quot;, 
+##     data = BreastCancer)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.1986  -0.4261  -0.1704   0.1730   2.9118  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)  -5.16017    0.37795  -13.65   &lt;2e-16 ***
+## Cl.thickness  0.93546    0.07377   12.68   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 900.53  on 698  degrees of freedom
+## Residual deviance: 464.05  on 697  degrees of freedom
+## AIC: 468.05
+## 
+## Number of Fisher Scoring iterations: 6</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(BreastCancer<span class="op">$</span>Class, <span class="kw">ifelse</span>(<span class="kw">predict</span>(reglog, BreastCancer) <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.5</span>, <span class="dv">0</span>, <span class="dv">1</span>))</code></pre></div>
+<pre><code>##            
+##               0   1
+##   benign    453   5
+##   malignant  94 147</code></pre>
+</div>
+<div id="multinomial-logistic-regression" class="section level3">
+<h3><span class="header-section-number">4.5.3</span> Multinomial Logistic Regression</h3>
+<p>Variable dépendante a plus de une catégorie et suit une distribution multinomiale. On fait une regression logistic pour chaque classe et combine dans un seul equation sous contrainte que la somme des probabilités vallent 1. Estimation par iterative optimization of the LogLoss function.</p>
+<ul>
+<li>But : clairement de la classification. Deux méthode possible :
+<ul>
+<li>Pick de highest probability : classe dans la classe qui a le plus haute probabilité par rapport au autres classe. Méthode soufre de la “Class imbalance probleme” (si les classes sont non equilibré, tendance à toujours assigner dans la plus grande classe)</li>
+<li>Ratio of probabilities : prendre la ratio des probabilité prédite et la prior distribution and choisir la classe basé sur le plus haut ratio. Cette méthode normalise les probabilité par le ratio du prior pour réduire le biais liéà la distribution du pior</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Data_Purchase&lt;-<span class="kw">na.omit</span>(Data_Purchase_Prediction)
+<span class="kw">rownames</span>(Data_Purchase)&lt;-<span class="ot">NULL</span>
+<span class="co">#Random Sample for easy computation</span>
+Data_Purchase_Model&lt;-Data_Purchase[<span class="kw">sample</span>(<span class="kw">nrow</span>(Data_Purchase),<span class="dv">10000</span>),]
+<span class="co"># prior distribution</span>
+<span class="kw">table</span>(Data_Purchase_Model<span class="op">$</span>ProductChoice)</code></pre></div>
+<pre><code>## 
+##    1    2    3    4 
+## 2215 3843 2910 1032</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># multinomial model </span>
+<span class="kw">library</span>(nnet)
+mnl_model &lt;-<span class="kw">multinom</span> (ProductChoice <span class="op">~</span>MembershipPoints <span class="op">+</span>IncomeClass <span class="op">+</span><span class="st"> </span>CustomerPropensity <span class="op">+</span>LastPurchaseDuration <span class="op">+</span>CustomerAge <span class="op">+</span>MartialStatus, <span class="dt">data =</span> Data_Purchase)</code></pre></div>
+<pre><code>## # weights:  44 (30 variable)
+## initial  value 672765.880864 
+## iter  10 value 615285.850873
+## iter  20 value 607471.781374
+## iter  30 value 607231.472034
+## final  value 604217.503433 
+## converged</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mnl_model</code></pre></div>
+<pre><code>## Call:
+## multinom(formula = ProductChoice ~ MembershipPoints + IncomeClass + 
+##     CustomerPropensity + LastPurchaseDuration + CustomerAge + 
+##     MartialStatus, data = Data_Purchase)
+## 
+## Coefficients:
+##   (Intercept) MembershipPoints IncomeClass CustomerPropensityLow
+## 2  0.77137077      -0.02940732  0.00127305            -0.3960318
+## 3  0.01775506       0.03340207  0.03540194            -0.8573716
+## 4 -1.15109893      -0.12366367  0.09016678            -0.6427954
+##   CustomerPropensityMedium CustomerPropensityUnknown
+## 2               -0.2745419                -0.5715016
+## 3               -0.4038433                -1.1824810
+## 4               -0.4035627                -0.9769569
+##   CustomerPropensityVeryHigh LastPurchaseDuration CustomerAge
+## 2                  0.2553831           0.04117902 0.001638976
+## 3                  0.5645137           0.05539173 0.005042405
+## 4                  0.5897717           0.07047770 0.009664668
+##   MartialStatus
+## 2  -0.033879645
+## 3  -0.007461956
+## 4   0.122011042
+## 
+## Residual Deviance: 1208435 
+## AIC: 1208495</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Modele converge en 30itérations.</span>
+
+<span class="co">#Predict the probabilities</span>
+predicted_test &lt;-<span class="kw">as.data.frame</span>(<span class="kw">predict</span>(mnl_model, <span class="dt">newdata =</span> Data_Purchase, <span class="dt">type=</span><span class="st">&quot;probs&quot;</span>))
+
+## méthode 1 : the prediction based in highest probability
+test_result &lt;-<span class="kw">apply</span>(predicted_test,<span class="dv">1</span>,which.max)
+
+result &lt;-<span class="kw">as.data.frame</span>(<span class="kw">cbind</span>(Data_Purchase<span class="op">$</span>ProductChoice,test_result))
+<span class="kw">colnames</span>(result) &lt;-<span class="kw">c</span>(<span class="st">&quot;Actual Class&quot;</span>, <span class="st">&quot;Predicted Class&quot;</span>)
+<span class="kw">table</span>(result<span class="op">$</span><span class="st">`</span><span class="dt">Actual Class</span><span class="st">`</span>,result<span class="op">$</span><span class="st">`</span><span class="dt">Predicted Class</span><span class="st">`</span>)</code></pre></div>
+<pre><code>##    
+##          1      2      3
+##   1    302  91952  12365
+##   2    248 150429  38028
+##   3    170  90944  51390
+##   4     27  32645  16798</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># bon résultat pour classe 123 mais pour classe 4 pas un seul case de classé. </span>
+
+## Methode 2 : normalisation avec la ditribution du prior
+prior &lt;-<span class="kw">table</span>(Data_Purchase_Model<span class="op">$</span>ProductChoice)<span class="op">/</span><span class="kw">nrow</span>(Data_Purchase_Model)
+prior_mat &lt;-<span class="kw">rep</span>(prior,<span class="kw">nrow</span>(Data_Purchase_Model))
+pred_ratio &lt;-predicted_test<span class="op">/</span>prior_mat
+
+test_result &lt;-<span class="kw">apply</span>(pred_ratio,<span class="dv">1</span>,which.max)
+
+result &lt;-<span class="kw">as.data.frame</span>(<span class="kw">cbind</span>(Data_Purchase<span class="op">$</span>ProductChoice,test_result))
+<span class="kw">colnames</span>(result) &lt;-<span class="kw">c</span>(<span class="st">&quot;Actual Class&quot;</span>, <span class="st">&quot;Predicted Class&quot;</span>)
+<span class="kw">table</span>(result<span class="op">$</span><span class="st">`</span><span class="dt">Actual Class</span><span class="st">`</span>,result<span class="op">$</span><span class="st">`</span><span class="dt">Predicted Class</span><span class="st">`</span>)</code></pre></div>
+<pre><code>##    
+##          1      2      3      4
+##   1  21552  64045  18996     26
+##   2  28459 111965  48210     71
+##   3  14057  76923  51468     56
+##   4   4680  27802  16941     47</code></pre>
+</div>
+</div>
+<div id="generalized-linear-models" class="section level2">
+<h2><span class="header-section-number">4.6</span> Generalized Linear Models</h2>
+<p>Pour GLM, on suppose que la variable dépendante est issue de la famille de ditribution exponentielle incluant la normal, binomial, poisson, gamma, … etc. <span class="math display">\[ E(Y) = \mu = g^{-1}(X\beta) \]</span> In R : glm(formula, family=familytype(link=linkfunction), data=) - binomial, (link = “logit”) : modele logistique - gaussian, (link= “identity”) : modèle linéaire - Gamma, (link= “inverse”) : analyse de survie (time to failure of a machine in the industry) - poisson, (link = “log”) : How many calls will the call center receive today?</p>
+</div>
+<div id="model-selection" class="section level2">
+<h2><span class="header-section-number">4.7</span> Model Selection</h2>
+<pre><code>- **Stepwise** : ajoute séquentielement la variables la plus significative. Après chaqeu ajout,le modèle réévalue la significativité des autres variables. Step : Model with 1 best feature, add next variables that maximise the evaluation function, ... Proc?dure tr?s lourde. parfois necessaire d&#39;utiliser FIlter m?thod avant.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### Data prep <span class="al">###</span>
+#################
+
+## Data with best feature from Filter method
+data =<span class="st"> </span><span class="kw">get</span>(<span class="kw">load</span>(<span class="st">&quot;C:/Users/007/Desktop/Data science with R/R/Dataset/LoanDefaultPred.RData&quot;</span>))
+data[,<span class="st">&quot;default&quot;</span>]=<span class="kw">ifelse</span>(data<span class="op">$</span>loss <span class="op">==</span><span class="dv">0</span>, <span class="dv">0</span>,<span class="dv">1</span>)
+
+data_model &lt;-<span class="kw">na.omit</span>(data[,<span class="kw">c</span>(<span class="st">&quot;id&quot;</span>,<span class="st">&quot;f338&quot;</span>,<span class="st">&quot;f422&quot;</span>,<span class="st">&quot;f724&quot;</span>,<span class="st">&quot;f636&quot;</span>,<span class="st">&quot;f775&quot;</span>,<span class="st">&quot;f222&quot;</span>,<span class="st">&quot;f93&quot;</span>,<span class="st">&quot;f309&quot;</span>,<span class="st">&quot;f303&quot;</span>,<span class="st">&quot;f113&quot;</span>,<span class="st">&quot;default&quot;</span>),])
+
+### Forward <span class="al">###</span>
+###############
+full_model &lt;-<span class="kw">glm</span>(default <span class="op">~</span>f338 <span class="op">+</span>f422 <span class="op">+</span>f724 <span class="op">+</span>f636 <span class="op">+</span>f775 <span class="op">+</span>f222 <span class="op">+</span>f93 <span class="op">+</span>f309<span class="op">+</span>f303
+                 <span class="op">+</span>f113,<span class="dt">data=</span>data_model,<span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;logit&quot;</span>))
+
+null_model &lt;-<span class="kw">glm</span>(default <span class="op">~</span><span class="dv">1</span> ,<span class="dt">data=</span>data_model,<span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;logit&quot;</span>))
+
+forwards &lt;-<span class="kw">step</span>(null_model,<span class="dt">scope=</span><span class="kw">list</span>(<span class="dt">lower=</span><span class="kw">formula</span>(null_model),<span class="dt">upper=</span><span class="kw">formula</span>(full_model)), <span class="dt">direction=</span><span class="st">&quot;forward&quot;</span>)</code></pre></div>
+<pre><code>## Start:  AIC=11175.3
+## default ~ 1
+## 
+##        Df Deviance   AIC
+## + f422  1    11136 11140
+## + f113  1    11150 11154
+## + f222  1    11150 11154
+## + f775  1    11165 11169
+## + f93   1    11168 11172
+## + f309  1    11171 11175
+## + f303  1    11171 11175
+## &lt;none&gt;       11173 11175
+## + f636  1    11172 11176
+## + f338  1    11173 11177
+## + f724  1    11173 11177
+## 
+## Step:  AIC=11140.24
+## default ~ f422
+## 
+##        Df Deviance   AIC
+## + f113  1    11113 11119
+## + f222  1    11114 11120
+## + f775  1    11129 11135
+## + f93   1    11131 11137
+## &lt;none&gt;       11136 11140
+## + f303  1    11135 11141
+## + f309  1    11135 11141
+## + f636  1    11135 11141
+## + f338  1    11136 11142
+## + f724  1    11136 11142
+## 
+## Step:  AIC=11118.59
+## default ~ f422 + f113
+## 
+##        Df Deviance   AIC
+## + f222  1    11096 11104
+## + f775  1    11106 11114
+## &lt;none&gt;       11113 11119
+## + f93   1    11111 11119
+## + f303  1    11112 11120
+## + f636  1    11112 11120
+## + f309  1    11112 11120
+## + f338  1    11112 11120
+## + f724  1    11113 11121
+## 
+## Step:  AIC=11103.78
+## default ~ f422 + f113 + f222
+## 
+##        Df Deviance   AIC
+## + f775  1    11090 11100
+## &lt;none&gt;       11096 11104
+## + f303  1    11095 11105
+## + f636  1    11095 11105
+## + f309  1    11095 11105
+## + f93   1    11095 11105
+## + f338  1    11096 11106
+## + f724  1    11096 11106
+## 
+## Step:  AIC=11099.57
+## default ~ f422 + f113 + f222 + f775
+## 
+##        Df Deviance   AIC
+## + f303  1    11087 11099
+## &lt;none&gt;       11090 11100
+## + f309  1    11088 11100
+## + f636  1    11089 11101
+## + f93   1    11089 11101
+## + f338  1    11090 11102
+## + f724  1    11090 11102
+## 
+## Step:  AIC=11098.6
+## default ~ f422 + f113 + f222 + f775 + f303
+## 
+##        Df Deviance   AIC
+## &lt;none&gt;       11087 11099
+## + f636  1    11086 11100
+## + f93   1    11086 11100
+## + f309  1    11086 11100
+## + f338  1    11086 11100
+## + f724  1    11087 11101</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#best model with AIC criteria</span>
+<span class="kw">formula</span>(forwards)</code></pre></div>
+<pre><code>## default ~ f422 + f113 + f222 + f775 + f303</code></pre>
+</div>
+<div id="regularization-algorithms" class="section level2">
+<h2><span class="header-section-number">4.8</span> Regularization Algorithms</h2>
+<div id="ridge-regression" class="section level3">
+<h3><span class="header-section-number">4.8.1</span> Ridge regression</h3>
+</div>
+<div id="least-absolute-shrinkage-and-selection-operator-lasso" class="section level3">
+<h3><span class="header-section-number">4.8.2</span> Least Absolute Shrinkage and Selection Opérator LASSO</h3>
+</div>
+<div id="elastic-net" class="section level3">
+<h3><span class="header-section-number">4.8.3</span> Elastic Net</h3>
+</div>
+<div id="leas-angle-regression-lars" class="section level3">
+<h3><span class="header-section-number">4.8.4</span> Leas-Angle Regression LARS</h3>
+<pre><code> - **Lasso**</code></pre>
+<p>dd penalty term against the complexity to reduce the degree of overfittingor the variance of the model by adding additional bas.</p>
+<p>Check formul LASSO</p>
+<p>Objective function for the penalized logistic regression: $ - [1/N y (_0 + x^T_t ) - (1 + ) ] + lambda[(1-)||||^2_2 ]$</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;glmnet&quot;</span>)
+
+### Data prep <span class="al">###</span>
+#################
+data =<span class="st"> </span><span class="kw">get</span>(<span class="kw">load</span>(<span class="st">&quot;C:/Users/007/Desktop/Data science with R/R/Dataset/LoanDefaultPred.RData&quot;</span>))
+data[,<span class="st">&quot;default&quot;</span>]=<span class="kw">ifelse</span>(data<span class="op">$</span>loss <span class="op">==</span><span class="dv">0</span>, <span class="dv">0</span>,<span class="dv">1</span>)
+
+data_model &lt;-<span class="kw">na.omit</span>(data)
+y &lt;-<span class="kw">as.matrix</span>(data_model<span class="op">$</span>default)
+<span class="co"># x &lt;-as.matrix(subset(data_model, select=continuous[250:260]))</span>
+x &lt;-<span class="kw">as.matrix</span>(data_model[,<span class="dv">250</span><span class="op">:</span><span class="dv">260</span>])
+
+fit =<span class="kw">glmnet</span>(x,y, <span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>)
+<span class="kw">summary</span>(fit)</code></pre></div>
+<pre><code>##            Length Class     Mode     
+## a0          52    -none-    numeric  
+## beta       572    dgCMatrix S4       
+## df          52    -none-    numeric  
+## dim          2    -none-    numeric  
+## lambda      52    -none-    numeric  
+## dev.ratio   52    -none-    numeric  
+## nulldev      1    -none-    numeric  
+## npasses      1    -none-    numeric  
+## jerr         1    -none-    numeric  
+## offset       1    -none-    logical  
+## classnames   2    -none-    character
+## call         4    -none-    call     
+## nobs         1    -none-    numeric</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span> (fit, <span class="dt">xvar=</span><span class="st">&quot;dev&quot;</span>, <span class="dt">label=</span><span class="ot">TRUE</span>)</code></pre></div>
+<p><img src="03-regression_files/figure-html/lasso-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Fit a cross validated binomial model</span>
+fit_logistic =<span class="kw">cv.glmnet</span>(x,y, <span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>, <span class="dt">type.measure=</span><span class="st">&quot;class&quot;</span>)
+
+<span class="kw">plot</span> (fit_logistic)</code></pre></div>
+<p><img src="03-regression_files/figure-html/lasso-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># on est sens? voir un tendance dans les points rouge. on veut le labda qui minimum le taux de mauvaise classifications</span>
+
+<span class="kw">print</span>(fit_logistic<span class="op">$</span>lambda.min)</code></pre></div>
+<pre><code>## [1] 0.01919422</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">param &lt;-<span class="kw">coef</span>(fit_logistic, <span class="dt">s=</span><span class="st">&quot;lambda.min&quot;</span>)
+
+param &lt;-<span class="kw">as.data.frame</span>(<span class="kw">as.matrix</span>(param))
+param<span class="op">$</span>feature&lt;-<span class="kw">rownames</span>(param)
+<span class="co">#The list of variables suggested by the embedded method</span>
+param_embeded &lt;-param[param[,<span class="dv">2</span>]<span class="op">&gt;</span><span class="dv">0</span>,]
+param_embeded</code></pre></div>
+<pre><code>##      1 feature
+## f251 0    f251
+## f252 0    f252
+## f253 0    f253
+## f254 0    f254
+## f255 0    f255
+## f256 0    f256
+## f257 0    f257
+## f258 0    f258
+## f259 0    f259
+## f260 0    f260
+## f261 0    f261</code></pre>
+<ul>
+<li><strong>ridge</strong></li>
+</ul>
+</div>
+</div>
+<div id="locally-estimated-scaterplot-smoothing-loess" class="section level2">
+<h2><span class="header-section-number">4.9</span> Locally estimated Scaterplot Smoothing (LOESS)</h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-visualization.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-start.pdf", "bookdown-start.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

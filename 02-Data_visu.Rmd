@@ -1,17 +1,11 @@
 
 # Data visualization
-
-
 ```{r datavisu library, message=FALSE, warning=FALSE, include=FALSE}
 library(dplyr)
 library(ggplot2)
 ```
 
-
-
-
 ## Descriptive
-
 ```{r desc1, echo=TRUE}
 #change theme => + theme()
 
@@ -22,9 +16,7 @@ cars %>% ggplot(aes(x = speed, y = dist)) + geom_point() + geom_smooth(method = 
 # If non linear smooth :  method = 'loess'
 ```
 
-
   - **Multiple line**
-
 ```{r desc2}
 longley %>% ggplot(aes(x = Year)) +
 geom_point(aes(y = Unemployed)) +
@@ -34,7 +26,6 @@ geom_line(aes(y = Armed.Forces), color = "blue")
 ```
 
   - **Scaling** 
-
 ```{r scaling}
 cars %>% ggplot(aes(x = speed, y = dist)) +
 geom_point() + geom_smooth(method = "lm") +
@@ -51,8 +42,6 @@ scale_x_discrete(labels = c("setosa" = "Setosa",
 
   - **Correlation plot**
       - Pearson correlation : relation lin?aire $$\rho(X,Y)=\frac{E[(X-\mu_X)(Y-\mu_Y)]}{\sigma_X \sigma_Y} $$
-      
-  
 ```{r corrplot, message=FALSE, warning=FALSE}
 library(corrplot)
 correlation_world <-read.csv("C:/Users/007/Desktop/Data science with R/R/Dataset/Chapter 4/Correlation/Correlation Data.csv")
@@ -63,11 +52,9 @@ tl.cex =0.7, tl.col ="black", cl.ratio =0.2
 ```
 
 ## Spacial map
-
   - **Static map** 
       - qmap from ggplot
       - Esay way : Machine learning with R, chap4
-
 ```{r spacialmap, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 library(ggmap)
 library(sp)
@@ -111,7 +98,6 @@ map + stat_density2d(
 # to get gps coords from adress, check library sp and route() fonction
 
 ```
-       
 
   - **Interactive map : leaflet**
       - More information on https://rstudio.github.io/leaflet

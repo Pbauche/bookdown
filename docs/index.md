@@ -1,7 +1,7 @@
 --- 
 title: "Handout_V2"
 author: "Pierre Bauche"
-date: "2018-09-03"
+date: "2018-09-04"
 site: bookdown::bookdown_site
 documentclass: book
 link-citations: yes

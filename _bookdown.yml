@@ -1,6 +1,6 @@
 book_filename: "bookdown-start"
 chapter_name: "Chapter "
 output_dir: docs
-rmd_files: ["index.Rmd", "01-Feature_Engeneering.Rmd", "02-Data_visu.Rmd"]
+rmd_files: ["index.Rmd", "01-Feature_Engeneering.Rmd", "02-Data_visu.Rmd","03-regression.Rmd"]
 clean: [packages.bib, bookdown.bbl]
 new_session: yes
