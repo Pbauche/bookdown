@@ -1,0 +1,269 @@
+---
+title: "test"
+author: "Pierre"
+date: "22 September 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Decision Tree
+
+```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+library(tidyverse)
+```
+
+Decision tree are class of non parametric model with generaly a catégorical dependant variable. Globalement c'est un abre de decision qui se split a chaque neaux selon une variable selectionné suivant différentes metrics. Decision tree consists of two types of nodes :    
+
+
+  - *leaf node* : indicate class defined by the response variable
+  - *decision node* : which specifies some test on a single attributes
+  
+> DT use recursive divide and conquer approach.
+
+## Type of décision tree
+
+  - **Regression tree** : variables réponse continue. Objectif est de split a chaque itération en minimisant les residual sum squares RSS. 
+    - Recursively split the feature vector space (X1, X2, ., Xp) into distinct and non-overlapping regions
+    - For new observations falling into the same region, the prediction is equal to the mean of all the training observations in that region.
+    
+  - **Classification tree** :  variables categorielle
+    - We use classification error rate for making the splits in classification trees.
+    - Instead of taking the mean of response variable in a particular region for prediction, here we use the most commonly occurring class of training observation as a prediction methodology.
+  
+
+
+
+
+## Decision measures  : measure of node purity (heterogeneity of the node)
+  -  **Gini Index** : $ G = \sum p_{ml}*(1-P_{mp}) $ where, pmk is the proportion of training observations in the mth region that are from the kth class
+  - **Entropy function** : $ E = - \sum{P_{mk} log2(1-P_{mk})}
+```{r}
+curve(-x *log2(x) -(1 -x) *log2(1 -x), xlab ="x", ylab ="Entropy", lwd =5)
+```
+
+Observe that both measures are very similar, however, there are some differences:
+      - Gini-index is more suitable to continuous attributes and entropy in case of discrete data.
+      - Gini-index works well for minimizing misclassifications.
+      - Entropy is slightly slower than Gini-index, as it involves logarithms (although this doesn't really matter much given today's fast computing machines)
+      
+  - **Information gain** : Measure du changement de l'entrepy entre avant et apres le split
+  
+## Decision tree learning methods
+  - **Iterative Dichotomizer 3** : most popular décision tree algorithms
+      - Calculate entropy of each attribute using training observations
+      - Split the observations into subsets using the attribute with minimum entropy or maximum information gain.
+      - The selected attribute becomes the decision node.
+      - Repeat the process with the remaining attribute on the subset.
+    
+=> pas super performant pour le multiclass classification
+
+  - **C5.0 algorithm** : il split les noeuds en 3 possibilités
+        - All observations are a single classe => identify class
+        - No class => use the most frequent class at the parent of this node
+        - mixtureof classes => a test based on single attribute (use information gain)  
+
+Repete jusqu'au moment outout les observations sont correctement classifié
+On utilise pruning pour réduire l'overfitting. Mais avec C50 on utilise pas pruning car algorithm iterate back and replace leaf that dosn't increase the information gain.     
+
+  - **Classification and regression tree -  CART** : Use residual sum square as the node impurity measure. SI utilisation pour pure classification GINI indix peut etre plus approprié comme mesure d'impurité
+        - Start the algorithm at the root node.
+        - For each attribute X, find the subset S that minimizes the residual sum of square (RSS) of the two children and chooses the split that gives the maximum information gain.
+        - Check if relative decrease in impurity is below a prescribed threshold. 
+      -  If Yes, splitting stops, otherwise repeat Step 2.  
+
+on peut aussi utiliser un parametre de complexité (cp) : any split that does not decrease the overall lack of fit by a factor of cp would not be attempted by the model
+
+  - **Chi-square automated interaction detection - CHAID**
+Ici uniquement pour variable catégoriel. variables continues sont catégorisé par optimal bining.  
+L'algorithm fusion les catégories sinon significative avec la variables dépendante. De même si une catégorie a trop peu d'observation, elle est fusionnée avec la catégorie la plus similaire mesurée par la pval tu test chi2. CHAID détecte l'interaction entre variables dans un jeu de données. En utilisant cette technique on peut établir des relations de dépendance entre variable;  
+
+L'algorithme CHAID2 se déroule en trois étapes :
+      - préparation des prédicteurs : transformation en variable catégoriel par optimal bining
+      - fusion des classes : pour chaque prédicteur, on determine les catégorie les plus semblable par rapport a la variables dependante. (chi2) Repetition de l'étape jusqu'àavoir une catégorie fusionnée significative non indépendante. Ajuste les pval par bonferonni si des classe ont été fusionnée
+      - sélection de la variable de séparation : choisi la variable avec la plus faible pval (au test indépendante chi2 ajusté avec bonferonni), la plus significative. Processus iteratif. Si pval dépasse un seuil, le processus prend fin
+      - stopping :
+           - Si node est pure:no split
+           - pval > seuil : nosplit
+
+
+```{r DT data prep, message=FALSE, warning=FALSE}
+library(C50)
+library(splitstackshape)
+library(rattle)
+library(rpart.plot)
+library(data.table)
+library(gmodels)
+
+### Data prep ###
+#################
+Data_Purchase <-fread("C:/Users/007/Desktop/Data science with R/R/Dataset/Chapter 6/PurchasePredictionDataset.csv",header=T,verbose =FALSE, showProgress =FALSE)
+
+table(Data_Purchase$ProductChoice)
+
+#Pulling out only the relevant data to this chapter
+Data_Purchase <-Data_Purchase[,c("CUSTOMER_ID","ProductChoice","MembershipPoints","IncomeClass","CustomerPropensity","LastPurchaseDuration")]
+
+#Delete NA from subset
+Data_Purchase <-na.omit(Data_Purchase)
+Data_Purchase$CUSTOMER_ID <-as.character(Data_Purchase$CUSTOMER_ID)
+
+#Stratified Sampling
+Data_Purchase_Model<-stratified(Data_Purchase, group=c("ProductChoice"),size =10000,replace=FALSE)
+
+table(Data_Purchase_Model$ProductChoice)
+
+Data_Purchase_Model$ProductChoice <-as.factor(Data_Purchase_Model$ProductChoice)
+Data_Purchase_Model$IncomeClass <-as.factor(Data_Purchase_Model$IncomeClass)
+Data_Purchase_Model$CustomerPropensity <-as.factor(Data_Purchase_Model$CustomerPropensity)
+
+#Build the decision tree on Train Data (Set_1) and then test data (Set_2) will be used for performance testing
+set.seed(917)
+
+train <- Data_Purchase_Model[sample(nrow(Data_Purchase_Model),size=nrow(Data_Purchase_Model)*(0.7), replace =TRUE, prob =NULL),]
+train <-as.data.frame(train)
+test <-Data_Purchase_Model[!(Data_Purchase_Model$CUSTOMER_ID %in%train$CUSTOMER_ID),]
+
+# save(train, file="./save/train.RData")
+# save(test, file="./save/test.RData")
+
+library(RWeka)
+# WPM("refresh-cache")
+# WPM("install-package", "simpleEducationalLearningSchemes")
+```
+
+```{r DT ID3, message=FALSE, warning=FALSE}
+#################
+### ID3 model ###
+#################
+
+# ID3 <-make_Weka_classifier("weka/classifiers/trees/Id3")
+# ID3Model <-ID3(ProductChoice ~CustomerPropensity +IncomeClass ,data = train)
+# 
+# v = summary(ID3Model)
+# 
+# saveRDS(v, "ID3Model.rds")
+
+ID3model <- readRDS("./save/ID3Model.rds")
+ID3model
+
+# library(gmodels)
+# purchase_pred_test <-predict(ID3model, test)
+# CrossTable(test$ProductChoice, purchase_pred_test, prop.chisq =FALSE, 
+#            prop.c =FALSE, prop.r =FALSE,
+#            dnn =c('actual default', 'predicted default'))
+
+# train set accurancy : 33.3036%
+# test set accurancy : 0.159+0.004+0.086+ 0.073 = 33.2%
+# test and train are proche : sign of no overfitting
+```
+
+```{r DT C50 model, message=FALSE, warning=FALSE}
+### C50 model ###
+#################
+model_c50 <-C5.0(train[,c("CustomerPropensity","LastPurchaseDuration", "MembershipPoints")],
+                 train[,"ProductChoice"],
+                 control =C5.0Control(CF =0.001, minCases =2))
+summary(model_c50)
+plot(model_c50)
+
+purchase_pred_train <-predict(model_c50, train,type ="class")
+vtrain = CrossTable(train$ProductChoice, purchase_pred_train, prop.chisq =FALSE, prop.c =FALSE, prop.r =FALSE,dnn =c('actual default', 'predicted default'))
+
+purchase_pred_test <-predict(model_c50, test)
+vtest = CrossTable(test$ProductChoice, purchase_pred_test, prop.chisq =FALSE, prop.c =FALSE, prop.r =FALSE,dnn =c('actual default', 'predicted default'))
+
+sum(diag(vtrain$prop.tbl))
+sum(diag(vtest$prop.tbl))
+```
+
+```{r DT CART model, message=FALSE, warning=FALSE}
+### CART MODEL ###
+##################
+CARTModel <-rpart(ProductChoice ~IncomeClass +CustomerPropensity +LastPurchaseDuration +MembershipPoints, data=train)
+
+summary(CARTModel)
+fancyRpartPlot(CARTModel)
+
+purchase_pred_train <-predict(CARTModel, train,type ="class")
+# vtrain = CrossTable(train$ProductChoice, purchase_pred_train, prop.chisq =FALSE, prop.c =FALSE, prop.r =FALSE,dnn =c('actual default', 'predicted default'))
+
+# Training set Accuracy = 27%
+# not the bast for classification
+```
+
+```{r DT CHAID, message=FALSE, warning=FALSE}
+### MODEL CHAID ###
+###################
+#install.packages("CHAID", repos="http://R-Forge.R-project.org")
+library(CHAID)
+
+ctrl <- chaid_control(minsplit =200, minprob =0.1)
+CHAIDModel <-chaid(ProductChoice ~CustomerPropensity +IncomeClass, 
+                   data = train, 
+                   control = ctrl)
+
+purchase_pred_train <-predict(CHAIDModel, train)
+
+vtrain = CrossTable(train$ProductChoice, purchase_pred_train, prop.chisq =FALSE, prop.c =FALSE, prop.r =FALSE,dnn =c('actual default', 'predicted default'))
+
+sum(diag(vtrain$prop.tbl))
+
+plot(CHAIDModel)
+```
+
+
+
+## Random Forests
+Fait partie des ensemble trees (boosting, bagging, .. etc). 
+Random forests généralise les decision trees en contruistant plusieurs DT et les combinant.
+    - 1. Soit N nbr d'observation, n nombre de DT et M le nombre de variables du dataset
+    - 2. Choose a subset of m variables from M (m<<M) and buld n DT using ramdon set of m variable
+    - 3. Grow each tree as large os possible
+    - 4. Use majority voting to decide the class of the observation
+    
+```{r RF}
+### Data prep ###
+#################
+library(caret)
+library(gmodels)
+
+load("./save/train.RData")
+load("./save/test.RData")
+
+set.seed(100) ; dim(train) ; train = train[1:2000,]
+
+control <- trainControl(method="repeatedcv", number=5, repeats=2)
+
+# rfModel <-train(ProductChoice ~CustomerPropensity +LastPurchaseDuration +MembershipPoints,
+#                 data=train, 
+#                 method="rf", 
+#                 trControl=control)
+# saveRDS(rfModel, "rfModel.rds")
+rfModel <- readRDS("./save/rfModel.rds")
+
+
+purchase_pred_train <-predict(rfModel, train)
+# vtrain = CrossTable(train$ProductChoice, purchase_pred_train, prop.chisq =FALSE, prop.c =FALSE, 
+#                    prop.r =FALSE,dnn =c('actual default', 'predicted default'))
+purchase_pred_train <-predict(rfModel, test)
+# vtest = CrossTable(test$ProductChoice, purchase_pred_train, prop.chisq =FALSE, prop.c =FALSE, 
+#                   prop.r =FALSE,dnn =c('actual default', 'predicted default'))
+
+sum(diag(vtrain$prop.tbl))
+sum(diag(vtest$prop.tbl))
+
+# de tout les DT meilleur accurancy sur le test et le train mais probleme d'overfitting
+
+
+### RF on continuous variable ###
+#################
+library(Metrics)
+library(randomForest)
+RF <- randomForest(dist ~ speed, data = cars)
+rmse(cars$dist,predict(RF, cars))
+```
+
+

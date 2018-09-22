@@ -25,7 +25,7 @@
 <meta name="author" content="Pierre Bauche">
 
 
-<meta name="date" content="2018-09-04">
+<meta name="date" content="2018-09-22">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="data-visualization.html">
-
+<link rel="next" href="unsupervised.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -170,6 +170,29 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.8.4" data-path="regression.html"><a href="regression.html#leas-angle-regression-lars"><i class="fa fa-check"></i><b>4.8.4</b> Leas-Angle Regression LARS</a></li>
 </ul></li>
 <li class="chapter" data-level="4.9" data-path="regression.html"><a href="regression.html#locally-estimated-scaterplot-smoothing-loess"><i class="fa fa-check"></i><b>4.9</b> Locally estimated Scaterplot Smoothing (LOESS)</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="unsupervised.html"><a href="unsupervised.html"><i class="fa fa-check"></i><b>5</b> Unsupervised</a><ul>
+<li class="chapter" data-level="5.1" data-path="unsupervised.html"><a href="unsupervised.html#dimensionality-reduction-algorithms"><i class="fa fa-check"></i><b>5.1</b> Dimensionality reduction algorithms</a></li>
+<li class="chapter" data-level="5.2" data-path="unsupervised.html"><a href="unsupervised.html#cluster-analysis"><i class="fa fa-check"></i><b>5.2</b> Cluster analysis</a></li>
+<li class="chapter" data-level="5.3" data-path="unsupervised.html"><a href="unsupervised.html#evaluation-of-clustering"><i class="fa fa-check"></i><b>5.3</b> Evaluation of clustering</a></li>
+<li class="chapter" data-level="5.4" data-path="unsupervised.html"><a href="unsupervised.html#association-rule-mining-algorithms"><i class="fa fa-check"></i><b>5.4</b> Association Rule Mining Algorithms</a></li>
+<li class="chapter" data-level="5.5" data-path="unsupervised.html"><a href="unsupervised.html#singular-value-decomposition"><i class="fa fa-check"></i><b>5.5</b> Singular Value decomposition</a></li>
+<li class="chapter" data-level="5.6" data-path="unsupervised.html"><a href="unsupervised.html#k-nearest-neighbot"><i class="fa fa-check"></i><b>5.6</b> K-Nearest Neighbot</a></li>
+<li class="chapter" data-level="5.7" data-path="unsupervised.html"><a href="unsupervised.html#others-unsuppervised-algorithms"><i class="fa fa-check"></i><b>5.7</b> Others unsuppervised algorithms</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="decision-tree.html"><a href="decision-tree.html"><i class="fa fa-check"></i><b>6</b> Decision Tree</a><ul>
+<li class="chapter" data-level="6.1" data-path="decision-tree.html"><a href="decision-tree.html#type-of-decision-tree"><i class="fa fa-check"></i><b>6.1</b> Type of décision tree</a></li>
+<li class="chapter" data-level="6.2" data-path="decision-tree.html"><a href="decision-tree.html#decision-measures-measure-of-node-purity-heterogeneity-of-the-node"><i class="fa fa-check"></i><b>6.2</b> Decision measures : measure of node purity (heterogeneity of the node)</a></li>
+<li class="chapter" data-level="6.3" data-path="decision-tree.html"><a href="decision-tree.html#decision-tree-learning-methods"><i class="fa fa-check"></i><b>6.3</b> Decision tree learning methods</a></li>
+<li class="chapter" data-level="6.4" data-path="decision-tree.html"><a href="decision-tree.html#random-forests"><i class="fa fa-check"></i><b>6.4</b> Random Forests</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="neural-network.html"><a href="neural-network.html"><i class="fa fa-check"></i><b>7</b> Neural Network</a><ul>
+<li class="chapter" data-level="7.1" data-path="neural-network.html"><a href="neural-network.html#neural-networks-basis"><i class="fa fa-check"></i><b>7.1</b> Neural Networks Basis</a></li>
+<li class="chapter" data-level="7.2" data-path="neural-network.html"><a href="neural-network.html#neural-network-architecture"><i class="fa fa-check"></i><b>7.2</b> Neural Network Architecture</a></li>
+<li class="chapter" data-level="7.3" data-path="neural-network.html"><a href="neural-network.html#deep-learning"><i class="fa fa-check"></i><b>7.3</b> Deep Learning</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="neural-network.html"><a href="neural-network.html#example-of-deep-learning-classification"><i class="fa fa-check"></i><b>7.3.1</b> Example of deep learning : Classification</a></li>
+<li class="chapter" data-level="7.3.2" data-path="neural-network.html"><a href="neural-network.html#example-imagine-prediction-nn-classification"><i class="fa fa-check"></i><b>7.3.2</b> Example : Imagine prediction : NN classification</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -571,7 +594,7 @@ Data_Purchase_Model&lt;-Data_Purchase[<span class="kw">sample</span>(<span class
 <span class="kw">table</span>(Data_Purchase_Model<span class="op">$</span>ProductChoice)</code></pre></div>
 <pre><code>## 
 ##    1    2    3    4 
-## 2215 3843 2910 1032</code></pre>
+## 2186 3903 2936  975</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># multinomial model </span>
 <span class="kw">library</span>(nnet)
 mnl_model &lt;-<span class="kw">multinom</span> (ProductChoice <span class="op">~</span>MembershipPoints <span class="op">+</span>IncomeClass <span class="op">+</span><span class="st"> </span>CustomerPropensity <span class="op">+</span>LastPurchaseDuration <span class="op">+</span>CustomerAge <span class="op">+</span>MartialStatus, <span class="dt">data =</span> Data_Purchase)</code></pre></div>
@@ -639,10 +662,10 @@ result &lt;-<span class="kw">as.data.frame</span>(<span class="kw">cbind</span>(
 <span class="kw">table</span>(result<span class="op">$</span><span class="st">`</span><span class="dt">Actual Class</span><span class="st">`</span>,result<span class="op">$</span><span class="st">`</span><span class="dt">Predicted Class</span><span class="st">`</span>)</code></pre></div>
 <pre><code>##    
 ##          1      2      3      4
-##   1  21552  64045  18996     26
-##   2  28459 111965  48210     71
-##   3  14057  76923  51468     56
-##   4   4680  27802  16941     47</code></pre>
+##   1  22444  62943  19204     28
+##   2  29614 110375  48633     83
+##   3  14668  76304  51467     65
+##   4   4871  27609  16940     50</code></pre>
 </div>
 </div>
 <div id="generalized-linear-models" class="section level2">
@@ -843,8 +866,8 @@ param_embeded</code></pre></div>
           </div>
         </div>
       </div>
-<a href="data-visualization.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="data-visualization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="unsupervised.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

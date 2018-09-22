@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Handout_V2</title>
+  <meta name="description" content="Handout_V2">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Handout_V2" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Handout_V2" />
+  
+  
+  
+
+<meta name="author" content="Pierre Bauche">
+
+
+<meta name="date" content="2018-09-22">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="decision-tree.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.1.17/leaflet-providers.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.1/leaflet-providers-plugin.js"></script>
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.css" rel="stylesheet" />
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.Default.css" rel="stylesheet" />
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.freezable.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.layersupport.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">somethings</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> <strong>Information</strong></a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#usefull-ressource"><i class="fa fa-check"></i><b>1.1</b> Usefull ressource</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#todo"><i class="fa fa-check"></i><b>1.2</b> todo</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#interesting-stuff"><i class="fa fa-check"></i><b>1.3</b> interesting stuff</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#hint"><i class="fa fa-check"></i><b>1.4</b> Hint</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="feature-engeneering.html"><a href="feature-engeneering.html"><i class="fa fa-check"></i><b>2</b> Feature engeneering</a><ul>
+<li class="chapter" data-level="2.1" data-path="feature-engeneering.html"><a href="feature-engeneering.html#input-feature"><i class="fa fa-check"></i><b>2.1</b> Input feature</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="feature-engeneering.html"><a href="feature-engeneering.html#numeric-data"><i class="fa fa-check"></i><b>2.1.1</b> Numeric Data</a></li>
+<li class="chapter" data-level="2.1.2" data-path="feature-engeneering.html"><a href="feature-engeneering.html#count-data"><i class="fa fa-check"></i><b>2.1.2</b> count data</a></li>
+<li class="chapter" data-level="2.1.3" data-path="feature-engeneering.html"><a href="feature-engeneering.html#categorical-data"><i class="fa fa-check"></i><b>2.1.3</b> categorical data</a></li>
+<li class="chapter" data-level="2.1.4" data-path="feature-engeneering.html"><a href="feature-engeneering.html#date-time-lubridate-package"><i class="fa fa-check"></i><b>2.1.4</b> Date Time : Lubridate package</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="feature-engeneering.html"><a href="feature-engeneering.html#missing-value"><i class="fa fa-check"></i><b>2.2</b> Missing Value</a></li>
+<li class="chapter" data-level="2.3" data-path="feature-engeneering.html"><a href="feature-engeneering.html#outlier-detection"><i class="fa fa-check"></i><b>2.3</b> Outlier Detection</a></li>
+<li class="chapter" data-level="2.4" data-path="feature-engeneering.html"><a href="feature-engeneering.html#sampling-and-resampling"><i class="fa fa-check"></i><b>2.4</b> Sampling and resampling</a></li>
+<li class="chapter" data-level="2.5" data-path="feature-engeneering.html"><a href="feature-engeneering.html#variables-selections"><i class="fa fa-check"></i><b>2.5</b> variables selections</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="feature-engeneering.html"><a href="feature-engeneering.html#filter-methods"><i class="fa fa-check"></i><b>2.5.1</b> Filter methods :</a></li>
+<li class="chapter" data-level="2.5.2" data-path="feature-engeneering.html"><a href="feature-engeneering.html#wrapper-methods"><i class="fa fa-check"></i><b>2.5.2</b> Wrapper Methods:</a></li>
+<li class="chapter" data-level="2.5.3" data-path="feature-engeneering.html"><a href="feature-engeneering.html#embedded-methods"><i class="fa fa-check"></i><b>2.5.3</b> Embedded Methods :</a></li>
+<li class="chapter" data-level="2.5.4" data-path="feature-engeneering.html"><a href="feature-engeneering.html#dimension-reduction"><i class="fa fa-check"></i><b>2.5.4</b> Dimension reduction :</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="feature-engeneering.html"><a href="feature-engeneering.html#example"><i class="fa fa-check"></i><b>2.6</b> Example</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="feature-engeneering.html"><a href="feature-engeneering.html#credit-risk-modeling"><i class="fa fa-check"></i><b>2.6.1</b> Credit risk modeling</a></li>
+<li class="chapter" data-level="2.6.2" data-path="feature-engeneering.html"><a href="feature-engeneering.html#variance-treshold-approach"><i class="fa fa-check"></i><b>2.6.2</b> variance treshold approach</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="feature-engeneering.html"><a href="feature-engeneering.html#method-summary"><i class="fa fa-check"></i><b>2.7</b> Method Summary</a></li>
+<li class="chapter" data-level="2.8" data-path="feature-engeneering.html"><a href="feature-engeneering.html#tips"><i class="fa fa-check"></i><b>2.8</b> tips</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>3</b> Data visualization</a><ul>
+<li class="chapter" data-level="3.1" data-path="data-visualization.html"><a href="data-visualization.html#descriptive"><i class="fa fa-check"></i><b>3.1</b> Descriptive</a></li>
+<li class="chapter" data-level="3.2" data-path="data-visualization.html"><a href="data-visualization.html#spacial-map"><i class="fa fa-check"></i><b>3.2</b> Spacial map</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>4</b> Regression</a><ul>
+<li class="chapter" data-level="4.1" data-path="regression.html"><a href="regression.html#introduction"><i class="fa fa-check"></i><b>4.1</b> introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="regression.html"><a href="regression.html#linear-regression"><i class="fa fa-check"></i><b>4.2</b> Linear regression</a></li>
+<li class="chapter" data-level="4.3" data-path="regression.html"><a href="regression.html#anova"><i class="fa fa-check"></i><b>4.3</b> ANOVA</a></li>
+<li class="chapter" data-level="4.4" data-path="regression.html"><a href="regression.html#polynomiale-regression"><i class="fa fa-check"></i><b>4.4</b> Polynomiale regression</a></li>
+<li class="chapter" data-level="4.5" data-path="regression.html"><a href="regression.html#logistique"><i class="fa fa-check"></i><b>4.5</b> Logistique</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="regression.html"><a href="regression.html#general"><i class="fa fa-check"></i><b>4.5.1</b> General</a></li>
+<li class="chapter" data-level="4.5.2" data-path="regression.html"><a href="regression.html#binomial-logistic-model"><i class="fa fa-check"></i><b>4.5.2</b> Binomial Logistic MODEL</a></li>
+<li class="chapter" data-level="4.5.3" data-path="regression.html"><a href="regression.html#multinomial-logistic-regression"><i class="fa fa-check"></i><b>4.5.3</b> Multinomial Logistic Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="regression.html"><a href="regression.html#generalized-linear-models"><i class="fa fa-check"></i><b>4.6</b> Generalized Linear Models</a></li>
+<li class="chapter" data-level="4.7" data-path="regression.html"><a href="regression.html#model-selection"><i class="fa fa-check"></i><b>4.7</b> Model Selection</a></li>
+<li class="chapter" data-level="4.8" data-path="regression.html"><a href="regression.html#regularization-algorithms"><i class="fa fa-check"></i><b>4.8</b> Regularization Algorithms</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="regression.html"><a href="regression.html#ridge-regression"><i class="fa fa-check"></i><b>4.8.1</b> Ridge regression</a></li>
+<li class="chapter" data-level="4.8.2" data-path="regression.html"><a href="regression.html#least-absolute-shrinkage-and-selection-operator-lasso"><i class="fa fa-check"></i><b>4.8.2</b> Least Absolute Shrinkage and Selection Opérator LASSO</a></li>
+<li class="chapter" data-level="4.8.3" data-path="regression.html"><a href="regression.html#elastic-net"><i class="fa fa-check"></i><b>4.8.3</b> Elastic Net</a></li>
+<li class="chapter" data-level="4.8.4" data-path="regression.html"><a href="regression.html#leas-angle-regression-lars"><i class="fa fa-check"></i><b>4.8.4</b> Leas-Angle Regression LARS</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="regression.html"><a href="regression.html#locally-estimated-scaterplot-smoothing-loess"><i class="fa fa-check"></i><b>4.9</b> Locally estimated Scaterplot Smoothing (LOESS)</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="unsupervised.html"><a href="unsupervised.html"><i class="fa fa-check"></i><b>5</b> Unsupervised</a><ul>
+<li class="chapter" data-level="5.1" data-path="unsupervised.html"><a href="unsupervised.html#dimensionality-reduction-algorithms"><i class="fa fa-check"></i><b>5.1</b> Dimensionality reduction algorithms</a></li>
+<li class="chapter" data-level="5.2" data-path="unsupervised.html"><a href="unsupervised.html#cluster-analysis"><i class="fa fa-check"></i><b>5.2</b> Cluster analysis</a></li>
+<li class="chapter" data-level="5.3" data-path="unsupervised.html"><a href="unsupervised.html#evaluation-of-clustering"><i class="fa fa-check"></i><b>5.3</b> Evaluation of clustering</a></li>
+<li class="chapter" data-level="5.4" data-path="unsupervised.html"><a href="unsupervised.html#association-rule-mining-algorithms"><i class="fa fa-check"></i><b>5.4</b> Association Rule Mining Algorithms</a></li>
+<li class="chapter" data-level="5.5" data-path="unsupervised.html"><a href="unsupervised.html#singular-value-decomposition"><i class="fa fa-check"></i><b>5.5</b> Singular Value decomposition</a></li>
+<li class="chapter" data-level="5.6" data-path="unsupervised.html"><a href="unsupervised.html#k-nearest-neighbot"><i class="fa fa-check"></i><b>5.6</b> K-Nearest Neighbot</a></li>
+<li class="chapter" data-level="5.7" data-path="unsupervised.html"><a href="unsupervised.html#others-unsuppervised-algorithms"><i class="fa fa-check"></i><b>5.7</b> Others unsuppervised algorithms</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="decision-tree.html"><a href="decision-tree.html"><i class="fa fa-check"></i><b>6</b> Decision Tree</a><ul>
+<li class="chapter" data-level="6.1" data-path="decision-tree.html"><a href="decision-tree.html#type-of-decision-tree"><i class="fa fa-check"></i><b>6.1</b> Type of décision tree</a></li>
+<li class="chapter" data-level="6.2" data-path="decision-tree.html"><a href="decision-tree.html#decision-measures-measure-of-node-purity-heterogeneity-of-the-node"><i class="fa fa-check"></i><b>6.2</b> Decision measures : measure of node purity (heterogeneity of the node)</a></li>
+<li class="chapter" data-level="6.3" data-path="decision-tree.html"><a href="decision-tree.html#decision-tree-learning-methods"><i class="fa fa-check"></i><b>6.3</b> Decision tree learning methods</a></li>
+<li class="chapter" data-level="6.4" data-path="decision-tree.html"><a href="decision-tree.html#random-forests"><i class="fa fa-check"></i><b>6.4</b> Random Forests</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="neural-network.html"><a href="neural-network.html"><i class="fa fa-check"></i><b>7</b> Neural Network</a><ul>
+<li class="chapter" data-level="7.1" data-path="neural-network.html"><a href="neural-network.html#neural-networks-basis"><i class="fa fa-check"></i><b>7.1</b> Neural Networks Basis</a></li>
+<li class="chapter" data-level="7.2" data-path="neural-network.html"><a href="neural-network.html#neural-network-architecture"><i class="fa fa-check"></i><b>7.2</b> Neural Network Architecture</a></li>
+<li class="chapter" data-level="7.3" data-path="neural-network.html"><a href="neural-network.html#deep-learning"><i class="fa fa-check"></i><b>7.3</b> Deep Learning</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="neural-network.html"><a href="neural-network.html#example-of-deep-learning-classification"><i class="fa fa-check"></i><b>7.3.1</b> Example of deep learning : Classification</a></li>
+<li class="chapter" data-level="7.3.2" data-path="neural-network.html"><a href="neural-network.html#example-imagine-prediction-nn-classification"><i class="fa fa-check"></i><b>7.3.2</b> Example : Imagine prediction : NN classification</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Handout_V2</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="neural-network" class="section level1">
+<h1><span class="header-section-number">Chapter 7</span> Neural Network</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Instal tensorflow
+
+<span class="co"># devtools::install_github(&quot;rstudio/reticulate&quot;)</span>
+<span class="co"># devtools::install_github(&quot;rstudio/tfestimators&quot;)</span>
+<span class="co"># library(tfestimators)</span>
+<span class="co"># install_tensorflow()</span>
+<span class="co"># </span>
+<span class="co"># SEE more information / exemple : https://tensorflow.rstudio.com/blog/keras-fraud-autoencoder.html</span></code></pre></div>
+<p>Neural Network algorithms work on complex neural structures that can abstract higher level of information from a huge dataset. They are computationally heavy and hard to train. We provide a deep architecture network and image recognition (convolutional nets) :</p>
+<ul>
+<li>Deep Boltzmann Machine DBM</li>
+<li>Deep Belief Network DBN</li>
+<li>Convolutional Neural Network CNN</li>
+<li>Stacked auto Encoders</li>
+<li><p>RELU : fonction de lien activation fonction so much better than sigmoid (help with the vanishing gradient problem ???)</p></li>
+<li>What is deep neural netwwork :
+<ul>
+<li>Deep Neural network consists of more hidden layers</li>
+<li>Each Input will be connected to the hidden layer and the NN will decide the connections.</li>
+</ul></li>
+<li>Pratique car :
+<ul>
+<li>We no longer need to make any assumptions about our data; any type of data works in neural networks (categorical and numerical).</li>
+<li>They are scalable techniques, can take in billions of data points,and can capture a very high level of abstraction.</li>
+<li>Utilise le Learning and updating. Essai erreur. pour amélioréer les resultats</li>
+</ul></li>
+</ul>
+<div id="neural-networks-basis" class="section level2">
+<h2><span class="header-section-number">7.1</span> Neural Networks Basis</h2>
+<ul>
+<li>Artificial neural networks have three main components to set up :
+<ul>
+<li><ol style="list-style-type: decimal">
+<li>Architecture: Number of layers, weights matrix, bias, connections,…</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: decimal">
+<li>Rules: Refer to the mechanism of how the neurons behave in response to signals from each other.</li>
+</ol></li>
+<li><ol start="3" style="list-style-type: decimal">
+<li>Learning rule: The way in which the neural network’s weights change with time.</li>
+</ol></li>
+</ul></li>
+<li><strong>Perceptron : Basic unit of ANN</strong>
+<ul>
+<li>Takes multiple input and produce binary output.</li>
+<li>binary classification algorithm basé sur des prédicteurs linéaire et une fonction de poids <span class="math inline">\(f(x) = 1 Si wx+b &gt;0\)</span></li>
+</ul>
+<div class="figure">
+<img src="C:/Users/007/Desktop/Data%20science%20with%20R/R/img/perceptron.PNG" alt="simple neural network" />
+<p class="caption">simple neural network</p>
+</div></li>
+<li><strong>Single perceptron algorithm</strong>
+<ul>
+<li><ol style="list-style-type: decimal">
+<li>Initialize de weights to some feasible values</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: decimal">
+<li>For each data point in a training set, do step 3 and 4.</li>
+</ol></li>
+<li><ol start="3" style="list-style-type: decimal">
+<li>Calcul the output with previous step weights $$ y_j(t) = f[w(t)x_j] = f[w_0(t)x_{j,0} + w_1(t)x_{j,1} + w_2(t)x_{j,2}+ … + w_n(t)x_j,n]</li>
+</ol></li>
+<li><ol start="4" style="list-style-type: decimal">
+<li>Update the weight : <span class="math inline">\(w_i(t+1) = w_i(t)+(d_j-y_j(t))x_{j,i}\)</span> for all feature <span class="math inline">\(0&lt;i&lt;n\)</span></li>
+</ol></li>
+<li><ol start="5" style="list-style-type: decimal">
+<li>Stop when reach stopping criteria
+<ul>
+<li>All points in training set are exhausted</li>
+<li>a preset number of iteration</li>
+<li>iteration error (<span class="math inline">\(= \frac{1}{s} \sum |d_j - y_j(t)|\)</span>) is less than threshold error.</li>
+</ul></li>
+</ol></li>
+</ul></li>
+<li><strong>Sigmoid Neuron</strong>
+<ul>
+<li>Sigmoid Neuron ($ S(t) = ) allow a continuous output. similar to logistic curve. Tout comme le perceptron, le sigmoid neuron has weight for each input et un biais global.</li>
+</ul></li>
+</ul>
+<div class="figure">
+<img src="C:/Users/007/Desktop/Data%20science%20with%20R/R/img/sigmoid.PNG" alt="simple neural network" />
+<p class="caption">simple neural network</p>
+</div>
+</div>
+<div id="neural-network-architecture" class="section level2">
+<h2><span class="header-section-number">7.2</span> Neural Network Architecture</h2>
+<div class="figure">
+<img src="C:/Users/007/Desktop/Data%20science%20with%20R/R/img/ANN.PNG" alt="artificial neural network" />
+<p class="caption">artificial neural network</p>
+</div>
+<p>Artificial neural networt expand the simple peceptron to a multi layer perceptron (MLP). THis is a neural network architeture that can deal with non linear separation as output.</p>
+<ul>
+<li><strong>Hidden layers </strong> : predicts connection between inputs automatically. Doesn’t have any direct input. Finding the hidden layer design and number is notstraightforward. Il existe plusieurs disign pour les hidden layer, par exemple :
+<ul>
+<li>Feedforward Neural Networks (FFNN): each input layer is in one direction. This network makes sure that there are no loops within the neural network. (le plus general)</li>
+<li>Specialization versus Generalization: If you have too many hidden layers/complicated architecture, the neural network tend to be very specialized (so overfits). If you use simple architecture that the model will be very generalized and would not fit the data properly.</li>
+</ul></li>
+<li><strong>Feed-Forward back propagation</strong> One of the most popular learning methodologies in neural networks. It can by use to train artificial neural network. Method works on the gradient descent principle so the neuron function should be defferential.</li>
+</ul>
+<div class="figure">
+<img src="C:/Users/007/Desktop/Data%20science%20with%20R/R/img/FFBP.PNG" alt="artificial neural network" />
+<p class="caption">artificial neural network</p>
+</div>
+<p>We will give amathematical representation of error correction when the sigmoid function is used as the activation function. This algorithm will be correcting for error in each iteration and coverage to a point where it has no more reducible error : - 1. Feed-forward the network with input and get the output. - 2. Backward propagation of output, to calculate delta at each neuron (error). - 3. Multiply the delta and input activation function to get the gradient of weight. - 4. Update the weight by subtracting a ratio from the gradient of the weight.</p>
+<p>To update the weight bij using gradient descent, you must choose a learning rate</p>
+<p>Example : purchase prediction : NN classification</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#data preparation </span>
+Data_Purchase_Prediction &lt;-<span class="kw">read.csv</span>(<span class="st">&quot;C:/Users/007/Desktop/Data science with R/R/Dataset/Chapter 6/PurchasePredictionDataset.csv&quot;</span>,<span class="dt">header=</span><span class="ot">TRUE</span>)
+
+Data_Purchase_Prediction<span class="op">$</span>choice &lt;-<span class="kw">ifelse</span>(Data_Purchase_Prediction<span class="op">$</span>ProductChoice <span class="op">==</span><span class="dv">1</span>,<span class="dv">1</span>, <span class="kw">ifelse</span>(Data_Purchase_Prediction<span class="op">$</span>ProductChoice <span class="op">==</span><span class="dv">3</span>,<span class="dv">0</span>,<span class="dv">999</span>))
+
+Data_Neural_Net &lt;-Data_Purchase_Prediction[Data_Purchase_Prediction<span class="op">$</span>choice<span class="op">%in%</span><span class="kw">c</span>(<span class="st">&quot;0&quot;</span>,<span class="st">&quot;1&quot;</span>),]
+
+<span class="co">#Remove Missing Values</span>
+Data_Neural_Net &lt;-<span class="kw">na.omit</span>(Data_Neural_Net)
+<span class="kw">rownames</span>(Data_Neural_Net) &lt;-<span class="ot">NULL</span>
+
+<span class="co"># Usually scaling the continuous variables in the intervals [0,1] or [-1,1] tends to give better results. Convert the categorical variables into binary variables.</span>
+
+<span class="co">#Transforming the continuous variables</span>
+cont &lt;-Data_Neural_Net[,<span class="kw">c</span>(<span class="st">&quot;PurchaseTenure&quot;</span>,<span class="st">&quot;CustomerAge&quot;</span>,<span class="st">&quot;MembershipPoints&quot;</span>,<span class="st">&quot;IncomeClass&quot;</span>)]
+maxs &lt;-<span class="kw">apply</span>(cont, <span class="dv">2</span>, max)
+mins &lt;-<span class="kw">apply</span>(cont, <span class="dv">2</span>, min)
+scaled_cont &lt;-<span class="kw">as.data.frame</span>(<span class="kw">scale</span>(cont, <span class="dt">center =</span> mins, <span class="dt">scale =</span> maxs <span class="op">-</span>mins))
+
+<span class="co">#The dependent variable</span>
+dep &lt;-<span class="kw">factor</span>(Data_Neural_Net<span class="op">$</span>choice)
+
+<span class="co"># Multifactor data to binaries variables</span>
+Data_Neural_Net<span class="op">$</span>ModeOfPayment &lt;-<span class="kw">factor</span>(Data_Neural_Net<span class="op">$</span>ModeOfPayment)
+flags_ModeOfPayment =<span class="kw">data.frame</span>(<span class="kw">Reduce</span>(cbind,<span class="kw">lapply</span>(<span class="kw">levels</span>(Data_Neural_Net<span class="op">$</span>ModeOfPayment), <span class="cf">function</span>(x){(Data_Neural_Net<span class="op">$</span>ModeOfPayment <span class="op">==</span>x)<span class="op">*</span><span class="dv">1</span>})))
+<span class="kw">names</span>(flags_ModeOfPayment) =<span class="kw">levels</span>(Data_Neural_Net<span class="op">$</span>ModeOfPayment)
+
+Data_Neural_Net<span class="op">$</span>CustomerPropensity &lt;-<span class="kw">factor</span>(Data_Neural_Net<span class="op">$</span>CustomerPropensity)
+flags_CustomerPropensity =<span class="kw">data.frame</span>(<span class="kw">Reduce</span>(cbind,<span class="kw">lapply</span>(<span class="kw">levels</span>(Data_Neural_Net<span class="op">$</span>CustomerPropensity), <span class="cf">function</span>(x){(Data_Neural_Net<span class="op">$</span>CustomerPropensity <span class="op">==</span>x)<span class="op">*</span><span class="dv">1</span>})))
+<span class="kw">names</span>(flags_CustomerPropensity) =<span class="kw">levels</span>(Data_Neural_Net<span class="op">$</span>CustomerPropensity)
+
+cate &lt;-<span class="kw">cbind</span>(flags_ModeOfPayment,flags_CustomerPropensity)
+
+<span class="co">#Combine all data into single modeling data</span>
+Dataset &lt;-<span class="kw">cbind</span>(dep,scaled_cont,cate);
+
+<span class="co">#Divide the data into train and test</span>
+<span class="kw">set.seed</span>(<span class="dv">917</span>);
+index &lt;-<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Dataset),<span class="kw">round</span>(<span class="fl">0.7</span><span class="op">*</span><span class="kw">nrow</span>(Dataset)))
+train &lt;-Dataset[index,]
+test &lt;-Dataset[<span class="op">-</span>index,]
+
+##MODELING
+
+<span class="kw">library</span>(nnet)
+i &lt;-<span class="kw">names</span>(train)
+form &lt;-<span class="kw">as.formula</span>(<span class="kw">paste</span>(<span class="st">&quot;dep ~&quot;</span>, <span class="kw">paste</span>(i[<span class="op">!</span>i <span class="op">%in%</span><span class="st"> &quot;dep&quot;</span>], <span class="dt">collapse =</span><span class="st">&quot; + &quot;</span>)))
+<span class="co"># nn &lt;-nnet.formula(form,size=10,data=train)</span>
+<span class="co"># save(nn, file=&quot;./save/nn.R&quot;)</span>
+
+<span class="kw">load</span>(<span class="dt">file=</span><span class="st">&quot;./save/nn.R&quot;</span>)
+
+<span class="co"># Use 10 neuron in one hidden layer</span>
+
+predict_class &lt;-<span class="kw">predict</span>(nn, <span class="dt">newdata=</span>test, <span class="dt">type=</span><span class="st">&quot;class&quot;</span>)
+<span class="kw">table</span>(test<span class="op">$</span>dep,predict_class)</code></pre></div>
+<pre><code>##    predict_class
+##         0     1
+##   0 28776 13863
+##   1 11964 19534</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(<span class="kw">diag</span>(<span class="kw">table</span>(test<span class="op">$</span>dep,predict_class))<span class="op">/</span><span class="kw">nrow</span>(test))</code></pre></div>
+<pre><code>## [1] 0.6516314</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># misc rate : 65.1% qui est 1% de plus que logistic reg</span>
+<span class="co"># neural net ameliore prediction sur 0 mais détérior sur 1</span>
+
+<span class="kw">library</span>(NeuralNetTools)</code></pre></div>
+<pre><code>## Warning: package &#39;NeuralNetTools&#39; was built under R version 3.3.3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotnet</span>(nn)</code></pre></div>
+<p><img src="06-NeuralNet_files/figure-html/nn%20basis-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Plot the importance</span>
+<span class="kw">olden</span>(nn)</code></pre></div>
+<p><img src="06-NeuralNet_files/figure-html/nn%20basis-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">garson</span>(nn)</code></pre></div>
+<p><img src="06-NeuralNet_files/figure-html/nn%20basis-3.png" width="672" /></p>
+<ul>
+<li><strong>Other information</strong>
+<ul>
+<li>Main step for a neural network model :</li>
+<li>define model structure</li>
+<li>initialize model parameters</li>
+<li>loop
+<ul>
+<li>calculate current loss (forward propagation)</li>
+<li>calculate current gradient (backward propagation) -update parameter (gradient descent)</li>
+</ul></li>
+</ul></li>
+<li><strong>Type of neural network function</strong> :
+<ul>
+<li>Perceptron</li>
+<li>Back propagation</li>
+<li>Hopfield Network</li>
+<li>Radia Basis Function Network (RBFN)</li>
+<li>RELU</li>
+</ul></li>
+</ul>
+</div>
+<div id="deep-learning" class="section level2">
+<h2><span class="header-section-number">7.3</span> Deep Learning</h2>
+<p>Deep learning consists of advanced algorithms having multiple layers, composed of multiple linear and non-linear transformations</p>
+<ul>
+<li>There are multiple deep learning architectures :
+<ul>
+<li>automatic speech recognition,</li>
+<li>NLP,</li>
+<li>audio recognition</li>
+<li>Deep neural network</li>
+<li>Convolution deep neural network (image recognition :2 dimentional data)</li>
+<li>deep belief (image et signal processing)</li>
+<li>recurrent neural network (time series data)</li>
+<li>recursive Neural network (langugage processing)</li>
+</ul></li>
+</ul>
+<p>In general, adding more layers and neurons per layer increases the specialization of neural network to train data and decreases the performance on test data: Overfitting and computational cost. However R is not yet developed enough tools to run various deep learning algorithms. Another reason for that is deep learning is so resource intensive that models can be trained only on large clusters and not on workstations.</p>
+<div id="example-of-deep-learning-classification" class="section level3">
+<h3><span class="header-section-number">7.3.1</span> Example of deep learning : Classification</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># continuous variable are scaled and categorical varibale converted into binary variables</span>
+
+<span class="co">#install.packages(&quot;C:/Users/007/Desktop/Data science with R/R/darch_0.12.0.tar.gz&quot; , repos = NULL, type=&quot;source&quot;)</span>
+
+<span class="kw">library</span>(darch)
+<span class="kw">library</span>(mlbench)
+<span class="kw">library</span>(RANN)
+
+<span class="co">#Print the model formula</span>
+form</code></pre></div>
+<pre><code>## dep ~ PurchaseTenure + CustomerAge + MembershipPoints + IncomeClass + 
+##     BankTransfer + Cash + CashPoints + CreditCard + DebitCard + 
+##     MoneyWallet + Voucher + High + Low + Medium + Unknown + VeryHigh</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">########### NOT Run TO long !!######
+
+<span class="co">#Apply the model using deep neural net with</span>
+<span class="co"># deep_net &lt;- darch(form, train,</span>
+<span class="co">#                   preProc.params = list(&quot;method&quot; = c(&quot;knnImpute&quot;)),</span>
+<span class="co">#                   layers = c(0,10,30,10,0),</span>
+<span class="co">#                   darch.batchSize = 1,</span>
+<span class="co">#                   darch.returnBestModel.validationErrorFactor = 1,</span>
+<span class="co">#                   darch.fineTuneFunction = &quot;rpropagation&quot;,</span>
+<span class="co">#                   darch.unitFunction = c(&quot;tanhUnit&quot;, &quot;tanhUnit&quot;,&quot;tanhUnit&quot;,&quot;softmaxUnit&quot;),</span>
+<span class="co">#                   darch.numEpochs = 15,</span>
+<span class="co">#                   bootstrap = T,</span>
+<span class="co">#                   bootstrap.num = 500)</span>
+
+
+<span class="co"># deep_net &lt;-darch(form,train, </span>
+<span class="co">#                 preProc.params =list(method =c(&quot;center&quot;, &quot;scale&quot;)),</span>
+<span class="co">#                 layers =c(0,10,30,10,0),</span>
+<span class="co">#                 darch.unitFunction =c(&quot;sigmoidUnit&quot;, &quot;tanhUnit&quot;,&quot;tanhUnit&quot;,&quot;softmaxUnit&quot;),</span>
+<span class="co">#                 darch.fineTuneFunction =&quot;minimizeClassifier&quot;,</span>
+<span class="co">#                 darch.numEpochs =15,</span>
+<span class="co">#                 cg.length =3, cg.switchLayers =5)</span>
+<span class="co"># </span>
+
+<span class="kw">library</span>(NeuralNetTools)
+<span class="co">#plot(deep_net,&quot;net&quot;)</span>
+<span class="co">#result &lt;-darchTest(deep_net, newdata = test)</span>
+<span class="co">#result</span></code></pre></div>
+</div>
+<div id="example-imagine-prediction-nn-classification" class="section level3">
+<h3><span class="header-section-number">7.3.2</span> Example : Imagine prediction : NN classification</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(&quot;drat&quot;, repos=&quot;https://cran.rstudio.com&quot;)</span>
+<span class="co"># drat:::addRepo(&quot;dmlc&quot;)</span>
+
+ <span class="co"># cran &lt;- getOption(&quot;repos&quot;)</span>
+ <span class="co"># cran[&quot;dmlc&quot;] &lt;- &quot;https://apache-mxnet.s3-accelerate.dualstack.amazonaws.com/R/CRAN/&quot;</span>
+ <span class="co"># options(repos = cran)</span>
+ <span class="co"># install.packages(&quot;mxnet&quot;)</span>
+
+<span class="co"># install.packages(&quot;https://github.com/jeremiedb/mxnet_winbin/raw/master/mxnet.zip&quot;, repos = NULL)</span>
+
+
+<span class="co">#Please refer https://github.com/dahtah/imager</span>
+##install.packages(&quot;devtools&quot;)
+<span class="co">#devtools::install_github(&quot;dahtah/imager&quot;)</span>
+<span class="kw">library</span>(mxnet)</code></pre></div>
+<pre><code>## Warning: package &#39;mxnet&#39; was built under R version 3.3.3</code></pre>
+<pre><code>## Loading required package: methods</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install imager for loading images</span>
+<span class="kw">library</span>(imager)</code></pre></div>
+<pre><code>## Warning: package &#39;imager&#39; was built under R version 3.3.3</code></pre>
+<pre><code>## Loading required package: plyr</code></pre>
+<pre><code>## Warning: package &#39;plyr&#39; was built under R version 3.3.3</code></pre>
+<pre><code>## -------------------------------------------------------------------------</code></pre>
+<pre><code>## You have loaded plyr after dplyr - this is likely to cause problems.
+## If you need functions from both plyr and dplyr, please load plyr first, then dplyr:
+## library(plyr); library(dplyr)</code></pre>
+<pre><code>## -------------------------------------------------------------------------</code></pre>
+<pre><code>## 
+## Attaching package: &#39;plyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     arrange, count, desc, failwith, id, mutate, rename, summarise,
+##     summarize</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     compact</code></pre>
+<pre><code>## Loading required package: magrittr</code></pre>
+<pre><code>## Warning: package &#39;magrittr&#39; was built under R version 3.3.3</code></pre>
+<pre><code>## 
+## Attaching package: &#39;magrittr&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     set_names</code></pre>
+<pre><code>## The following object is masked from &#39;package:tidyr&#39;:
+## 
+##     extract</code></pre>
+<pre><code>## 
+## Attaching package: &#39;imager&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:magrittr&#39;:
+## 
+##     add</code></pre>
+<pre><code>## The following object is masked from &#39;package:plyr&#39;:
+## 
+##     liply</code></pre>
+<pre><code>## The following object is masked from &#39;package:stringr&#39;:
+## 
+##     boundary</code></pre>
+<pre><code>## The following object is masked from &#39;package:tidyr&#39;:
+## 
+##     fill</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     convolve, spectrum</code></pre>
+<pre><code>## The following object is masked from &#39;package:graphics&#39;:
+## 
+##     frame</code></pre>
+<pre><code>## The following object is masked from &#39;package:base&#39;:
+## 
+##     save.image</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(drat)</code></pre></div>
+<pre><code>## Warning: package &#39;drat&#39; was built under R version 3.3.3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#load the pre-trained model</span>
+<span class="kw">download.file</span>(<span class="st">&#39;http://data.dmlc.ml/data/Inception.zip&#39;</span>, <span class="dt">destfile =</span> <span class="st">&#39;Inception.zip&#39;</span>)
+<span class="kw">unzip</span>(<span class="st">&quot;Inception.zip&quot;</span>)
+
+model &lt;-<span class="st"> </span><span class="kw">mx.model.load</span>(<span class="st">&quot;Inception/Inception_BN&quot;</span>, <span class="dt">iteration=</span><span class="dv">39</span>)
+
+
+<span class="co">#We also need to load in the mean image, which is used for preprocessing using mx.nd.load.</span>
+
+mean.img =<span class="st"> </span><span class="kw">as.array</span>(<span class="kw">mx.nd.load</span>(<span class="st">&quot;Inception/mean_224.nd&quot;</span>)[[<span class="st">&quot;mean_img&quot;</span>]])
+
+
+<span class="co">#Load and plot the image: (Default parrot image)</span>
+<span class="co">#im &lt;- load.image(system.file(&quot;extdata/parrots.png&quot;, package=&quot;imager&quot;))</span>
+<span class="co">#im &lt;-load.image(&quot;Images/russia-volcano.jpg&quot;)</span>
+
+im =<span class="st"> </span><span class="kw">load.image</span>(<span class="st">&quot;C:/Users/007/Desktop/Data science with R/R/Inception/fibrosarcome-chat.jpg&quot;</span>)
+<span class="kw">plot</span>(im)</code></pre></div>
+<p><img src="06-NeuralNet_files/figure-html/DLimg-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">preproc.image &lt;-<span class="cf">function</span>(im, mean.image) {
+<span class="co"># crop the image</span>
+shape &lt;-<span class="kw">dim</span>(im)
+short.edge &lt;-<span class="kw">min</span>(shape[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])
+xx &lt;-<span class="kw">floor</span>((shape[<span class="dv">1</span>] <span class="op">-</span>short.edge) <span class="op">/</span><span class="dv">2</span>)
+yy &lt;-<span class="kw">floor</span>((shape[<span class="dv">2</span>] <span class="op">-</span>short.edge) <span class="op">/</span><span class="dv">2</span>)
+cropped &lt;-<span class="kw">crop.borders</span>(im, xx, yy)
+<span class="co"># resize to 224 x 224, needed by input of the model.</span>
+resized &lt;-<span class="kw">resize</span>(cropped, <span class="dv">224</span>, <span class="dv">224</span>)
+<span class="co"># convert to array (x, y, channel)</span>
+arr &lt;-<span class="kw">as.array</span>(resized) <span class="op">*</span><span class="dv">255</span>
+<span class="kw">dim</span>(arr) &lt;-<span class="kw">c</span>(<span class="dv">224</span>, <span class="dv">224</span>, <span class="dv">3</span>)
+<span class="co"># subtract the mean</span>
+normed &lt;-arr <span class="op">-</span>mean.img
+
+<span class="co"># Reshape to format needed by mxnet (width, height, channel, num)</span>
+<span class="kw">dim</span>(normed) &lt;-<span class="kw">c</span>(<span class="dv">224</span>, <span class="dv">224</span>, <span class="dv">3</span>, <span class="dv">1</span>)
+<span class="kw">return</span>(normed)
+}
+
+<span class="co">#Now pass our image to pre-process</span>
+normed &lt;-<span class="kw">preproc.image</span>(im, mean.img)
+<span class="kw">plot</span>(normed)</code></pre></div>
+<p><img src="06-NeuralNet_files/figure-html/DLimg-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prob &lt;-<span class="st"> </span><span class="kw">predict</span>(model, <span class="dt">X=</span>normed)
+<span class="co">#We can extract the top-5 class index.</span>
+max.idx &lt;-<span class="st"> </span><span class="kw">order</span>(prob[,<span class="dv">1</span>], <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]
+max.idx</code></pre></div>
+<pre><code>## [1] 283 286 282 288 284</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">synsets &lt;-<span class="kw">readLines</span>(<span class="st">&quot;Inception/synset.txt&quot;</span>)
+<span class="co">#And let us print the corresponding lines:</span>
+<span class="kw">print</span>(<span class="kw">paste0</span>(<span class="st">&quot;Predicted Top-classes: &quot;</span>, synsets[<span class="kw">as.numeric</span>(max.idx)]))</code></pre></div>
+<pre><code>## [1] &quot;Predicted Top-classes: n02123159 tiger cat&quot;       
+## [2] &quot;Predicted Top-classes: n02124075 Egyptian cat&quot;    
+## [3] &quot;Predicted Top-classes: n02123045 tabby, tabby cat&quot;
+## [4] &quot;Predicted Top-classes: n02127052 lynx, catamount&quot; 
+## [5] &quot;Predicted Top-classes: n02123394 Persian cat&quot;</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="decision-tree.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-start.pdf", "bookdown-start.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

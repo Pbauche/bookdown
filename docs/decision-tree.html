@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Handout_V2</title>
+  <meta name="description" content="Handout_V2">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Handout_V2" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Handout_V2" />
+  
+  
+  
+
+<meta name="author" content="Pierre Bauche">
+
+
+<meta name="date" content="2018-09-22">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="unsupervised.html">
+<link rel="next" href="neural-network.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.1.17/leaflet-providers.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.1/leaflet-providers-plugin.js"></script>
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.css" rel="stylesheet" />
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.Default.css" rel="stylesheet" />
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.freezable.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.layersupport.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">somethings</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> <strong>Information</strong></a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#usefull-ressource"><i class="fa fa-check"></i><b>1.1</b> Usefull ressource</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#todo"><i class="fa fa-check"></i><b>1.2</b> todo</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#interesting-stuff"><i class="fa fa-check"></i><b>1.3</b> interesting stuff</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#hint"><i class="fa fa-check"></i><b>1.4</b> Hint</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="feature-engeneering.html"><a href="feature-engeneering.html"><i class="fa fa-check"></i><b>2</b> Feature engeneering</a><ul>
+<li class="chapter" data-level="2.1" data-path="feature-engeneering.html"><a href="feature-engeneering.html#input-feature"><i class="fa fa-check"></i><b>2.1</b> Input feature</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="feature-engeneering.html"><a href="feature-engeneering.html#numeric-data"><i class="fa fa-check"></i><b>2.1.1</b> Numeric Data</a></li>
+<li class="chapter" data-level="2.1.2" data-path="feature-engeneering.html"><a href="feature-engeneering.html#count-data"><i class="fa fa-check"></i><b>2.1.2</b> count data</a></li>
+<li class="chapter" data-level="2.1.3" data-path="feature-engeneering.html"><a href="feature-engeneering.html#categorical-data"><i class="fa fa-check"></i><b>2.1.3</b> categorical data</a></li>
+<li class="chapter" data-level="2.1.4" data-path="feature-engeneering.html"><a href="feature-engeneering.html#date-time-lubridate-package"><i class="fa fa-check"></i><b>2.1.4</b> Date Time : Lubridate package</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="feature-engeneering.html"><a href="feature-engeneering.html#missing-value"><i class="fa fa-check"></i><b>2.2</b> Missing Value</a></li>
+<li class="chapter" data-level="2.3" data-path="feature-engeneering.html"><a href="feature-engeneering.html#outlier-detection"><i class="fa fa-check"></i><b>2.3</b> Outlier Detection</a></li>
+<li class="chapter" data-level="2.4" data-path="feature-engeneering.html"><a href="feature-engeneering.html#sampling-and-resampling"><i class="fa fa-check"></i><b>2.4</b> Sampling and resampling</a></li>
+<li class="chapter" data-level="2.5" data-path="feature-engeneering.html"><a href="feature-engeneering.html#variables-selections"><i class="fa fa-check"></i><b>2.5</b> variables selections</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="feature-engeneering.html"><a href="feature-engeneering.html#filter-methods"><i class="fa fa-check"></i><b>2.5.1</b> Filter methods :</a></li>
+<li class="chapter" data-level="2.5.2" data-path="feature-engeneering.html"><a href="feature-engeneering.html#wrapper-methods"><i class="fa fa-check"></i><b>2.5.2</b> Wrapper Methods:</a></li>
+<li class="chapter" data-level="2.5.3" data-path="feature-engeneering.html"><a href="feature-engeneering.html#embedded-methods"><i class="fa fa-check"></i><b>2.5.3</b> Embedded Methods :</a></li>
+<li class="chapter" data-level="2.5.4" data-path="feature-engeneering.html"><a href="feature-engeneering.html#dimension-reduction"><i class="fa fa-check"></i><b>2.5.4</b> Dimension reduction :</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="feature-engeneering.html"><a href="feature-engeneering.html#example"><i class="fa fa-check"></i><b>2.6</b> Example</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="feature-engeneering.html"><a href="feature-engeneering.html#credit-risk-modeling"><i class="fa fa-check"></i><b>2.6.1</b> Credit risk modeling</a></li>
+<li class="chapter" data-level="2.6.2" data-path="feature-engeneering.html"><a href="feature-engeneering.html#variance-treshold-approach"><i class="fa fa-check"></i><b>2.6.2</b> variance treshold approach</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="feature-engeneering.html"><a href="feature-engeneering.html#method-summary"><i class="fa fa-check"></i><b>2.7</b> Method Summary</a></li>
+<li class="chapter" data-level="2.8" data-path="feature-engeneering.html"><a href="feature-engeneering.html#tips"><i class="fa fa-check"></i><b>2.8</b> tips</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>3</b> Data visualization</a><ul>
+<li class="chapter" data-level="3.1" data-path="data-visualization.html"><a href="data-visualization.html#descriptive"><i class="fa fa-check"></i><b>3.1</b> Descriptive</a></li>
+<li class="chapter" data-level="3.2" data-path="data-visualization.html"><a href="data-visualization.html#spacial-map"><i class="fa fa-check"></i><b>3.2</b> Spacial map</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>4</b> Regression</a><ul>
+<li class="chapter" data-level="4.1" data-path="regression.html"><a href="regression.html#introduction"><i class="fa fa-check"></i><b>4.1</b> introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="regression.html"><a href="regression.html#linear-regression"><i class="fa fa-check"></i><b>4.2</b> Linear regression</a></li>
+<li class="chapter" data-level="4.3" data-path="regression.html"><a href="regression.html#anova"><i class="fa fa-check"></i><b>4.3</b> ANOVA</a></li>
+<li class="chapter" data-level="4.4" data-path="regression.html"><a href="regression.html#polynomiale-regression"><i class="fa fa-check"></i><b>4.4</b> Polynomiale regression</a></li>
+<li class="chapter" data-level="4.5" data-path="regression.html"><a href="regression.html#logistique"><i class="fa fa-check"></i><b>4.5</b> Logistique</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="regression.html"><a href="regression.html#general"><i class="fa fa-check"></i><b>4.5.1</b> General</a></li>
+<li class="chapter" data-level="4.5.2" data-path="regression.html"><a href="regression.html#binomial-logistic-model"><i class="fa fa-check"></i><b>4.5.2</b> Binomial Logistic MODEL</a></li>
+<li class="chapter" data-level="4.5.3" data-path="regression.html"><a href="regression.html#multinomial-logistic-regression"><i class="fa fa-check"></i><b>4.5.3</b> Multinomial Logistic Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="regression.html"><a href="regression.html#generalized-linear-models"><i class="fa fa-check"></i><b>4.6</b> Generalized Linear Models</a></li>
+<li class="chapter" data-level="4.7" data-path="regression.html"><a href="regression.html#model-selection"><i class="fa fa-check"></i><b>4.7</b> Model Selection</a></li>
+<li class="chapter" data-level="4.8" data-path="regression.html"><a href="regression.html#regularization-algorithms"><i class="fa fa-check"></i><b>4.8</b> Regularization Algorithms</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="regression.html"><a href="regression.html#ridge-regression"><i class="fa fa-check"></i><b>4.8.1</b> Ridge regression</a></li>
+<li class="chapter" data-level="4.8.2" data-path="regression.html"><a href="regression.html#least-absolute-shrinkage-and-selection-operator-lasso"><i class="fa fa-check"></i><b>4.8.2</b> Least Absolute Shrinkage and Selection Opérator LASSO</a></li>
+<li class="chapter" data-level="4.8.3" data-path="regression.html"><a href="regression.html#elastic-net"><i class="fa fa-check"></i><b>4.8.3</b> Elastic Net</a></li>
+<li class="chapter" data-level="4.8.4" data-path="regression.html"><a href="regression.html#leas-angle-regression-lars"><i class="fa fa-check"></i><b>4.8.4</b> Leas-Angle Regression LARS</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="regression.html"><a href="regression.html#locally-estimated-scaterplot-smoothing-loess"><i class="fa fa-check"></i><b>4.9</b> Locally estimated Scaterplot Smoothing (LOESS)</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="unsupervised.html"><a href="unsupervised.html"><i class="fa fa-check"></i><b>5</b> Unsupervised</a><ul>
+<li class="chapter" data-level="5.1" data-path="unsupervised.html"><a href="unsupervised.html#dimensionality-reduction-algorithms"><i class="fa fa-check"></i><b>5.1</b> Dimensionality reduction algorithms</a></li>
+<li class="chapter" data-level="5.2" data-path="unsupervised.html"><a href="unsupervised.html#cluster-analysis"><i class="fa fa-check"></i><b>5.2</b> Cluster analysis</a></li>
+<li class="chapter" data-level="5.3" data-path="unsupervised.html"><a href="unsupervised.html#evaluation-of-clustering"><i class="fa fa-check"></i><b>5.3</b> Evaluation of clustering</a></li>
+<li class="chapter" data-level="5.4" data-path="unsupervised.html"><a href="unsupervised.html#association-rule-mining-algorithms"><i class="fa fa-check"></i><b>5.4</b> Association Rule Mining Algorithms</a></li>
+<li class="chapter" data-level="5.5" data-path="unsupervised.html"><a href="unsupervised.html#singular-value-decomposition"><i class="fa fa-check"></i><b>5.5</b> Singular Value decomposition</a></li>
+<li class="chapter" data-level="5.6" data-path="unsupervised.html"><a href="unsupervised.html#k-nearest-neighbot"><i class="fa fa-check"></i><b>5.6</b> K-Nearest Neighbot</a></li>
+<li class="chapter" data-level="5.7" data-path="unsupervised.html"><a href="unsupervised.html#others-unsuppervised-algorithms"><i class="fa fa-check"></i><b>5.7</b> Others unsuppervised algorithms</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="decision-tree.html"><a href="decision-tree.html"><i class="fa fa-check"></i><b>6</b> Decision Tree</a><ul>
+<li class="chapter" data-level="6.1" data-path="decision-tree.html"><a href="decision-tree.html#type-of-decision-tree"><i class="fa fa-check"></i><b>6.1</b> Type of décision tree</a></li>
+<li class="chapter" data-level="6.2" data-path="decision-tree.html"><a href="decision-tree.html#decision-measures-measure-of-node-purity-heterogeneity-of-the-node"><i class="fa fa-check"></i><b>6.2</b> Decision measures : measure of node purity (heterogeneity of the node)</a></li>
+<li class="chapter" data-level="6.3" data-path="decision-tree.html"><a href="decision-tree.html#decision-tree-learning-methods"><i class="fa fa-check"></i><b>6.3</b> Decision tree learning methods</a></li>
+<li class="chapter" data-level="6.4" data-path="decision-tree.html"><a href="decision-tree.html#random-forests"><i class="fa fa-check"></i><b>6.4</b> Random Forests</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="neural-network.html"><a href="neural-network.html"><i class="fa fa-check"></i><b>7</b> Neural Network</a><ul>
+<li class="chapter" data-level="7.1" data-path="neural-network.html"><a href="neural-network.html#neural-networks-basis"><i class="fa fa-check"></i><b>7.1</b> Neural Networks Basis</a></li>
+<li class="chapter" data-level="7.2" data-path="neural-network.html"><a href="neural-network.html#neural-network-architecture"><i class="fa fa-check"></i><b>7.2</b> Neural Network Architecture</a></li>
+<li class="chapter" data-level="7.3" data-path="neural-network.html"><a href="neural-network.html#deep-learning"><i class="fa fa-check"></i><b>7.3</b> Deep Learning</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="neural-network.html"><a href="neural-network.html#example-of-deep-learning-classification"><i class="fa fa-check"></i><b>7.3.1</b> Example of deep learning : Classification</a></li>
+<li class="chapter" data-level="7.3.2" data-path="neural-network.html"><a href="neural-network.html#example-imagine-prediction-nn-classification"><i class="fa fa-check"></i><b>7.3.2</b> Example : Imagine prediction : NN classification</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Handout_V2</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="decision-tree" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Decision Tree</h1>
+<p>Decision tree are class of non parametric model with generaly a catégorical dependant variable. Globalement c’est un abre de decision qui se split a chaque neaux selon une variable selectionné suivant différentes metrics. Decision tree consists of two types of nodes :</p>
+<ul>
+<li><em>leaf node</em> : indicate class defined by the response variable</li>
+<li><em>decision node</em> : which specifies some test on a single attributes</li>
+</ul>
+<blockquote>
+<p>DT use recursive divide and conquer approach.</p>
+</blockquote>
+<div id="type-of-decision-tree" class="section level2">
+<h2><span class="header-section-number">6.1</span> Type of décision tree</h2>
+<ul>
+<li><strong>Regression tree</strong> : variables réponse continue. Objectif est de split a chaque itération en minimisant les residual sum squares RSS.
+<ul>
+<li>Recursively split the feature vector space (X1, X2, ., Xp) into distinct and non-overlapping regions</li>
+<li>For new observations falling into the same region, the prediction is equal to the mean of all the training observations in that region.</li>
+</ul></li>
+<li><strong>Classification tree</strong> : variables categorielle
+<ul>
+<li>We use classification error rate for making the splits in classification trees.</li>
+<li>Instead of taking the mean of response variable in a particular region for prediction, here we use the most commonly occurring class of training observation as a prediction methodology.</li>
+</ul></li>
+</ul>
+</div>
+<div id="decision-measures-measure-of-node-purity-heterogeneity-of-the-node" class="section level2">
+<h2><span class="header-section-number">6.2</span> Decision measures : measure of node purity (heterogeneity of the node)</h2>
+<ul>
+<li><strong>Gini Index</strong> : $ G = p_{ml}*(1-P_{mp}) $ where, pmk is the proportion of training observations in the mth region that are from the kth class</li>
+<li><strong>Entropy function</strong> : $ E = - </li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">curve</span>(<span class="op">-</span>x <span class="op">*</span><span class="kw">log2</span>(x) <span class="op">-</span>(<span class="dv">1</span> <span class="op">-</span>x) <span class="op">*</span><span class="kw">log2</span>(<span class="dv">1</span> <span class="op">-</span>x), <span class="dt">xlab =</span><span class="st">&quot;x&quot;</span>, <span class="dt">ylab =</span><span class="st">&quot;Entropy&quot;</span>, <span class="dt">lwd =</span><span class="dv">5</span>)</code></pre></div>
+<p><img src="05-Decision_Tree_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Observe that both measures are very similar, however, there are some differences: - Gini-index is more suitable to continuous attributes and entropy in case of discrete data. - Gini-index works well for minimizing misclassifications. - Entropy is slightly slower than Gini-index, as it involves logarithms (although this doesn’t really matter much given today’s fast computing machines)</p>
+<ul>
+<li><strong>Information gain</strong> : Measure du changement de l’entrepy entre avant et apres le split</li>
+</ul>
+</div>
+<div id="decision-tree-learning-methods" class="section level2">
+<h2><span class="header-section-number">6.3</span> Decision tree learning methods</h2>
+<ul>
+<li><strong>Iterative Dichotomizer 3</strong> : most popular décision tree algorithms
+<ul>
+<li>Calculate entropy of each attribute using training observations</li>
+<li>Split the observations into subsets using the attribute with minimum entropy or maximum information gain.</li>
+<li>The selected attribute becomes the decision node.</li>
+<li>Repeat the process with the remaining attribute on the subset.</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>pas super performant pour le multiclass classification</p>
+</blockquote>
+<ul>
+<li><strong>C5.0 algorithm</strong> : il split les noeuds en 3 possibilités
+<ul>
+<li>All observations are a single classe =&gt; identify class</li>
+<li>No class =&gt; use the most frequent class at the parent of this node</li>
+<li>mixtureof classes =&gt; a test based on single attribute (use information gain)</li>
+</ul></li>
+</ul>
+<p>Repete jusqu’au moment outout les observations sont correctement classifié. On utilise pruning pour réduire l’overfitting. Mais avec C50 on utilise pas pruning car algorithm iterate back and replace leaf that dosn’t increase the information gain.</p>
+<ul>
+<li><strong>Classification and regression tree - CART</strong> : Use residual sum square as the node impurity measure. SI utilisation pour pure classification GINI indix peut etre plus approprié comme mesure d’impurité
+<ul>
+<li>Start the algorithm at the root node.</li>
+<li>For each attribute X, find the subset S that minimizes the residual sum of square (RSS) of the two children and chooses the split that gives the maximum information gain.</li>
+<li>Check if relative decrease in impurity is below a prescribed threshold.</li>
+<li>If Yes, splitting stops, otherwise repeat Step 2.</li>
+</ul></li>
+</ul>
+<p>on peut aussi utiliser un parametre de complexité (cp) : any split that does not decrease the overall lack of fit by a factor of cp would not be attempted by the model</p>
+<ul>
+<li><strong>Chi-square automated interaction detection - CHAID</strong></li>
+</ul>
+<p>Ici uniquement pour variable catégoriel. variables continues sont catégorisé par optimal bining.<br />
+L’algorithm fusion les catégories sinon significative avec la variables dépendante. De même si une catégorie a trop peu d’observation, elle est fusionnée avec la catégorie la plus similaire mesurée par la pval tu test chi2. CHAID détecte l’interaction entre variables dans un jeu de données. En utilisant cette technique on peut établir des relations de dépendance entre variable;</p>
+<ul>
+<li>L’algorithme CHAID2 se déroule en trois étapes :
+<ul>
+<li>préparation des prédicteurs : transformation en variable catégoriel par optimal bining</li>
+<li>fusion des classes : pour chaque prédicteur, on determine les catégorie les plus semblable par rapport a la variables dependante. (chi2) Repetition de l’étape jusqu’àavoir une catégorie fusionnée significative non indépendante. Ajuste les pval par bonferonni si des classe ont été fusionnée</li>
+<li>sélection de la variable de séparation : choisi la variable avec la plus faible pval (au test indépendante chi2 ajusté avec bonferonni), la plus significative. Processus iteratif. Si pval dépasse un seuil, le processus prend fin</li>
+<li>stopping :
+<ul>
+<li>Si node est pure:no split</li>
+<li>pval &gt; seuil : nosplit</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(C50)
+<span class="kw">library</span>(splitstackshape)
+<span class="kw">library</span>(rattle)
+<span class="kw">library</span>(rpart.plot)
+<span class="kw">library</span>(data.table)
+<span class="kw">library</span>(gmodels)
+
+### Data prep <span class="al">###</span>
+
+Data_Purchase &lt;-<span class="kw">fread</span>(<span class="st">&quot;C:/Users/007/Desktop/Data science with R/R/Dataset/Chapter 6/PurchasePredictionDataset.csv&quot;</span>,<span class="dt">header=</span>T,<span class="dt">verbose =</span><span class="ot">FALSE</span>, <span class="dt">showProgress =</span><span class="ot">FALSE</span>)
+
+<span class="kw">table</span>(Data_Purchase<span class="op">$</span>ProductChoice)</code></pre></div>
+<pre><code>## 
+##      1      2      3      4 
+## 106603 199286 143893  50218</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Pulling out only the relevant data to this chapter</span>
+Data_Purchase &lt;-Data_Purchase[,<span class="kw">c</span>(<span class="st">&quot;CUSTOMER_ID&quot;</span>,<span class="st">&quot;ProductChoice&quot;</span>,<span class="st">&quot;MembershipPoints&quot;</span>,<span class="st">&quot;IncomeClass&quot;</span>,<span class="st">&quot;CustomerPropensity&quot;</span>,<span class="st">&quot;LastPurchaseDuration&quot;</span>)]
+
+<span class="co">#Delete NA from subset</span>
+Data_Purchase &lt;-<span class="kw">na.omit</span>(Data_Purchase)
+Data_Purchase<span class="op">$</span>CUSTOMER_ID &lt;-<span class="kw">as.character</span>(Data_Purchase<span class="op">$</span>CUSTOMER_ID)
+
+<span class="co">#Stratified Sampling</span>
+Data_Purchase_Model&lt;-<span class="kw">stratified</span>(Data_Purchase, <span class="dt">group=</span><span class="kw">c</span>(<span class="st">&quot;ProductChoice&quot;</span>),<span class="dt">size =</span><span class="dv">10000</span>,<span class="dt">replace=</span><span class="ot">FALSE</span>)
+
+<span class="kw">table</span>(Data_Purchase_Model<span class="op">$</span>ProductChoice)</code></pre></div>
+<pre><code>## 
+##     1     2     3     4 
+## 10000 10000 10000 10000</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Data_Purchase_Model<span class="op">$</span>ProductChoice &lt;-<span class="kw">as.factor</span>(Data_Purchase_Model<span class="op">$</span>ProductChoice)
+Data_Purchase_Model<span class="op">$</span>IncomeClass &lt;-<span class="kw">as.factor</span>(Data_Purchase_Model<span class="op">$</span>IncomeClass)
+Data_Purchase_Model<span class="op">$</span>CustomerPropensity &lt;-<span class="kw">as.factor</span>(Data_Purchase_Model<span class="op">$</span>CustomerPropensity)
+
+<span class="co">#Build the decision tree on Train Data (Set_1) and then test data (Set_2) will be used for performance testing</span>
+<span class="kw">set.seed</span>(<span class="dv">917</span>)
+
+train &lt;-<span class="st"> </span>Data_Purchase_Model[<span class="kw">sample</span>(<span class="kw">nrow</span>(Data_Purchase_Model),<span class="dt">size=</span><span class="kw">nrow</span>(Data_Purchase_Model)<span class="op">*</span>(<span class="fl">0.7</span>), <span class="dt">replace =</span><span class="ot">TRUE</span>, <span class="dt">prob =</span><span class="ot">NULL</span>),]
+train &lt;-<span class="kw">as.data.frame</span>(train)
+test &lt;-Data_Purchase_Model[<span class="op">!</span>(Data_Purchase_Model<span class="op">$</span>CUSTOMER_ID <span class="op">%in%</span>train<span class="op">$</span>CUSTOMER_ID),]
+
+<span class="co"># save(train, file=&quot;./save/train.RData&quot;)</span>
+<span class="co"># save(test, file=&quot;./save/test.RData&quot;)</span>
+
+<span class="kw">library</span>(RWeka)
+<span class="co"># WPM(&quot;refresh-cache&quot;)</span>
+<span class="co"># WPM(&quot;install-package&quot;, &quot;simpleEducationalLearningSchemes&quot;)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### ID3 model <span class="al">###</span>
+
+<span class="co"># ID3 &lt;-make_Weka_classifier(&quot;weka/classifiers/trees/Id3&quot;)</span>
+<span class="co"># ID3Model &lt;-ID3(ProductChoice ~CustomerPropensity +IncomeClass ,data = train)</span>
+<span class="co"># </span>
+<span class="co"># v = summary(ID3Model)</span>
+<span class="co"># </span>
+<span class="co"># saveRDS(v, &quot;ID3Model.rds&quot;)</span>
+
+ID3model &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;./save/ID3Model.rds&quot;</span>)
+ID3model</code></pre></div>
+<pre><code>## 
+## === Summary ===
+## 
+## Correctly Classified Instances        9268               33.1    %
+## Incorrectly Classified Instances     18732               66.9    %
+## Kappa statistic                          0.1078
+## Mean absolute error                      0.3646
+## Root mean squared error                  0.427 
+## Relative absolute error                 97.2403 %
+## Root relative squared error             98.6105 %
+## Total Number of Instances            28000     
+## 
+## === Confusion Matrix ===
+## 
+##     a    b    c    d   &lt;-- classified as
+##  4792  315 1439  509 |    a = 1
+##  3812  494 1812  898 |    b = 2
+##  2701  421 2485 1298 |    c = 3
+##  2918  416 2193 1497 |    d = 4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># library(gmodels)</span>
+<span class="co"># purchase_pred_test &lt;-predict(ID3model, test)</span>
+<span class="co"># CrossTable(test$ProductChoice, purchase_pred_test, prop.chisq =FALSE, </span>
+<span class="co">#            prop.c =FALSE, prop.r =FALSE,</span>
+<span class="co">#            dnn =c(&#39;actual default&#39;, &#39;predicted default&#39;))</span>
+
+<span class="co"># train set accurancy : 33.3036%</span>
+<span class="co"># test set accurancy : 0.159+0.004+0.086+ 0.073 = 33.2%</span>
+<span class="co"># test and train are proche : sign of no overfitting</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### C50 model <span class="al">###</span>
+
+model_c50 &lt;-<span class="kw">C5.0</span>(train[,<span class="kw">c</span>(<span class="st">&quot;CustomerPropensity&quot;</span>,<span class="st">&quot;LastPurchaseDuration&quot;</span>, <span class="st">&quot;MembershipPoints&quot;</span>)],
+                 train[,<span class="st">&quot;ProductChoice&quot;</span>],
+                 <span class="dt">control =</span><span class="kw">C5.0Control</span>(<span class="dt">CF =</span><span class="fl">0.001</span>, <span class="dt">minCases =</span><span class="dv">2</span>))
+<span class="kw">summary</span>(model_c50)</code></pre></div>
+<pre><code>## 
+## Call:
+## C5.0.default(x = train[, c(&quot;CustomerPropensity&quot;,
+##  &quot;LastPurchaseDuration&quot;, &quot;MembershipPoints&quot;)], y =
+##  train[, &quot;ProductChoice&quot;], control = C5.0Control(CF = 0.001, minCases = 2))
+## 
+## 
+## C5.0 [Release 2.07 GPL Edition]      Sat Sep 22 17:24:23 2018
+## -------------------------------
+## 
+## Class specified by attribute `outcome&#39;
+## 
+## Read 28000 cases (4 attributes) from undefined.data
+## 
+## Decision tree:
+## 
+## CustomerPropensity in {High,VeryHigh}:
+## :...MembershipPoints &lt;= 1: 4 (1360/767)
+## :   MembershipPoints &gt; 1: 3 (7620/4935)
+## CustomerPropensity in {Low,Medium,Unknown}:
+## :...MembershipPoints &lt;= 1: 4 (3159/1795)
+##     MembershipPoints &gt; 1:
+##     :...LastPurchaseDuration &lt;= 3: 1 (7040/4224)
+##         LastPurchaseDuration &gt; 3:
+##         :...CustomerPropensity in {Low,Medium}:
+##             :...CustomerPropensity = Low: 2 (2330/1695)
+##             :   CustomerPropensity = Medium: 3 (2515/1723)
+##             CustomerPropensity = Unknown:
+##             :...LastPurchaseDuration &lt;= 13: 1 (3338/2150)
+##                 LastPurchaseDuration &gt; 13: 2 (638/406)
+## 
+## 
+## Evaluation on training data (28000 cases):
+## 
+##      Decision Tree   
+##    ----------------  
+##    Size      Errors  
+## 
+##       8 17695(63.2%)   &lt;&lt;
+## 
+## 
+##     (a)   (b)   (c)   (d)    &lt;-classified as
+##    ----  ----  ----  ----
+##    4004   741  1434   876    (a): class 1
+##    2917   867  2269   963    (b): class 2
+##    2026   679  3477   723    (c): class 3
+##    1431   681  2955  1957    (d): class 4
+## 
+## 
+##  Attribute usage:
+## 
+##  100.00% CustomerPropensity
+##  100.00% MembershipPoints
+##   56.65% LastPurchaseDuration
+## 
+## 
+## Time: 0.1 secs</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(model_c50)</code></pre></div>
+<p><img src="05-Decision_Tree_files/figure-html/DT%20C50%20model-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">purchase_pred_train &lt;-<span class="kw">predict</span>(model_c50, train,<span class="dt">type =</span><span class="st">&quot;class&quot;</span>)
+vtrain =<span class="st"> </span><span class="kw">CrossTable</span>(train<span class="op">$</span>ProductChoice, purchase_pred_train, <span class="dt">prop.chisq =</span><span class="ot">FALSE</span>, <span class="dt">prop.c =</span><span class="ot">FALSE</span>, <span class="dt">prop.r =</span><span class="ot">FALSE</span>,<span class="dt">dnn =</span><span class="kw">c</span>(<span class="st">&#39;actual default&#39;</span>, <span class="st">&#39;predicted default&#39;</span>))</code></pre></div>
+<pre><code>## 
+##  
+##    Cell Contents
+## |-------------------------|
+## |                       N |
+## |         N / Table Total |
+## |-------------------------|
+## 
+##  
+## Total Observations in Table:  28000 
+## 
+##  
+##                | predicted default 
+## actual default |         1 |         2 |         3 |         4 | Row Total | 
+## ---------------|-----------|-----------|-----------|-----------|-----------|
+##              1 |      4004 |       741 |      1434 |       876 |      7055 | 
+##                |     0.143 |     0.026 |     0.051 |     0.031 |           | 
+## ---------------|-----------|-----------|-----------|-----------|-----------|
+##              2 |      2917 |       867 |      2269 |       963 |      7016 | 
+##                |     0.104 |     0.031 |     0.081 |     0.034 |           | 
+## ---------------|-----------|-----------|-----------|-----------|-----------|
+##              3 |      2026 |       679 |      3477 |       723 |      6905 | 
+##                |     0.072 |     0.024 |     0.124 |     0.026 |           | 
+## ---------------|-----------|-----------|-----------|-----------|-----------|
+##              4 |      1431 |       681 |      2955 |      1957 |      7024 | 
+##                |     0.051 |     0.024 |     0.106 |     0.070 |           | 
+## ---------------|-----------|-----------|-----------|-----------|-----------|
+##   Column Total |     10378 |      2968 |     10135 |      4519 |     28000 | 
+## ---------------|-----------|-----------|-----------|-----------|-----------|
+## 
+## </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">purchase_pred_test &lt;-<span class="kw">predict</span>(model_c50, test)
+vtest =<span class="st"> </span><span class="kw">CrossTable</span>(test<span class="op">$</span>ProductChoice, purchase_pred_test, <span class="dt">prop.chisq =</span><span class="ot">FALSE</span>, <span class="dt">prop.c =</span><span class="ot">FALSE</span>, <span class="dt">prop.r =</span><span class="ot">FALSE</span>,<span class="dt">dnn =</span><span class="kw">c</span>(<span class="st">&#39;actual default&#39;</span>, <span class="st">&#39;predicted default&#39;</span>))</code></pre></div>
+<pre><code>## 
+##  
+##    Cell Contents
+## |-------------------------|
+## |                       N |
+## |         N / Table Total |
+## |-------------------------|
+## 
+##  
+## Total Observations in Table:  20002 
+## 
+##  
+##                | predicted default 
+## actual default |         1 |         2 |         3 |         4 | Row Total | 
+## ---------------|-----------|-----------|-----------|-----------|-----------|
+##              1 |      2830 |       517 |      1019 |       632 |      4998 | 
+##                |     0.141 |     0.026 |     0.051 |     0.032 |           | 
+## ---------------|-----------|-----------|-----------|-----------|-----------|
+##              2 |      2131 |       599 |      1613 |       652 |      4995 | 
+##                |     0.107 |     0.030 |     0.081 |     0.033 |           | 
+## ---------------|-----------|-----------|-----------|-----------|-----------|
+##              3 |      1480 |       494 |      2513 |       548 |      5035 | 
+##                |     0.074 |     0.025 |     0.126 |     0.027 |           | 
+## ---------------|-----------|-----------|-----------|-----------|-----------|
+##              4 |      1047 |       453 |      2041 |      1433 |      4974 | 
+##                |     0.052 |     0.023 |     0.102 |     0.072 |           | 
+## ---------------|-----------|-----------|-----------|-----------|-----------|
+##   Column Total |      7488 |      2063 |      7186 |      3265 |     20002 | 
+## ---------------|-----------|-----------|-----------|-----------|-----------|
+## 
+## </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(<span class="kw">diag</span>(vtrain<span class="op">$</span>prop.tbl))</code></pre></div>
+<pre><code>## [1] 0.3680357</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(<span class="kw">diag</span>(vtest<span class="op">$</span>prop.tbl))</code></pre></div>
+<pre><code>## [1] 0.3687131</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### CART MODEL <span class="al">###</span>
+
+CARTModel &lt;-<span class="kw">rpart</span>(ProductChoice <span class="op">~</span>IncomeClass <span class="op">+</span>CustomerPropensity <span class="op">+</span>LastPurchaseDuration <span class="op">+</span>MembershipPoints, <span class="dt">data=</span>train)
+
+<span class="kw">summary</span>(CARTModel)</code></pre></div>
+<pre><code>## Call:
+## rpart(formula = ProductChoice ~ IncomeClass + CustomerPropensity + 
+##     LastPurchaseDuration + MembershipPoints, data = train)
+##   n= 28000 
+## 
+##           CP nsplit rel error    xerror        xstd
+## 1 0.09181189      0 1.0000000 1.0034376 0.003456583
+## 2 0.02998329      1 0.9081881 0.9081881 0.003728709
+## 3 0.01174505      2 0.8782048 0.8782048 0.003792713
+## 4 0.01000000      3 0.8664598 0.8730962 0.003802669
+## 
+## Variable importance
+##   CustomerPropensity     MembershipPoints LastPurchaseDuration 
+##                   61                   38                    1 
+## 
+## Node number 1: 28000 observations,    complexity param=0.09181189
+##   predicted class=1  expected loss=0.7480357  P(node) =1
+##     class counts:  7055  7016  6905  7024
+##    probabilities: 0.252 0.251 0.247 0.251 
+##   left son=2 (19020 obs) right son=3 (8980 obs)
+##   Primary splits:
+##       CustomerPropensity   splits as  RLLLR,      improve=433.38490, (0 missing)
+##       MembershipPoints     &lt; 1.5  to the right,   improve=245.08840, (0 missing)
+##       LastPurchaseDuration &lt; 5.5  to the left,    improve=213.55780, (0 missing)
+##       IncomeClass          splits as  LLRLLLRRRR, improve= 24.12748, (0 missing)
+##   Surrogate splits:
+##       LastPurchaseDuration &lt; 14.5 to the left,    agree=0.684, adj=0.015, (0 split)
+##       IncomeClass          splits as  LLLLLLLLLR, agree=0.679, adj=0.000, (0 split)
+##       MembershipPoints     &lt; 11.5 to the left,    agree=0.679, adj=0.000, (0 split)
+## 
+## Node number 2: 19020 observations,    complexity param=0.02998329
+##   predicted class=1  expected loss=0.6873817  P(node) =0.6792857
+##     class counts:  5946  5140  3873  4061
+##    probabilities: 0.313 0.270 0.204 0.214 
+##   left son=4 (15861 obs) right son=5 (3159 obs)
+##   Primary splits:
+##       MembershipPoints     &lt; 1.5  to the right,   improve=242.67250, (0 missing)
+##       LastPurchaseDuration &lt; 3.5  to the left,    improve= 97.77570, (0 missing)
+##       CustomerPropensity   splits as  -RRL-,      improve= 90.30872, (0 missing)
+##       IncomeClass          splits as  LRRRRRRRRR, improve= 10.76842, (0 missing)
+## 
+## Node number 3: 8980 observations,    complexity param=0.01174505
+##   predicted class=3  expected loss=0.6623608  P(node) =0.3207143
+##     class counts:  1109  1876  3032  2963
+##    probabilities: 0.123 0.209 0.338 0.330 
+##   left son=6 (7620 obs) right son=7 (1360 obs)
+##   Primary splits:
+##       MembershipPoints     &lt; 1.5  to the right,   improve=29.631780, (0 missing)
+##       LastPurchaseDuration &lt; 5.5  to the left,    improve=27.915920, (0 missing)
+##       CustomerPropensity   splits as  L---R,      improve=26.860990, (0 missing)
+##       IncomeClass          splits as  LLRRLLRRLR, improve= 7.647919, (0 missing)
+##   Surrogate splits:
+##       IncomeClass splits as  RLLLLLLLLL, agree=0.849, adj=0.001, (0 split)
+## 
+## Node number 4: 15861 observations
+##   predicted class=1  expected loss=0.6715213  P(node) =0.5664643
+##     class counts:  5210  4457  3497  2697
+##    probabilities: 0.328 0.281 0.220 0.170 
+## 
+## Node number 5: 3159 observations
+##   predicted class=4  expected loss=0.5682178  P(node) =0.1128214
+##     class counts:   736   683   376  1364
+##    probabilities: 0.233 0.216 0.119 0.432 
+## 
+## Node number 6: 7620 observations
+##   predicted class=3  expected loss=0.6476378  P(node) =0.2721429
+##     class counts:   969  1596  2685  2370
+##    probabilities: 0.127 0.209 0.352 0.311 
+## 
+## Node number 7: 1360 observations
+##   predicted class=4  expected loss=0.5639706  P(node) =0.04857143
+##     class counts:   140   280   347   593
+##    probabilities: 0.103 0.206 0.255 0.436</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fancyRpartPlot</span>(CARTModel)</code></pre></div>
+<p><img src="05-Decision_Tree_files/figure-html/DT%20CART%20model-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">purchase_pred_train &lt;-<span class="kw">predict</span>(CARTModel, train,<span class="dt">type =</span><span class="st">&quot;class&quot;</span>)
+<span class="co"># vtrain = CrossTable(train$ProductChoice, purchase_pred_train, prop.chisq =FALSE, prop.c =FALSE, prop.r =FALSE,dnn =c(&#39;actual default&#39;, &#39;predicted default&#39;))</span>
+
+<span class="co"># Training set Accuracy = 27%</span>
+<span class="co"># not the bast for classification</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### MODEL CHAID <span class="al">###</span>
+
+<span class="co">#install.packages(&quot;CHAID&quot;, repos=&quot;http://R-Forge.R-project.org&quot;)</span>
+<span class="kw">library</span>(CHAID)
+
+ctrl &lt;-<span class="st"> </span><span class="kw">chaid_control</span>(<span class="dt">minsplit =</span><span class="dv">200</span>, <span class="dt">minprob =</span><span class="fl">0.1</span>)
+CHAIDModel &lt;-<span class="kw">chaid</span>(ProductChoice <span class="op">~</span>CustomerPropensity <span class="op">+</span>IncomeClass, 
+                   <span class="dt">data =</span> train, 
+                   <span class="dt">control =</span> ctrl)
+
+purchase_pred_train &lt;-<span class="kw">predict</span>(CHAIDModel, train)
+
+vtrain =<span class="st"> </span><span class="kw">CrossTable</span>(train<span class="op">$</span>ProductChoice, purchase_pred_train, <span class="dt">prop.chisq =</span><span class="ot">FALSE</span>, <span class="dt">prop.c =</span><span class="ot">FALSE</span>, <span class="dt">prop.r =</span><span class="ot">FALSE</span>,<span class="dt">dnn =</span><span class="kw">c</span>(<span class="st">&#39;actual default&#39;</span>, <span class="st">&#39;predicted default&#39;</span>))</code></pre></div>
+<pre><code>## 
+##  
+##    Cell Contents
+## |-------------------------|
+## |                       N |
+## |         N / Table Total |
+## |-------------------------|
+## 
+##  
+## Total Observations in Table:  28000 
+## 
+##  
+##                | predicted default 
+## actual default |         1 |         2 |         3 |         4 | Row Total | 
+## ---------------|-----------|-----------|-----------|-----------|-----------|
+##              1 |      4635 |        69 |      1901 |       450 |      7055 | 
+##                |     0.166 |     0.002 |     0.068 |     0.016 |           | 
+## ---------------|-----------|-----------|-----------|-----------|-----------|
+##              2 |      3630 |       130 |      2638 |       618 |      7016 | 
+##                |     0.130 |     0.005 |     0.094 |     0.022 |           | 
+## ---------------|-----------|-----------|-----------|-----------|-----------|
+##              3 |      2433 |        70 |      3689 |       713 |      6905 | 
+##                |     0.087 |     0.002 |     0.132 |     0.025 |           | 
+## ---------------|-----------|-----------|-----------|-----------|-----------|
+##              4 |      2678 |        80 |      3384 |       882 |      7024 | 
+##                |     0.096 |     0.003 |     0.121 |     0.032 |           | 
+## ---------------|-----------|-----------|-----------|-----------|-----------|
+##   Column Total |     13376 |       349 |     11612 |      2663 |     28000 | 
+## ---------------|-----------|-----------|-----------|-----------|-----------|
+## 
+## </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(<span class="kw">diag</span>(vtrain<span class="op">$</span>prop.tbl))</code></pre></div>
+<pre><code>## [1] 0.3334286</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(CHAIDModel)</code></pre></div>
+<p><img src="05-Decision_Tree_files/figure-html/DT%20CHAID-1.png" width="672" /></p>
+</div>
+<div id="random-forests" class="section level2">
+<h2><span class="header-section-number">6.4</span> Random Forests</h2>
+<ul>
+<li>Fait partie des ensemble trees (boosting, bagging, .. etc).</li>
+<li>Random forests généralise les decision trees en contruistant plusieurs DT et les combinant.
+<ul>
+<li><ol style="list-style-type: decimal">
+<li>Soit N nbr d’observation, n nombre de DT et M le nombre de variables du dataset</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: decimal">
+<li>Choose a subset of m variables from M (m&lt;&lt;M) and buld n DT using ramdon set of m variable</li>
+</ol></li>
+<li><ol start="3" style="list-style-type: decimal">
+<li>Grow each tree as large os possible</li>
+</ol></li>
+<li><ol start="4" style="list-style-type: decimal">
+<li>Use majority voting to decide the class of the observation</li>
+</ol></li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### Data prep <span class="al">###</span>
+
+<span class="kw">library</span>(caret)</code></pre></div>
+<pre><code>## Warning: package &#39;caret&#39; was built under R version 3.3.3</code></pre>
+<pre><code>## Loading required package: lattice</code></pre>
+<pre><code>## 
+## Attaching package: &#39;caret&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     lift</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gmodels)
+
+<span class="kw">load</span>(<span class="st">&quot;./save/train.RData&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;./save/test.RData&quot;</span>)
+
+<span class="kw">set.seed</span>(<span class="dv">100</span>) ; <span class="kw">dim</span>(train) ; train =<span class="st"> </span>train[<span class="dv">1</span><span class="op">:</span><span class="dv">2000</span>,]</code></pre></div>
+<pre><code>## [1] 28000     6</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">control &lt;-<span class="st"> </span><span class="kw">trainControl</span>(<span class="dt">method=</span><span class="st">&quot;repeatedcv&quot;</span>, <span class="dt">number=</span><span class="dv">5</span>, <span class="dt">repeats=</span><span class="dv">2</span>)
+
+<span class="co"># rfModel &lt;-train(ProductChoice ~CustomerPropensity +LastPurchaseDuration +MembershipPoints,</span>
+<span class="co">#                 data=train, </span>
+<span class="co">#                 method=&quot;rf&quot;, </span>
+<span class="co">#                 trControl=control)</span>
+<span class="co"># saveRDS(rfModel, &quot;rfModel.rds&quot;)</span>
+rfModel &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;./save/rfModel.rds&quot;</span>)
+
+
+purchase_pred_train &lt;-<span class="kw">predict</span>(rfModel, train)
+<span class="co"># vtrain = CrossTable(train$ProductChoice, purchase_pred_train, prop.chisq =FALSE, prop.c =FALSE, </span>
+<span class="co">#                    prop.r =FALSE,dnn =c(&#39;actual default&#39;, &#39;predicted default&#39;))</span>
+purchase_pred_train &lt;-<span class="kw">predict</span>(rfModel, test)
+<span class="co"># vtest = CrossTable(test$ProductChoice, purchase_pred_train, prop.chisq =FALSE, prop.c =FALSE, </span>
+<span class="co">#                   prop.r =FALSE,dnn =c(&#39;actual default&#39;, &#39;predicted default&#39;))</span>
+
+<span class="kw">sum</span>(<span class="kw">diag</span>(vtrain<span class="op">$</span>prop.tbl))</code></pre></div>
+<pre><code>## [1] 0.3334286</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(<span class="kw">diag</span>(vtest<span class="op">$</span>prop.tbl))</code></pre></div>
+<pre><code>## [1] 0.3687131</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># de tout les DT meilleur accurancy sur le test et le train mais probleme d&#39;overfitting</span>
+
+
+### RF on continuous variable <span class="al">###</span>
+
+<span class="kw">library</span>(Metrics)</code></pre></div>
+<pre><code>## Warning: package &#39;Metrics&#39; was built under R version 3.3.3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(randomForest)</code></pre></div>
+<pre><code>## Warning: package &#39;randomForest&#39; was built under R version 3.3.3</code></pre>
+<pre><code>## randomForest 4.6-12</code></pre>
+<pre><code>## Type rfNews() to see new features/changes/bug fixes.</code></pre>
+<pre><code>## 
+## Attaching package: &#39;randomForest&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:rattle&#39;:
+## 
+##     importance</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     combine</code></pre>
+<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     margin</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">RF &lt;-<span class="st"> </span><span class="kw">randomForest</span>(dist <span class="op">~</span><span class="st"> </span>speed, <span class="dt">data =</span> cars)
+<span class="kw">rmse</span>(cars<span class="op">$</span>dist,<span class="kw">predict</span>(RF, cars))</code></pre></div>
+<pre><code>## [1] 11.84672</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="unsupervised.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="neural-network.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-start.pdf", "bookdown-start.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

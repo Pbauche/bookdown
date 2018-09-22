@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Handout_V2</title>
+  <meta name="description" content="Handout_V2">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Handout_V2" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Handout_V2" />
+  
+  
+  
+
+<meta name="author" content="Pierre Bauche">
+
+
+<meta name="date" content="2018-09-22">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="regression.html">
+<link rel="next" href="decision-tree.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.1.17/leaflet-providers.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.1/leaflet-providers-plugin.js"></script>
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.css" rel="stylesheet" />
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.Default.css" rel="stylesheet" />
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.freezable.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.layersupport.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">somethings</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> <strong>Information</strong></a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#usefull-ressource"><i class="fa fa-check"></i><b>1.1</b> Usefull ressource</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#todo"><i class="fa fa-check"></i><b>1.2</b> todo</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#interesting-stuff"><i class="fa fa-check"></i><b>1.3</b> interesting stuff</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#hint"><i class="fa fa-check"></i><b>1.4</b> Hint</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="feature-engeneering.html"><a href="feature-engeneering.html"><i class="fa fa-check"></i><b>2</b> Feature engeneering</a><ul>
+<li class="chapter" data-level="2.1" data-path="feature-engeneering.html"><a href="feature-engeneering.html#input-feature"><i class="fa fa-check"></i><b>2.1</b> Input feature</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="feature-engeneering.html"><a href="feature-engeneering.html#numeric-data"><i class="fa fa-check"></i><b>2.1.1</b> Numeric Data</a></li>
+<li class="chapter" data-level="2.1.2" data-path="feature-engeneering.html"><a href="feature-engeneering.html#count-data"><i class="fa fa-check"></i><b>2.1.2</b> count data</a></li>
+<li class="chapter" data-level="2.1.3" data-path="feature-engeneering.html"><a href="feature-engeneering.html#categorical-data"><i class="fa fa-check"></i><b>2.1.3</b> categorical data</a></li>
+<li class="chapter" data-level="2.1.4" data-path="feature-engeneering.html"><a href="feature-engeneering.html#date-time-lubridate-package"><i class="fa fa-check"></i><b>2.1.4</b> Date Time : Lubridate package</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="feature-engeneering.html"><a href="feature-engeneering.html#missing-value"><i class="fa fa-check"></i><b>2.2</b> Missing Value</a></li>
+<li class="chapter" data-level="2.3" data-path="feature-engeneering.html"><a href="feature-engeneering.html#outlier-detection"><i class="fa fa-check"></i><b>2.3</b> Outlier Detection</a></li>
+<li class="chapter" data-level="2.4" data-path="feature-engeneering.html"><a href="feature-engeneering.html#sampling-and-resampling"><i class="fa fa-check"></i><b>2.4</b> Sampling and resampling</a></li>
+<li class="chapter" data-level="2.5" data-path="feature-engeneering.html"><a href="feature-engeneering.html#variables-selections"><i class="fa fa-check"></i><b>2.5</b> variables selections</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="feature-engeneering.html"><a href="feature-engeneering.html#filter-methods"><i class="fa fa-check"></i><b>2.5.1</b> Filter methods :</a></li>
+<li class="chapter" data-level="2.5.2" data-path="feature-engeneering.html"><a href="feature-engeneering.html#wrapper-methods"><i class="fa fa-check"></i><b>2.5.2</b> Wrapper Methods:</a></li>
+<li class="chapter" data-level="2.5.3" data-path="feature-engeneering.html"><a href="feature-engeneering.html#embedded-methods"><i class="fa fa-check"></i><b>2.5.3</b> Embedded Methods :</a></li>
+<li class="chapter" data-level="2.5.4" data-path="feature-engeneering.html"><a href="feature-engeneering.html#dimension-reduction"><i class="fa fa-check"></i><b>2.5.4</b> Dimension reduction :</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="feature-engeneering.html"><a href="feature-engeneering.html#example"><i class="fa fa-check"></i><b>2.6</b> Example</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="feature-engeneering.html"><a href="feature-engeneering.html#credit-risk-modeling"><i class="fa fa-check"></i><b>2.6.1</b> Credit risk modeling</a></li>
+<li class="chapter" data-level="2.6.2" data-path="feature-engeneering.html"><a href="feature-engeneering.html#variance-treshold-approach"><i class="fa fa-check"></i><b>2.6.2</b> variance treshold approach</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="feature-engeneering.html"><a href="feature-engeneering.html#method-summary"><i class="fa fa-check"></i><b>2.7</b> Method Summary</a></li>
+<li class="chapter" data-level="2.8" data-path="feature-engeneering.html"><a href="feature-engeneering.html#tips"><i class="fa fa-check"></i><b>2.8</b> tips</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>3</b> Data visualization</a><ul>
+<li class="chapter" data-level="3.1" data-path="data-visualization.html"><a href="data-visualization.html#descriptive"><i class="fa fa-check"></i><b>3.1</b> Descriptive</a></li>
+<li class="chapter" data-level="3.2" data-path="data-visualization.html"><a href="data-visualization.html#spacial-map"><i class="fa fa-check"></i><b>3.2</b> Spacial map</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>4</b> Regression</a><ul>
+<li class="chapter" data-level="4.1" data-path="regression.html"><a href="regression.html#introduction"><i class="fa fa-check"></i><b>4.1</b> introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="regression.html"><a href="regression.html#linear-regression"><i class="fa fa-check"></i><b>4.2</b> Linear regression</a></li>
+<li class="chapter" data-level="4.3" data-path="regression.html"><a href="regression.html#anova"><i class="fa fa-check"></i><b>4.3</b> ANOVA</a></li>
+<li class="chapter" data-level="4.4" data-path="regression.html"><a href="regression.html#polynomiale-regression"><i class="fa fa-check"></i><b>4.4</b> Polynomiale regression</a></li>
+<li class="chapter" data-level="4.5" data-path="regression.html"><a href="regression.html#logistique"><i class="fa fa-check"></i><b>4.5</b> Logistique</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="regression.html"><a href="regression.html#general"><i class="fa fa-check"></i><b>4.5.1</b> General</a></li>
+<li class="chapter" data-level="4.5.2" data-path="regression.html"><a href="regression.html#binomial-logistic-model"><i class="fa fa-check"></i><b>4.5.2</b> Binomial Logistic MODEL</a></li>
+<li class="chapter" data-level="4.5.3" data-path="regression.html"><a href="regression.html#multinomial-logistic-regression"><i class="fa fa-check"></i><b>4.5.3</b> Multinomial Logistic Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="regression.html"><a href="regression.html#generalized-linear-models"><i class="fa fa-check"></i><b>4.6</b> Generalized Linear Models</a></li>
+<li class="chapter" data-level="4.7" data-path="regression.html"><a href="regression.html#model-selection"><i class="fa fa-check"></i><b>4.7</b> Model Selection</a></li>
+<li class="chapter" data-level="4.8" data-path="regression.html"><a href="regression.html#regularization-algorithms"><i class="fa fa-check"></i><b>4.8</b> Regularization Algorithms</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="regression.html"><a href="regression.html#ridge-regression"><i class="fa fa-check"></i><b>4.8.1</b> Ridge regression</a></li>
+<li class="chapter" data-level="4.8.2" data-path="regression.html"><a href="regression.html#least-absolute-shrinkage-and-selection-operator-lasso"><i class="fa fa-check"></i><b>4.8.2</b> Least Absolute Shrinkage and Selection Opérator LASSO</a></li>
+<li class="chapter" data-level="4.8.3" data-path="regression.html"><a href="regression.html#elastic-net"><i class="fa fa-check"></i><b>4.8.3</b> Elastic Net</a></li>
+<li class="chapter" data-level="4.8.4" data-path="regression.html"><a href="regression.html#leas-angle-regression-lars"><i class="fa fa-check"></i><b>4.8.4</b> Leas-Angle Regression LARS</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="regression.html"><a href="regression.html#locally-estimated-scaterplot-smoothing-loess"><i class="fa fa-check"></i><b>4.9</b> Locally estimated Scaterplot Smoothing (LOESS)</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="unsupervised.html"><a href="unsupervised.html"><i class="fa fa-check"></i><b>5</b> Unsupervised</a><ul>
+<li class="chapter" data-level="5.1" data-path="unsupervised.html"><a href="unsupervised.html#dimensionality-reduction-algorithms"><i class="fa fa-check"></i><b>5.1</b> Dimensionality reduction algorithms</a></li>
+<li class="chapter" data-level="5.2" data-path="unsupervised.html"><a href="unsupervised.html#cluster-analysis"><i class="fa fa-check"></i><b>5.2</b> Cluster analysis</a></li>
+<li class="chapter" data-level="5.3" data-path="unsupervised.html"><a href="unsupervised.html#evaluation-of-clustering"><i class="fa fa-check"></i><b>5.3</b> Evaluation of clustering</a></li>
+<li class="chapter" data-level="5.4" data-path="unsupervised.html"><a href="unsupervised.html#association-rule-mining-algorithms"><i class="fa fa-check"></i><b>5.4</b> Association Rule Mining Algorithms</a></li>
+<li class="chapter" data-level="5.5" data-path="unsupervised.html"><a href="unsupervised.html#singular-value-decomposition"><i class="fa fa-check"></i><b>5.5</b> Singular Value decomposition</a></li>
+<li class="chapter" data-level="5.6" data-path="unsupervised.html"><a href="unsupervised.html#k-nearest-neighbot"><i class="fa fa-check"></i><b>5.6</b> K-Nearest Neighbot</a></li>
+<li class="chapter" data-level="5.7" data-path="unsupervised.html"><a href="unsupervised.html#others-unsuppervised-algorithms"><i class="fa fa-check"></i><b>5.7</b> Others unsuppervised algorithms</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="decision-tree.html"><a href="decision-tree.html"><i class="fa fa-check"></i><b>6</b> Decision Tree</a><ul>
+<li class="chapter" data-level="6.1" data-path="decision-tree.html"><a href="decision-tree.html#type-of-decision-tree"><i class="fa fa-check"></i><b>6.1</b> Type of décision tree</a></li>
+<li class="chapter" data-level="6.2" data-path="decision-tree.html"><a href="decision-tree.html#decision-measures-measure-of-node-purity-heterogeneity-of-the-node"><i class="fa fa-check"></i><b>6.2</b> Decision measures : measure of node purity (heterogeneity of the node)</a></li>
+<li class="chapter" data-level="6.3" data-path="decision-tree.html"><a href="decision-tree.html#decision-tree-learning-methods"><i class="fa fa-check"></i><b>6.3</b> Decision tree learning methods</a></li>
+<li class="chapter" data-level="6.4" data-path="decision-tree.html"><a href="decision-tree.html#random-forests"><i class="fa fa-check"></i><b>6.4</b> Random Forests</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="neural-network.html"><a href="neural-network.html"><i class="fa fa-check"></i><b>7</b> Neural Network</a><ul>
+<li class="chapter" data-level="7.1" data-path="neural-network.html"><a href="neural-network.html#neural-networks-basis"><i class="fa fa-check"></i><b>7.1</b> Neural Networks Basis</a></li>
+<li class="chapter" data-level="7.2" data-path="neural-network.html"><a href="neural-network.html#neural-network-architecture"><i class="fa fa-check"></i><b>7.2</b> Neural Network Architecture</a></li>
+<li class="chapter" data-level="7.3" data-path="neural-network.html"><a href="neural-network.html#deep-learning"><i class="fa fa-check"></i><b>7.3</b> Deep Learning</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="neural-network.html"><a href="neural-network.html#example-of-deep-learning-classification"><i class="fa fa-check"></i><b>7.3.1</b> Example of deep learning : Classification</a></li>
+<li class="chapter" data-level="7.3.2" data-path="neural-network.html"><a href="neural-network.html#example-imagine-prediction-nn-classification"><i class="fa fa-check"></i><b>7.3.2</b> Example : Imagine prediction : NN classification</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Handout_V2</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="unsupervised" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> Unsupervised</h1>
+<blockquote>
+<p>Pas de variable dépendante, découverte des données</p>
+</blockquote>
+<div id="dimensionality-reduction-algorithms" class="section level2">
+<h2><span class="header-section-number">5.1</span> Dimensionality reduction algorithms</h2>
+<ul>
+<li><strong>PCA</strong> L’objectif est de réduire la dimension des données pour obtenir une meilleur visualisation. PCA is a transformation of the data but don’t add or delete any information.
+<ul>
+<li>Only numerical data, if factors : transforme en vecteur numérique sinon use FDA</li>
+<li>Hughes phenomeon : With a fixed number of training samples, the predictive power reduces as the dimensionality increases.</li>
+<li>But réduire la variabilité d’un dataset. On crée de nouvelles variables orthogonales qui explique le plus possible de variances des variables.</li>
+<li>basé sur la matrice des covariances</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pca &lt;-<span class="st"> </span><span class="kw">prcomp</span>(<span class="kw">subset</span>(iris, <span class="dt">select =</span> <span class="op">-</span>Species))
+pca</code></pre></div>
+<pre><code>## Standard deviations:
+## [1] 2.0562689 0.4926162 0.2796596 0.1543862
+## 
+## Rotation:
+##                      PC1         PC2         PC3        PC4
+## Sepal.Length  0.36138659 -0.65658877  0.58202985  0.3154872
+## Sepal.Width  -0.08452251 -0.73016143 -0.59791083 -0.3197231
+## Petal.Length  0.85667061  0.17337266 -0.07623608 -0.4798390
+## Petal.Width   0.35828920  0.07548102 -0.54583143  0.7536574</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(pca)</code></pre></div>
+<p><img src="04-unsupervized_files/figure-html/PCA-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mapped_iris &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">predict</span>(pca, iris))
+mapped_iris &lt;-<span class="kw">cbind</span>(mapped_iris, <span class="dt">Species =</span> iris<span class="op">$</span>Species)
+
+<span class="kw">ggplot</span>() <span class="op">+</span>
+<span class="kw">geom_point</span>(<span class="dt">data=</span>mapped_iris,<span class="kw">aes</span>(<span class="dt">x =</span> PC1, <span class="dt">y =</span> PC2, <span class="dt">colour =</span> Species))</code></pre></div>
+<p><img src="04-unsupervized_files/figure-html/PCA-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pca_data &lt;-data[,<span class="kw">c</span>(<span class="st">&quot;f381&quot;</span>,<span class="st">&quot;f408&quot;</span>,<span class="st">&quot;f495&quot;</span>,<span class="st">&quot;f529&quot;</span>,<span class="st">&quot;f549&quot;</span>,<span class="st">&quot;f539&quot;</span>,<span class="st">&quot;f579&quot;</span>,<span class="st">&quot;f634&quot;</span>,<span class="st">&quot;f706&quot;</span>,<span class="st">&quot;f743&quot;</span>)]
+pca_data &lt;-<span class="kw">na.omit</span>(pca_data)
+
+<span class="co">#Normalise the data before applying PCA analysis mean=0, and sd=1</span>
+scaled_pca_data &lt;-<span class="kw">scale</span>(pca_data)
+
+pca_results &lt;-<span class="kw">prcomp</span>(scaled_pca_data)
+
+<span class="kw">plot</span>(pca_results)</code></pre></div>
+<p><img src="04-unsupervized_files/figure-html/PCA-3.png" width="672" /></p>
+<ul>
+<li><strong>MCA</strong></li>
+<li><strong>principal component regression</strong></li>
+<li><p><strong>Partial least square regression</strong> supervised dimension reduction techniques use the response to guide the dimension reduction of the predictors such that the new predictors are optimally related to the response. Partial least squares (PLS) is a supervised version of PCA that reduces dimension in a way that is optimally related to the response. Specifically, the objective of PLS is to find linear functions (called latent variables) of the predictors that have optimal covariance with the response. This means that the response guides the dimension reduction such that the scores have the highest possible correlation with the response in the training data.</p></li>
+<li><strong>Multidimendional scaling MDS</strong></li>
+<li><strong>Linear discriminant Analysis LDA</strong></li>
+<li><strong>Mixture discriminant Analysis MDA</strong></li>
+<li><strong>Quadratic discriminant analysis QDA</strong></li>
+<li><p><strong>Kernel Principal Component Analysis</strong> Principal component analysis is an effective dimension reduction technique when predictors are linearly correlated and when the resulting scores are associated with the response. However, the orthogonal partitioning of the predictor space may not provide a good predictive relationship with the response, especially if the true underlying relationship between the predictors and the response is non-linear =&gt; see scaterplot</p></li>
+<li><p><strong>Non-negative Matrix Factorization</strong> linear projection method that is specific to features that are are positive or zero. In this case, the algorithm finds the coefficients of A such that their values are also non-negative (thus ensuring that the new features have the same property). This approach is popular for text data where predictors are word counts, imaging, and biological measures</p></li>
+<li><p><strong>Autoencodres</strong> Autoencoders are computationally complex multivariate methods for finding representations of the predictor data and are commonly used in deep learning models (Goodfellow, Bengio, and Courville 2016). The idea is to create a nonlinear mapping between the original predictor data and a set artificial features. One situation to use an autoencoder is when there is an abundance of unlabeled data</p></li>
+</ul>
+</div>
+<div id="cluster-analysis" class="section level2">
+<h2><span class="header-section-number">5.2</span> Cluster analysis</h2>
+<p>Group data in most homegenous group. Clustering toujours la même chose, le truc qui change est la metrique. Différent type de clustering : - Connectivity models : Distance connectivity between observations is the measure, e.g., hierarchical clustering. - Centroid models : Distance from mean value of each observation/cluster is the measure, e.g., k-means. - Distribution models : Significance of statistical distribution of variables in the dataset is the measure, e.g., expectation maximization algorithms. - Density models: Density in data space is the measure, e.g., DBSCAN models. - Hard Clustering: Each object belongs to exactly one cluster - Soft Clustering : Each object has some likelihood of belonging to a different cluster</p>
+<p>Remarque : pas de selection de variables dans le clustering, il faut porter de l’attention sur le dataset et les variables utilisées.</p>
+<p>A good clustering algorithm can be evaluated based on two primary objectives: - High intra-class similarity - Low inter-class similarity</p>
+<p>Choix de la mesure de similarité important</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># introduction to dataset</span>
+Data_House_Worth &lt;-<span class="kw">read.csv</span>(<span class="st">&quot;C:/Users/007/Desktop/Data science with R/R/Dataset/Chapter 6/House Worth Data.csv&quot;</span>,<span class="dt">header=</span><span class="ot">TRUE</span>);
+<span class="kw">str</span>(Data_House_Worth)</code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    316 obs. of  5 variables:
+##  $ HousePrice   : int  138800 155000 152000 160000 226000 275000 215000 392000 325000 151000 ...
+##  $ StoreArea    : num  29.9 44 46.2 46.2 48.7 56.4 47.1 56.7 84 49.2 ...
+##  $ BasementArea : int  75 504 493 510 445 1148 380 945 1572 506 ...
+##  $ LawnArea     : num  11.22 9.69 10.19 6.82 10.92 ...
+##  $ HouseNetWorth: Factor w/ 3 levels &quot;High&quot;,&quot;Low&quot;,&quot;Medium&quot;: 2 3 3 3 3 1 3 1 1 3 ...</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Data_House_Worth<span class="op">$</span>BasementArea &lt;-<span class="ot">NULL</span>
+
+<span class="kw">ggplot</span>(Data_House_Worth, <span class="kw">aes</span>(StoreArea, LawnArea, <span class="dt">color =</span> HouseNetWorth))<span class="op">+</span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="04-unsupervized_files/figure-html/cluster-1.png" width="672" /></p>
+<ul>
+<li><strong>Hierarchical Clustering</strong> Chaque data sont dans un cluster. Les clusters sont aggrégé hiérachiquement en fonction d’une distance la plus faible jusqu’au moment ou il ne reste qu’un cluster. Hierarchical clustering is based on the connectivity model of clusters. The steps involved in the clustering process are:
+<ul>
+<li>Start with N clusters,(i.e., assign each element to its own cluster).</li>
+<li>Now merge pairs of clusters with the closest to other</li>
+<li>Again compute the distance (similarities) and merge with closest one.</li>
+<li>Repeat Steps 2 and 3 to exhaust the items until you get all data points in one cluster.</li>
+<li>Chose cutoff at how many clusters you want to have.</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(ggdendro)</code></pre></div>
+<pre><code>## Warning: package &#39;ggdendro&#39; was built under R version 3.3.3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Hierachical clustering</span>
+clusters &lt;-<span class="kw">hclust</span>(<span class="kw">dist</span>(Data_House_Worth[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]))
+<span class="co">#Plot the dendogram</span>
+<span class="kw">plot</span>(clusters)</code></pre></div>
+<p><img src="04-unsupervized_files/figure-html/Hclust-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#create different number of cluster</span>
+clusterCut_<span class="dv">2</span> &lt;-<span class="kw">cutree</span>(clusters, <span class="dv">2</span>)
+<span class="co">#table the clustering distribution with actual networth</span>
+<span class="kw">table</span>(clusterCut_<span class="dv">2</span>,Data_House_Worth<span class="op">$</span>HouseNetWorth)</code></pre></div>
+<pre><code>##             
+## clusterCut_2 High Low Medium
+##            1  104 135     51
+##            2   26   0      0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">clusterCut_<span class="dv">3</span> &lt;-<span class="kw">cutree</span>(clusters, <span class="dv">3</span>)
+<span class="kw">table</span>(clusterCut_<span class="dv">3</span>,Data_House_Worth<span class="op">$</span>HouseNetWorth)</code></pre></div>
+<pre><code>##             
+## clusterCut_3 High Low Medium
+##            1    0 122      1
+##            2  104  13     50
+##            3   26   0      0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ici choix du nombre cluster = 3 par hypothèse sur le business</span>
+
+<span class="kw">ggplot</span>(Data_House_Worth, <span class="kw">aes</span>(StoreArea, LawnArea, <span class="dt">color =</span> HouseNetWorth)) <span class="op">+</span>
+<span class="kw">geom_point</span>(<span class="dt">alpha =</span><span class="fl">0.4</span>, <span class="dt">size =</span><span class="fl">3.5</span>) <span class="op">+</span><span class="kw">geom_point</span>(<span class="dt">col =</span> clusterCut_<span class="dv">3</span>) <span class="op">+</span>
+<span class="kw">scale_color_manual</span>(<span class="dt">values =</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>, <span class="st">&#39;red&#39;</span>, <span class="st">&#39;green&#39;</span>))</code></pre></div>
+<p><img src="04-unsupervized_files/figure-html/Hclust-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Iris Example
+
+ iris_dist &lt;-<span class="st"> </span><span class="kw">dist</span>(<span class="kw">scale</span>(<span class="kw">subset</span>(iris, <span class="dt">select =</span> <span class="op">-</span>Species)))
+ clustering &lt;-<span class="st"> </span><span class="kw">hclust</span>(iris_dist)
+ <span class="kw">plot</span>(clustering)</code></pre></div>
+<p><img src="04-unsupervized_files/figure-html/Hclust-3.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="kw">ggdendrogram</span>(clustering) <span class="op">+</span><span class="st"> </span><span class="kw">theme_dendro</span>()</code></pre></div>
+<p><img src="04-unsupervized_files/figure-html/Hclust-4.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> clusters =<span class="st"> </span><span class="kw">cutree</span>(clustering,<span class="dt">k =</span> <span class="dv">3</span>)
+ 
+ data =<span class="st"> </span><span class="kw">cbind</span>(mapped_iris, <span class="dt">Cluster =</span> clusters)
+ 
+ <span class="kw">ggplot</span>() <span class="op">+</span>
+<span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">data=</span> data, <span class="kw">aes</span>(<span class="dt">x =</span> PC1, <span class="dt">y =</span> PC2,
+ <span class="dt">shape =</span> Species, <span class="dt">colour =</span> Cluster))</code></pre></div>
+<p><img src="04-unsupervized_files/figure-html/Hclust-5.png" width="672" /></p>
+<ul>
+<li><strong>K-means clustering</strong></li>
+</ul>
+<p>K-means place observations into Kclusters by minimizing the wihtin-cluster sum of squares (WCSS). WCSS est la somme des distance entre chaque observation et le centre du cluster. Algorithm : - Assignment: Assign each observation to the cluster that gives the minimum within cluster sum of squares (WCSS). - Update: Update the centroid by taking the mean of all the observation in the cluster. - These two steps are iteratively executed until the assignments in any two consecutive iteration don’t change</p>
+<p>To find the optimal value of k, we use and Elbow curve that show percentage of variance explained as a functionof nombrr of cluster</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wss &lt;-(<span class="kw">nrow</span>(Data_House_Worth)<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span><span class="kw">sum</span>(<span class="kw">apply</span>(Data_House_Worth[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>],<span class="dv">2</span>,var))
+
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="dv">15</span>) {
+    wss[i]&lt;-<span class="kw">sum</span>(<span class="kw">kmeans</span>(Data_House_Worth[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>],<span class="dt">centers=</span>i)<span class="op">$</span>withinss)
+                }
+
+<span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>, wss, <span class="dt">type=</span><span class="st">&quot;b&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;Number of Clusters&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Within groups sum of squares&quot;</span>)</code></pre></div>
+<p><img src="04-unsupervized_files/figure-html/Kmeans-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 3 cluster explain most of the variance in data. 4cluster not more interest and not in concordance with intuition</span>
+
+<span class="co"># Model</span>
+Cluster_kmean &lt;-<span class="kw">kmeans</span>(Data_House_Worth[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>], <span class="dv">3</span>, <span class="dt">nstart =</span><span class="dv">20</span>)
+<span class="kw">table</span>(Cluster_kmean<span class="op">$</span>cluster,Data_House_Worth<span class="op">$</span>HouseNetWorth)</code></pre></div>
+<pre><code>##    
+##     High Low Medium
+##   1    0 122      1
+##   2   46  13     50
+##   3   84   0      0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Cluster_kmean<span class="op">$</span>cluster &lt;-<span class="kw">factor</span>(Cluster_kmean<span class="op">$</span>cluster)
+
+<span class="kw">ggplot</span>(Data_House_Worth, <span class="kw">aes</span>(StoreArea, LawnArea, <span class="dt">color =</span> HouseNetWorth)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span><span class="fl">0.4</span>, <span class="dt">size =</span><span class="fl">3.5</span>) <span class="op">+</span><span class="kw">geom_point</span>(<span class="dt">col =</span> Cluster_kmean<span class="op">$</span>cluster) <span class="op">+</span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>, <span class="st">&#39;red&#39;</span>, <span class="st">&#39;green&#39;</span>))</code></pre></div>
+<p><img src="04-unsupervized_files/figure-html/Kmeans-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Capture cluster very well</span></code></pre></div>
+<ul>
+<li><strong>Ditribution-based clustering</strong></li>
+</ul>
+<p>Distribution methods are iterative methods to fit a set of dataset into clusters by optimizing distributions of datasets in clusters (i.e. Gaussian distribution). - First randomly choose Gaussian parameters and fit it to set of data points. - Iteratively optimize the distribution parameters to fit as many points it can. - Once it converges to a local minima, you can assign data points closer to that distribution of that cluster</p>
+<p>=&gt; Attention cette méthode souffre d’overfitting</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(EMCluster, <span class="dt">quietly =</span><span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## Warning: package &#39;EMCluster&#39; was built under R version 3.3.3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#model</span>
+ret &lt;-<span class="kw">init.EM</span>(Data_House_Worth[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>], <span class="dt">nclass =</span><span class="dv">3</span>)
+ret</code></pre></div>
+<pre><code>## Method: em.EMRnd.EM
+##  n = 316, p = 2, nclass = 3, flag = 0, logL = -1871.0332.
+## nc: 
+## [1]  48 100 168
+## pi: 
+## [1] 0.2000 0.2507 0.5493</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># assign class</span>
+ret.new &lt;-<span class="kw">assign.class</span>(Data_House_Worth[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>], ret, <span class="dt">return.all =</span><span class="ot">FALSE</span>)
+
+<span class="kw">plotem</span>(ret,Data_House_Worth[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>])</code></pre></div>
+<p><img src="04-unsupervized_files/figure-html/dist%20clust-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(Data_House_Worth, <span class="kw">aes</span>(StoreArea, LawnArea, <span class="dt">color =</span> HouseNetWorth)) <span class="op">+</span>
+<span class="kw">geom_point</span>(<span class="dt">alpha =</span><span class="fl">0.4</span>, <span class="dt">size =</span><span class="fl">3.5</span>) <span class="op">+</span><span class="kw">geom_point</span>(<span class="dt">col =</span> ret.new<span class="op">$</span>class) <span class="op">+</span>
+<span class="kw">scale_color_manual</span>(<span class="dt">values =</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>, <span class="st">&#39;red&#39;</span>, <span class="st">&#39;green&#39;</span>))</code></pre></div>
+<p><img src="04-unsupervized_files/figure-html/dist%20clust-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># good fort high and low.</span></code></pre></div>
+<ul>
+<li><p><strong>Density based clustering DBSCAN</strong> see more on Machine Learning Using R p 349</p></li>
+<li><p><strong>exemple avec Fuzzy C-Means Clustering</strong> This is the fuzzy version of the known k-means clustering algorithm as well as an online variant (Unsupervised Fuzzy Competitive learning). Observe that we are passing the value ucfl to the parameter method, which does an online update of model using Unsupervised Fuzzy Competitive Learning (UCFL). On suppose que les donn?es ce mettent a jours et a chaque nouvelle observation le modle s’update</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(e1071)</code></pre></div>
+<pre><code>## Warning: package &#39;e1071&#39; was built under R version 3.3.3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Data_House_Worth &lt;-<span class="kw">read.csv</span>(<span class="st">&quot;C:/Users/007/Desktop/Data science with R/R/Dataset/Chapter 6/House Worth Data.csv&quot;</span>,<span class="dt">header=</span><span class="ot">TRUE</span>)
+
+<span class="kw">str</span>(Data_House_Worth)</code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    316 obs. of  5 variables:
+##  $ HousePrice   : int  138800 155000 152000 160000 226000 275000 215000 392000 325000 151000 ...
+##  $ StoreArea    : num  29.9 44 46.2 46.2 48.7 56.4 47.1 56.7 84 49.2 ...
+##  $ BasementArea : int  75 504 493 510 445 1148 380 945 1572 506 ...
+##  $ LawnArea     : num  11.22 9.69 10.19 6.82 10.92 ...
+##  $ HouseNetWorth: Factor w/ 3 levels &quot;High&quot;,&quot;Low&quot;,&quot;Medium&quot;: 2 3 3 3 3 1 3 1 1 3 ...</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Data_House_Worth<span class="op">$</span>BasementArea &lt;-<span class="ot">NULL</span>
+
+
+online_cmean &lt;-<span class="kw">cmeans</span>(Data_House_Worth[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>],<span class="dv">3</span>,<span class="dv">20</span>,<span class="dt">verbose=</span><span class="ot">TRUE</span>,
+                      <span class="dt">method=</span><span class="st">&quot;ufcl&quot;</span>,<span class="dt">m=</span><span class="dv">2</span>)</code></pre></div>
+<pre><code>## Iteration:   1, Error: 97.2393128124
+## Iteration:   2, Error: 96.9282208099
+## Iteration:   3, Error: 96.6317544097
+## Iteration:   4, Error: 96.3470365499
+## Iteration:   5, Error: 96.0721680305
+## Iteration:   6, Error: 95.8061471449
+## Iteration:   7, Error: 95.5487734692
+## Iteration:   8, Error: 95.3005344599
+## Iteration:   9, Error: 95.0624783248
+## Iteration:  10, Error: 94.8360798386
+## Iteration:  11, Error: 94.6231069032
+## Iteration:  12, Error: 94.4254949137
+## Iteration:  13, Error: 94.2452340625
+## Iteration:  14, Error: 94.0842724003
+## Iteration:  15, Error: 93.9444354145
+## Iteration:  16, Error: 93.8273614059
+## Iteration:  17, Error: 93.7344511055
+## Iteration:  18, Error: 93.6668296543
+## Iteration:  19, Error: 93.6253191300
+## Iteration:  20, Error: 93.6104200735</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># print(online_cmean)</span>
+
+<span class="kw">ggplot</span>(Data_House_Worth, <span class="kw">aes</span>(StoreArea, LawnArea, <span class="dt">color =</span> HouseNetWorth)) <span class="op">+</span>
+<span class="kw">geom_point</span>(<span class="dt">alpha =</span><span class="fl">0.4</span>, <span class="dt">size =</span><span class="fl">3.5</span>) <span class="op">+</span><span class="kw">geom_point</span>(<span class="dt">col =</span> online_cmean<span class="op">$</span>cluster) <span class="op">+</span>
+<span class="kw">scale_color_manual</span>(<span class="dt">values =</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>, <span class="st">&#39;red&#39;</span>, <span class="st">&#39;green&#39;</span>))</code></pre></div>
+<p><img src="04-unsupervized_files/figure-html/F%20Cmeans-1.png" width="672" /></p>
+</div>
+<div id="evaluation-of-clustering" class="section level2">
+<h2><span class="header-section-number">5.3</span> Evaluation of clustering</h2>
+<ul>
+<li><strong>Internal evaluation</strong>
+<ul>
+<li>Dunn Index : the ratio between the minimal intercluster distances to the maximal intracluster distance. But high score</li>
+<li>Silhouette Coefficient : the average distance to elements in the same cluster with the average distance to elements in other clusters. Objects with a high silhouette value are considered well clustered</li>
+</ul></li>
+<li><strong>external evaluation on test set</strong>
+<ul>
+<li>Rand index : similar to classification rate in multi-class classification problems. measures how many items that are returned by the cluster and expert (labeled) are common and how many differ. <span class="math inline">\(RI = \frac{TP+TN}{TP/FP/FN/TN}\)</span> (true positive, true negative,…)</li>
+<li>Jaccard index : measures the overlap of external labels and labels generated by the cluster algorithms. The Jaccard index value varies between 0 and 1, 0 implying no overlap while 1 means identical datasets. $J=  = </li>
+</ul></li>
+</ul>
+</div>
+<div id="association-rule-mining-algorithms" class="section level2">
+<h2><span class="header-section-number">5.4</span> Association Rule Mining Algorithms</h2>
+<p>Association rule learning is a method for discovering interesting relations between variables in large databases using some measures of interestingness. Pratique courante sur les transactional (supermarket, library,…). Pour mettre produit ensemble pourune promo, planning, customer segmentation, …</p>
+<ul>
+<li>Usefull measures :
+<ul>
+<li>Support : is the proportion of transactions in which an item set appears</li>
+<li>Confidence : indicates the strength of a rule. is the conditional probability $conf(X=&gt;Y) = </li>
+<li>Lift : is a ratio between the observed support to the expected support. If = 1 then independent. $ Lift(X=&gt;Y) = </li>
+</ul></li>
+</ul>
+<p>=&gt; more information in Beginning Data Science With R p 192 or Machine learning with R chap 6.10</p>
+</div>
+<div id="singular-value-decomposition" class="section level2">
+<h2><span class="header-section-number">5.5</span> Singular Value decomposition</h2>
+</div>
+<div id="k-nearest-neighbot" class="section level2">
+<h2><span class="header-section-number">5.6</span> K-Nearest Neighbot</h2>
+</div>
+<div id="others-unsuppervised-algorithms" class="section level2">
+<h2><span class="header-section-number">5.7</span> Others unsuppervised algorithms</h2>
+<ul>
+<li><strong>Learning Vector Quantization</strong></li>
+<li><strong>Self-Organizing MAP (SQM)</strong></li>
+<li><strong>Partitioning around Medoids PAM</strong></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="decision-tree.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-start.pdf", "bookdown-start.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
