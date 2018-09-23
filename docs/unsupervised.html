@@ -25,7 +25,7 @@
 <meta name="author" content="Pierre Bauche">
 
 
-<meta name="date" content="2018-09-22">
+<meta name="date" content="2018-09-23">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -193,6 +193,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.3.1" data-path="neural-network.html"><a href="neural-network.html#example-of-deep-learning-classification"><i class="fa fa-check"></i><b>7.3.1</b> Example of deep learning : Classification</a></li>
 <li class="chapter" data-level="7.3.2" data-path="neural-network.html"><a href="neural-network.html#example-imagine-prediction-nn-classification"><i class="fa fa-check"></i><b>7.3.2</b> Example : Imagine prediction : NN classification</a></li>
 </ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="text-mining.html"><a href="text-mining.html"><i class="fa fa-check"></i><b>8</b> Text Mining</a><ul>
+<li class="chapter" data-level="8.1" data-path="text-mining.html"><a href="text-mining.html#tf---idf"><i class="fa fa-check"></i><b>8.1</b> TF - IDF</a></li>
+<li class="chapter" data-level="8.2" data-path="text-mining.html"><a href="text-mining.html#text-summarization-gong-liu-method-2001-via-latent-semantic-analysis"><i class="fa fa-check"></i><b>8.2</b> Text summarization : Gong &amp; Liu method (2001) via latent semantic analysis</a></li>
+<li class="chapter" data-level="8.3" data-path="text-mining.html"><a href="text-mining.html#text-analysis"><i class="fa fa-check"></i><b>8.3</b> Text analysis</a></li>
+<li class="chapter" data-level="8.4" data-path="text-mining.html"><a href="text-mining.html#other-topic"><i class="fa fa-check"></i><b>8.4</b> Other topic</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="bayes-analysis.html"><a href="bayes-analysis.html"><i class="fa fa-check"></i><b>9</b> Bayes Analysis</a><ul>
+<li class="chapter" data-level="9.1" data-path="bayes-analysis.html"><a href="bayes-analysis.html#introduction-au-bayseien"><i class="fa fa-check"></i><b>9.1</b> Introduction au bayseien</a></li>
+<li class="chapter" data-level="9.2" data-path="bayes-analysis.html"><a href="bayes-analysis.html#naive-bayes"><i class="fa fa-check"></i><b>9.2</b> NAive bayes</a></li>
+<li class="chapter" data-level="9.3" data-path="bayes-analysis.html"><a href="bayes-analysis.html#other-bayes-model"><i class="fa fa-check"></i><b>9.3</b> Other bayes model</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -366,9 +377,9 @@ Cluster_kmean &lt;-<span class="kw">kmeans</span>(Data_House_Worth[,<span class=
 <span class="kw">table</span>(Cluster_kmean<span class="op">$</span>cluster,Data_House_Worth<span class="op">$</span>HouseNetWorth)</code></pre></div>
 <pre><code>##    
 ##     High Low Medium
-##   1    0 122      1
-##   2   46  13     50
-##   3   84   0      0</code></pre>
+##   1   46  13     50
+##   2   84   0      0
+##   3    0 122      1</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Cluster_kmean<span class="op">$</span>cluster &lt;-<span class="kw">factor</span>(Cluster_kmean<span class="op">$</span>cluster)
 
 <span class="kw">ggplot</span>(Data_House_Worth, <span class="kw">aes</span>(StoreArea, LawnArea, <span class="dt">color =</span> HouseNetWorth)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span><span class="fl">0.4</span>, <span class="dt">size =</span><span class="fl">3.5</span>) <span class="op">+</span><span class="kw">geom_point</span>(<span class="dt">col =</span> Cluster_kmean<span class="op">$</span>cluster) <span class="op">+</span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>, <span class="st">&#39;red&#39;</span>, <span class="st">&#39;green&#39;</span>))</code></pre></div>
@@ -385,11 +396,11 @@ Cluster_kmean &lt;-<span class="kw">kmeans</span>(Data_House_Worth[,<span class=
 ret &lt;-<span class="kw">init.EM</span>(Data_House_Worth[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>], <span class="dt">nclass =</span><span class="dv">3</span>)
 ret</code></pre></div>
 <pre><code>## Method: em.EMRnd.EM
-##  n = 316, p = 2, nclass = 3, flag = 0, logL = -1871.0332.
+##  n = 316, p = 2, nclass = 3, flag = 0, logL = -1871.0342.
 ## nc: 
-## [1]  48 100 168
+## [1] 100 168  48
 ## pi: 
-## [1] 0.2000 0.2507 0.5493</code></pre>
+## [1] 0.2509 0.5490 0.2001</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># assign class</span>
 ret.new &lt;-<span class="kw">assign.class</span>(Data_House_Worth[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>], ret, <span class="dt">return.all =</span><span class="ot">FALSE</span>)
 
@@ -420,26 +431,26 @@ ret.new &lt;-<span class="kw">assign.class</span>(Data_House_Worth[,<span class=
 
 online_cmean &lt;-<span class="kw">cmeans</span>(Data_House_Worth[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>],<span class="dv">3</span>,<span class="dv">20</span>,<span class="dt">verbose=</span><span class="ot">TRUE</span>,
                       <span class="dt">method=</span><span class="st">&quot;ufcl&quot;</span>,<span class="dt">m=</span><span class="dv">2</span>)</code></pre></div>
-<pre><code>## Iteration:   1, Error: 97.2393128124
-## Iteration:   2, Error: 96.9282208099
-## Iteration:   3, Error: 96.6317544097
-## Iteration:   4, Error: 96.3470365499
-## Iteration:   5, Error: 96.0721680305
-## Iteration:   6, Error: 95.8061471449
-## Iteration:   7, Error: 95.5487734692
-## Iteration:   8, Error: 95.3005344599
-## Iteration:   9, Error: 95.0624783248
-## Iteration:  10, Error: 94.8360798386
-## Iteration:  11, Error: 94.6231069032
-## Iteration:  12, Error: 94.4254949137
-## Iteration:  13, Error: 94.2452340625
-## Iteration:  14, Error: 94.0842724003
-## Iteration:  15, Error: 93.9444354145
-## Iteration:  16, Error: 93.8273614059
-## Iteration:  17, Error: 93.7344511055
-## Iteration:  18, Error: 93.6668296543
-## Iteration:  19, Error: 93.6253191300
-## Iteration:  20, Error: 93.6104200735</code></pre>
+<pre><code>## Iteration:   1, Error: 97.7437022561
+## Iteration:   2, Error: 96.2966775189
+## Iteration:   3, Error: 95.0172268252
+## Iteration:   4, Error: 93.8733597700
+## Iteration:   5, Error: 92.8413319660
+## Iteration:   6, Error: 91.9039023818
+## Iteration:   7, Error: 91.0488501348
+## Iteration:   8, Error: 90.2677508833
+## Iteration:   9, Error: 89.5549921779
+## Iteration:  10, Error: 88.9069979787
+## Iteration:  11, Error: 88.3216299941
+## Iteration:  12, Error: 87.7977345222
+## Iteration:  13, Error: 87.3348062922
+## Iteration:  14, Error: 86.9327443940
+## Iteration:  15, Error: 86.5916791609
+## Iteration:  16, Error: 86.3118525244
+## Iteration:  17, Error: 86.0935377205
+## Iteration:  18, Error: 85.9369872264
+## Iteration:  19, Error: 85.8424004331
+## Iteration:  20, Error: 85.8099048428</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># print(online_cmean)</span>
 
 <span class="kw">ggplot</span>(Data_House_Worth, <span class="kw">aes</span>(StoreArea, LawnArea, <span class="dt">color =</span> HouseNetWorth)) <span class="op">+</span>

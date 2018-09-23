@@ -252,9 +252,9 @@ table(Cluster_kmean$cluster,Data_House_Worth$HouseNetWorth)
 ```
 ##    
 ##     High Low Medium
-##   1    0 122      1
-##   2   46  13     50
-##   3   84   0      0
+##   1   46  13     50
+##   2   84   0      0
+##   3    0 122      1
 ```
 
 ```r
@@ -296,11 +296,11 @@ ret
 
 ```
 ## Method: em.EMRnd.EM
-##  n = 316, p = 2, nclass = 3, flag = 0, logL = -1871.0332.
+##  n = 316, p = 2, nclass = 3, flag = 0, logL = -1871.0342.
 ## nc: 
-## [1]  48 100 168
+## [1] 100 168  48
 ## pi: 
-## [1] 0.2000 0.2507 0.5493
+## [1] 0.2509 0.5490 0.2001
 ```
 
 ```r
@@ -364,26 +364,26 @@ online_cmean <-cmeans(Data_House_Worth[,2:3],3,20,verbose=TRUE,
 ```
 
 ```
-## Iteration:   1, Error: 97.2393128124
-## Iteration:   2, Error: 96.9282208099
-## Iteration:   3, Error: 96.6317544097
-## Iteration:   4, Error: 96.3470365499
-## Iteration:   5, Error: 96.0721680305
-## Iteration:   6, Error: 95.8061471449
-## Iteration:   7, Error: 95.5487734692
-## Iteration:   8, Error: 95.3005344599
-## Iteration:   9, Error: 95.0624783248
-## Iteration:  10, Error: 94.8360798386
-## Iteration:  11, Error: 94.6231069032
-## Iteration:  12, Error: 94.4254949137
-## Iteration:  13, Error: 94.2452340625
-## Iteration:  14, Error: 94.0842724003
-## Iteration:  15, Error: 93.9444354145
-## Iteration:  16, Error: 93.8273614059
-## Iteration:  17, Error: 93.7344511055
-## Iteration:  18, Error: 93.6668296543
-## Iteration:  19, Error: 93.6253191300
-## Iteration:  20, Error: 93.6104200735
+## Iteration:   1, Error: 97.7437022561
+## Iteration:   2, Error: 96.2966775189
+## Iteration:   3, Error: 95.0172268252
+## Iteration:   4, Error: 93.8733597700
+## Iteration:   5, Error: 92.8413319660
+## Iteration:   6, Error: 91.9039023818
+## Iteration:   7, Error: 91.0488501348
+## Iteration:   8, Error: 90.2677508833
+## Iteration:   9, Error: 89.5549921779
+## Iteration:  10, Error: 88.9069979787
+## Iteration:  11, Error: 88.3216299941
+## Iteration:  12, Error: 87.7977345222
+## Iteration:  13, Error: 87.3348062922
+## Iteration:  14, Error: 86.9327443940
+## Iteration:  15, Error: 86.5916791609
+## Iteration:  16, Error: 86.3118525244
+## Iteration:  17, Error: 86.0935377205
+## Iteration:  18, Error: 85.9369872264
+## Iteration:  19, Error: 85.8424004331
+## Iteration:  20, Error: 85.8099048428
 ```
 
 ```r

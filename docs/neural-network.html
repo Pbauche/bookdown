@@ -25,7 +25,7 @@
 <meta name="author" content="Pierre Bauche">
 
 
-<meta name="date" content="2018-09-22">
+<meta name="date" content="2018-09-23">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="decision-tree.html">
-
+<link rel="next" href="text-mining.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -193,6 +193,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.3.1" data-path="neural-network.html"><a href="neural-network.html#example-of-deep-learning-classification"><i class="fa fa-check"></i><b>7.3.1</b> Example of deep learning : Classification</a></li>
 <li class="chapter" data-level="7.3.2" data-path="neural-network.html"><a href="neural-network.html#example-imagine-prediction-nn-classification"><i class="fa fa-check"></i><b>7.3.2</b> Example : Imagine prediction : NN classification</a></li>
 </ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="text-mining.html"><a href="text-mining.html"><i class="fa fa-check"></i><b>8</b> Text Mining</a><ul>
+<li class="chapter" data-level="8.1" data-path="text-mining.html"><a href="text-mining.html#tf---idf"><i class="fa fa-check"></i><b>8.1</b> TF - IDF</a></li>
+<li class="chapter" data-level="8.2" data-path="text-mining.html"><a href="text-mining.html#text-summarization-gong-liu-method-2001-via-latent-semantic-analysis"><i class="fa fa-check"></i><b>8.2</b> Text summarization : Gong &amp; Liu method (2001) via latent semantic analysis</a></li>
+<li class="chapter" data-level="8.3" data-path="text-mining.html"><a href="text-mining.html#text-analysis"><i class="fa fa-check"></i><b>8.3</b> Text analysis</a></li>
+<li class="chapter" data-level="8.4" data-path="text-mining.html"><a href="text-mining.html#other-topic"><i class="fa fa-check"></i><b>8.4</b> Other topic</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="bayes-analysis.html"><a href="bayes-analysis.html"><i class="fa fa-check"></i><b>9</b> Bayes Analysis</a><ul>
+<li class="chapter" data-level="9.1" data-path="bayes-analysis.html"><a href="bayes-analysis.html#introduction-au-bayseien"><i class="fa fa-check"></i><b>9.1</b> Introduction au bayseien</a></li>
+<li class="chapter" data-level="9.2" data-path="bayes-analysis.html"><a href="bayes-analysis.html#naive-bayes"><i class="fa fa-check"></i><b>9.2</b> NAive bayes</a></li>
+<li class="chapter" data-level="9.3" data-path="bayes-analysis.html"><a href="bayes-analysis.html#other-bayes-model"><i class="fa fa-check"></i><b>9.3</b> Other bayes model</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -387,9 +398,8 @@ predict_class &lt;-<span class="kw">predict</span>(nn, <span class="dt">newdata=
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># misc rate : 65.1% qui est 1% de plus que logistic reg</span>
 <span class="co"># neural net ameliore prediction sur 0 mais détérior sur 1</span>
 
-<span class="kw">library</span>(NeuralNetTools)</code></pre></div>
-<pre><code>## Warning: package &#39;NeuralNetTools&#39; was built under R version 3.3.3</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotnet</span>(nn)</code></pre></div>
+<span class="kw">library</span>(NeuralNetTools)
+<span class="kw">plotnet</span>(nn)</code></pre></div>
 <p><img src="06-NeuralNet_files/figure-html/nn%20basis-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Plot the importance</span>
 <span class="kw">olden</span>(nn)</code></pre></div>
@@ -495,64 +505,13 @@ form</code></pre></div>
 <span class="co">#Please refer https://github.com/dahtah/imager</span>
 ##install.packages(&quot;devtools&quot;)
 <span class="co">#devtools::install_github(&quot;dahtah/imager&quot;)</span>
-<span class="kw">library</span>(mxnet)</code></pre></div>
-<pre><code>## Warning: package &#39;mxnet&#39; was built under R version 3.3.3</code></pre>
-<pre><code>## Loading required package: methods</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install imager for loading images</span>
-<span class="kw">library</span>(imager)</code></pre></div>
-<pre><code>## Warning: package &#39;imager&#39; was built under R version 3.3.3</code></pre>
-<pre><code>## Loading required package: plyr</code></pre>
-<pre><code>## Warning: package &#39;plyr&#39; was built under R version 3.3.3</code></pre>
-<pre><code>## -------------------------------------------------------------------------</code></pre>
-<pre><code>## You have loaded plyr after dplyr - this is likely to cause problems.
-## If you need functions from both plyr and dplyr, please load plyr first, then dplyr:
-## library(plyr); library(dplyr)</code></pre>
-<pre><code>## -------------------------------------------------------------------------</code></pre>
-<pre><code>## 
-## Attaching package: &#39;plyr&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
-## 
-##     arrange, count, desc, failwith, id, mutate, rename, summarise,
-##     summarize</code></pre>
-<pre><code>## The following object is masked from &#39;package:purrr&#39;:
-## 
-##     compact</code></pre>
-<pre><code>## Loading required package: magrittr</code></pre>
-<pre><code>## Warning: package &#39;magrittr&#39; was built under R version 3.3.3</code></pre>
-<pre><code>## 
-## Attaching package: &#39;magrittr&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:purrr&#39;:
-## 
-##     set_names</code></pre>
-<pre><code>## The following object is masked from &#39;package:tidyr&#39;:
-## 
-##     extract</code></pre>
-<pre><code>## 
-## Attaching package: &#39;imager&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:magrittr&#39;:
-## 
-##     add</code></pre>
-<pre><code>## The following object is masked from &#39;package:plyr&#39;:
-## 
-##     liply</code></pre>
-<pre><code>## The following object is masked from &#39;package:stringr&#39;:
-## 
-##     boundary</code></pre>
-<pre><code>## The following object is masked from &#39;package:tidyr&#39;:
-## 
-##     fill</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     convolve, spectrum</code></pre>
-<pre><code>## The following object is masked from &#39;package:graphics&#39;:
-## 
-##     frame</code></pre>
-<pre><code>## The following object is masked from &#39;package:base&#39;:
-## 
-##     save.image</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(drat)</code></pre></div>
-<pre><code>## Warning: package &#39;drat&#39; was built under R version 3.3.3</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#load the pre-trained model</span>
+<span class="kw">library</span>(mxnet)
+<span class="co">#install imager for loading images</span>
+<span class="kw">library</span>(imager)
+<span class="kw">library</span>(drat)
+
+
+<span class="co">#load the pre-trained model</span>
 <span class="kw">download.file</span>(<span class="st">&#39;http://data.dmlc.ml/data/Inception.zip&#39;</span>, <span class="dt">destfile =</span> <span class="st">&#39;Inception.zip&#39;</span>)
 <span class="kw">unzip</span>(<span class="st">&quot;Inception.zip&quot;</span>)
 
@@ -617,8 +576,8 @@ max.idx</code></pre></div>
           </div>
         </div>
       </div>
-<a href="decision-tree.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="decision-tree.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="text-mining.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

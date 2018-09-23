@@ -206,7 +206,7 @@ durbinWatsonTest(reglin)
 
 ```
 ##  lag Autocorrelation D-W Statistic p-value
-##    1       0.1604322      1.676225    0.19
+##    1       0.1604322      1.676225   0.214
 ##  Alternative hypothesis: rho != 0
 ```
 
@@ -512,7 +512,7 @@ table(Data_Purchase_Model$ProductChoice)
 ```
 ## 
 ##    1    2    3    4 
-## 2186 3903 2936  975
+## 2158 3906 2928 1008
 ```
 
 ```r
@@ -604,10 +604,10 @@ table(result$`Actual Class`,result$`Predicted Class`)
 ```
 ##    
 ##          1      2      3      4
-##   1  22444  62943  19204     28
-##   2  29614 110375  48633     83
-##   3  14668  76304  51467     65
-##   4   4871  27609  16940     50
+##   1  22836  62443  19312     28
+##   2  30151 109668  48802     84
+##   3  14937  75994  51506     67
+##   4   4990  27486  16942     52
 ```
 
 

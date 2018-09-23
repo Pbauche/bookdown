@@ -1,0 +1,75 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+# Bayes Analysis
+
+```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+library(tidyverse)
+```
+
+## Introduction au bayseien
+  - **Bayes Theorem**
+$$P(A|B) = \frac{P(B|A)P(A)}{P(B)}$$
+Ou P(A) est le prior, P(A|B) le posterior, P(B) est le marginal likelihood, et P(B|A) est le likelihood.
+
+    - Prior :  the certainty of an event occurring before some evidence is considered
+    - Posterior : The probability of the event A happening conditioned on another event 
+
+
+## NAive bayes
+Utilisé pour la classification des documents, filtre spam. Naive Bayes essentially assumes that each explanatory variable is independent of the others and uses the distribution of these for each category of data to construct the distribution of the response variable given the  explanatory variables. utilisation pure et simple du theoreme de baye
+
+> Avantage du baysien: real time implementation. just update information.
+
+```{r NB, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+
+library(data.table)
+library(splitstackshape)
+library(e1071)
+str(Data_Purchase)
+set.seed(917)
+
+# Data preparation
+table(Data_Purchase$ProductChoice)
+Data_Purchase <-Data_Purchase[,c("CUSTOMER_ID","ProductChoice","MembershipPoints", "IncomeClass","CustomerPropensity","LastPurchaseDuration")]
+
+#Delete NA from subset
+Data_Purchase <-na.omit(Data_Purchase)
+Data_Purchase$CUSTOMER_ID <-as.character(Data_Purchase$CUSTOMER_ID)
+
+#Stratified Sampling
+Data_Purchase_Model<-stratified(Data_Purchase, group=c("ProductChoice"), size=10000,replace=FALSE)
+
+table(Data_Purchase_Model$ProductChoice)
+
+Data_Purchase_Model$ProductChoice <-as.factor(Data_Purchase_Model$ProductChoice)
+Data_Purchase_Model$IncomeClass <-as.factor(Data_Purchase_Model$IncomeClass)
+Data_Purchase_Model$CustomerPropensity <-as.factor(Data_Purchase_Model$CustomerPropensity)
+
+train <-Data_Purchase_Model[sample(nrow(Data_Purchase_Model), size=nrow(Data_Purchase_Model)*(0.7), replace =TRUE, prob =NULL),]
+train <-as.data.frame(train)
+
+test <-as.data.frame(Data_Purchase_Model[!(Data_Purchase_Model$CUSTOMER_ID %in%train$CUSTOMER_ID),])
+
+# model NB
+model_naiveBayes <-naiveBayes(train[,c(3,4,5)], train[,2])
+
+#evaluation
+model_naiveBayes_pred <-predict(model_naiveBayes, train)
+vtrain = CrossTable(model_naiveBayes_pred, train[,2],prop.chisq =FALSE,dnn =c('predicted', 'actual'))
+
+model_naiveBayes_pred <-predict(model_naiveBayes, test)
+vtest = CrossTable(model_naiveBayes_pred, test[,2],prop.chisq =FALSE,dnn =c('predicted', 'actual'))
+
+sum(diag(vtrain$prop.tbl))
+sum(diag(vtest$prop.tbl))
+
+```
+
+## Other bayes model
+  - **Gausian Naive Bayes**
+  - **Multinomial Naive Bayes**
+  - **Bayesian Belief Network**
+  - **Bayesien Network**

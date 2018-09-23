@@ -25,7 +25,7 @@
 <meta name="author" content="Pierre Bauche">
 
 
-<meta name="date" content="2018-09-22">
+<meta name="date" content="2018-09-23">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -193,6 +193,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.3.1" data-path="neural-network.html"><a href="neural-network.html#example-of-deep-learning-classification"><i class="fa fa-check"></i><b>7.3.1</b> Example of deep learning : Classification</a></li>
 <li class="chapter" data-level="7.3.2" data-path="neural-network.html"><a href="neural-network.html#example-imagine-prediction-nn-classification"><i class="fa fa-check"></i><b>7.3.2</b> Example : Imagine prediction : NN classification</a></li>
 </ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="text-mining.html"><a href="text-mining.html"><i class="fa fa-check"></i><b>8</b> Text Mining</a><ul>
+<li class="chapter" data-level="8.1" data-path="text-mining.html"><a href="text-mining.html#tf---idf"><i class="fa fa-check"></i><b>8.1</b> TF - IDF</a></li>
+<li class="chapter" data-level="8.2" data-path="text-mining.html"><a href="text-mining.html#text-summarization-gong-liu-method-2001-via-latent-semantic-analysis"><i class="fa fa-check"></i><b>8.2</b> Text summarization : Gong &amp; Liu method (2001) via latent semantic analysis</a></li>
+<li class="chapter" data-level="8.3" data-path="text-mining.html"><a href="text-mining.html#text-analysis"><i class="fa fa-check"></i><b>8.3</b> Text analysis</a></li>
+<li class="chapter" data-level="8.4" data-path="text-mining.html"><a href="text-mining.html#other-topic"><i class="fa fa-check"></i><b>8.4</b> Other topic</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="bayes-analysis.html"><a href="bayes-analysis.html"><i class="fa fa-check"></i><b>9</b> Bayes Analysis</a><ul>
+<li class="chapter" data-level="9.1" data-path="bayes-analysis.html"><a href="bayes-analysis.html#introduction-au-bayseien"><i class="fa fa-check"></i><b>9.1</b> Introduction au bayseien</a></li>
+<li class="chapter" data-level="9.2" data-path="bayes-analysis.html"><a href="bayes-analysis.html#naive-bayes"><i class="fa fa-check"></i><b>9.2</b> NAive bayes</a></li>
+<li class="chapter" data-level="9.3" data-path="bayes-analysis.html"><a href="bayes-analysis.html#other-bayes-model"><i class="fa fa-check"></i><b>9.3</b> Other bayes model</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -391,7 +402,7 @@ yfit&lt;-<span class="kw">dnorm</span>(xfit)
 <span class="co"># residual autocorrelation : H0 = pas d&#39;autocorrélation </span>
 <span class="kw">durbinWatsonTest</span>(reglin)</code></pre></div>
 <pre><code>##  lag Autocorrelation D-W Statistic p-value
-##    1       0.1604322      1.676225    0.19
+##    1       0.1604322      1.676225   0.214
 ##  Alternative hypothesis: rho != 0</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">acf</span>(reglin<span class="op">$</span>residuals))</code></pre></div>
 <p><img src="03-regression_files/figure-html/reg%20lin-3.png" width="672" /></p>
@@ -594,7 +605,7 @@ Data_Purchase_Model&lt;-Data_Purchase[<span class="kw">sample</span>(<span class
 <span class="kw">table</span>(Data_Purchase_Model<span class="op">$</span>ProductChoice)</code></pre></div>
 <pre><code>## 
 ##    1    2    3    4 
-## 2186 3903 2936  975</code></pre>
+## 2158 3906 2928 1008</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># multinomial model </span>
 <span class="kw">library</span>(nnet)
 mnl_model &lt;-<span class="kw">multinom</span> (ProductChoice <span class="op">~</span>MembershipPoints <span class="op">+</span>IncomeClass <span class="op">+</span><span class="st"> </span>CustomerPropensity <span class="op">+</span>LastPurchaseDuration <span class="op">+</span>CustomerAge <span class="op">+</span>MartialStatus, <span class="dt">data =</span> Data_Purchase)</code></pre></div>
@@ -662,10 +673,10 @@ result &lt;-<span class="kw">as.data.frame</span>(<span class="kw">cbind</span>(
 <span class="kw">table</span>(result<span class="op">$</span><span class="st">`</span><span class="dt">Actual Class</span><span class="st">`</span>,result<span class="op">$</span><span class="st">`</span><span class="dt">Predicted Class</span><span class="st">`</span>)</code></pre></div>
 <pre><code>##    
 ##          1      2      3      4
-##   1  22444  62943  19204     28
-##   2  29614 110375  48633     83
-##   3  14668  76304  51467     65
-##   4   4871  27609  16940     50</code></pre>
+##   1  22836  62443  19312     28
+##   2  30151 109668  48802     84
+##   3  14937  75994  51506     67
+##   4   4990  27486  16942     52</code></pre>
 </div>
 </div>
 <div id="generalized-linear-models" class="section level2">

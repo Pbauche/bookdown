@@ -174,13 +174,6 @@ sum(diag(table(test$dep,predict_class))/nrow(test))
 # neural net ameliore prediction sur 0 mais détérior sur 1
 
 library(NeuralNetTools)
-```
-
-```
-## Warning: package 'NeuralNetTools' was built under R version 3.3.3
-```
-
-```r
 plotnet(nn)
 ```
 
@@ -306,146 +299,11 @@ library(NeuralNetTools)
 ##install.packages("devtools")
 #devtools::install_github("dahtah/imager")
 library(mxnet)
-```
-
-```
-## Warning: package 'mxnet' was built under R version 3.3.3
-```
-
-```
-## Loading required package: methods
-```
-
-```r
 #install imager for loading images
 library(imager)
-```
-
-```
-## Warning: package 'imager' was built under R version 3.3.3
-```
-
-```
-## Loading required package: plyr
-```
-
-```
-## Warning: package 'plyr' was built under R version 3.3.3
-```
-
-```
-## -------------------------------------------------------------------------
-```
-
-```
-## You have loaded plyr after dplyr - this is likely to cause problems.
-## If you need functions from both plyr and dplyr, please load plyr first, then dplyr:
-## library(plyr); library(dplyr)
-```
-
-```
-## -------------------------------------------------------------------------
-```
-
-```
-## 
-## Attaching package: 'plyr'
-```
-
-```
-## The following objects are masked from 'package:dplyr':
-## 
-##     arrange, count, desc, failwith, id, mutate, rename, summarise,
-##     summarize
-```
-
-```
-## The following object is masked from 'package:purrr':
-## 
-##     compact
-```
-
-```
-## Loading required package: magrittr
-```
-
-```
-## Warning: package 'magrittr' was built under R version 3.3.3
-```
-
-```
-## 
-## Attaching package: 'magrittr'
-```
-
-```
-## The following object is masked from 'package:purrr':
-## 
-##     set_names
-```
-
-```
-## The following object is masked from 'package:tidyr':
-## 
-##     extract
-```
-
-```
-## 
-## Attaching package: 'imager'
-```
-
-```
-## The following object is masked from 'package:magrittr':
-## 
-##     add
-```
-
-```
-## The following object is masked from 'package:plyr':
-## 
-##     liply
-```
-
-```
-## The following object is masked from 'package:stringr':
-## 
-##     boundary
-```
-
-```
-## The following object is masked from 'package:tidyr':
-## 
-##     fill
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     convolve, spectrum
-```
-
-```
-## The following object is masked from 'package:graphics':
-## 
-##     frame
-```
-
-```
-## The following object is masked from 'package:base':
-## 
-##     save.image
-```
-
-```r
 library(drat)
-```
 
-```
-## Warning: package 'drat' was built under R version 3.3.3
-```
 
-```r
 #load the pre-trained model
 download.file('http://data.dmlc.ml/data/Inception.zip', destfile = 'Inception.zip')
 unzip("Inception.zip")
