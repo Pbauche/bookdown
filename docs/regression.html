@@ -205,6 +205,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.2" data-path="bayes-analysis.html"><a href="bayes-analysis.html#naive-bayes"><i class="fa fa-check"></i><b>9.2</b> NAive bayes</a></li>
 <li class="chapter" data-level="9.3" data-path="bayes-analysis.html"><a href="bayes-analysis.html#other-bayes-model"><i class="fa fa-check"></i><b>9.3</b> Other bayes model</a></li>
 </ul></li>
+<li class="chapter" data-level="10" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>10</b> Time Series</a></li>
+<li class="chapter" data-level="11" data-path="others-ml-models.html"><a href="others-ml-models.html"><i class="fa fa-check"></i><b>11</b> Others ML models</a><ul>
+<li class="chapter" data-level="11.1" data-path="others-ml-models.html"><a href="others-ml-models.html#support-vector-machines"><i class="fa fa-check"></i><b>11.1</b> Support Vector Machines</a></li>
+<li class="chapter" data-level="11.2" data-path="others-ml-models.html"><a href="others-ml-models.html#hadoop-introduction"><i class="fa fa-check"></i><b>11.2</b> Hadoop introduction</a></li>
+<li class="chapter" data-level="11.3" data-path="others-ml-models.html"><a href="others-ml-models.html#machine-learning-in-r-with-spark"><i class="fa fa-check"></i><b>11.3</b> Machine Learning in R with Spark</a></li>
+<li class="chapter" data-level="11.4" data-path="others-ml-models.html"><a href="others-ml-models.html#machine-learning-in-r-with-h20"><i class="fa fa-check"></i><b>11.4</b> Machine learning in R with H20</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -402,7 +409,7 @@ yfit&lt;-<span class="kw">dnorm</span>(xfit)
 <span class="co"># residual autocorrelation : H0 = pas d&#39;autocorrélation </span>
 <span class="kw">durbinWatsonTest</span>(reglin)</code></pre></div>
 <pre><code>##  lag Autocorrelation D-W Statistic p-value
-##    1       0.1604322      1.676225   0.214
+##    1       0.1604322      1.676225   0.206
 ##  Alternative hypothesis: rho != 0</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">acf</span>(reglin<span class="op">$</span>residuals))</code></pre></div>
 <p><img src="03-regression_files/figure-html/reg%20lin-3.png" width="672" /></p>
@@ -605,7 +612,7 @@ Data_Purchase_Model&lt;-Data_Purchase[<span class="kw">sample</span>(<span class
 <span class="kw">table</span>(Data_Purchase_Model<span class="op">$</span>ProductChoice)</code></pre></div>
 <pre><code>## 
 ##    1    2    3    4 
-## 2158 3906 2928 1008</code></pre>
+## 2130 3882 2955 1033</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># multinomial model </span>
 <span class="kw">library</span>(nnet)
 mnl_model &lt;-<span class="kw">multinom</span> (ProductChoice <span class="op">~</span>MembershipPoints <span class="op">+</span>IncomeClass <span class="op">+</span><span class="st"> </span>CustomerPropensity <span class="op">+</span>LastPurchaseDuration <span class="op">+</span>CustomerAge <span class="op">+</span>MartialStatus, <span class="dt">data =</span> Data_Purchase)</code></pre></div>
@@ -673,10 +680,10 @@ result &lt;-<span class="kw">as.data.frame</span>(<span class="kw">cbind</span>(
 <span class="kw">table</span>(result<span class="op">$</span><span class="st">`</span><span class="dt">Actual Class</span><span class="st">`</span>,result<span class="op">$</span><span class="st">`</span><span class="dt">Predicted Class</span><span class="st">`</span>)</code></pre></div>
 <pre><code>##    
 ##          1      2      3      4
-##   1  22836  62443  19312     28
-##   2  30151 109668  48802     84
-##   3  14937  75994  51506     67
-##   4   4990  27486  16942     52</code></pre>
+##   1  23698  61352  19540     29
+##   2  31316 108133  49170     86
+##   3  15512  75385  51535     72
+##   4   5218  27250  16949     53</code></pre>
 </div>
 </div>
 <div id="generalized-linear-models" class="section level2">

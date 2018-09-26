@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="text-mining.html">
-<link rel="next" href="time-series.html">
+<link rel="prev" href="bayes-analysis.html">
+<link rel="next" href="others-ml-models.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -232,189 +232,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="bayes-analysis" class="section level1">
-<h1><span class="header-section-number">Chapter 9</span> Bayes Analysis</h1>
-<div id="introduction-au-bayseien" class="section level2">
-<h2><span class="header-section-number">9.1</span> Introduction au bayseien</h2>
-<ul>
-<li><p><strong>Bayes Theorem</strong> <span class="math display">\[P(A|B) = \frac{P(B|A)P(A)}{P(B)}\]</span> Ou P(A) est le prior, P(A|B) le posterior, P(B) est le marginal likelihood, et P(B|A) est le likelihood.</p>
-<ul>
-<li>Prior : the certainty of an event occurring before some evidence is considered</li>
-<li>Posterior : The probability of the event A happening conditioned on another event</li>
-</ul></li>
-</ul>
-</div>
-<div id="naive-bayes" class="section level2">
-<h2><span class="header-section-number">9.2</span> NAive bayes</h2>
-<p>Utilisé pour la classification des documents, filtre spam. Naive Bayes essentially assumes that each explanatory variable is independent of the others and uses the distribution of these for each category of data to construct the distribution of the response variable given the explanatory variables. utilisation pure et simple du theoreme de baye</p>
-<blockquote>
-<p>Avantage du baysien: real time implementation. just update information.</p>
-</blockquote>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table)
-<span class="kw">library</span>(gmodels)
-<span class="kw">library</span>(splitstackshape)
-<span class="kw">library</span>(e1071)
-Data_Purchase &lt;-<span class="kw">fread</span>(<span class="st">&quot;C:/Users/007/Desktop/Data science with R/R/Dataset/Chapter 6/PurchasePredictionDataset.csv&quot;</span>,<span class="dt">header=</span>T,<span class="dt">verbose =</span><span class="ot">FALSE</span>, <span class="dt">showProgress =</span><span class="ot">FALSE</span>)
+<div id="time-series" class="section level1">
+<h1><span class="header-section-number">Chapter 10</span> Time Series</h1>
 
-<span class="kw">str</span>(Data_Purchase)</code></pre></div>
-<pre><code>## Classes &#39;data.table&#39; and &#39;data.frame&#39;:   500000 obs. of  12 variables:
-##  $ CUSTOMER_ID         : chr  &quot;000001&quot; &quot;000002&quot; &quot;000003&quot; &quot;000004&quot; ...
-##  $ ProductChoice       : int  2 3 2 3 2 3 2 2 2 3 ...
-##  $ MembershipPoints    : int  6 2 4 2 6 6 5 9 5 3 ...
-##  $ ModeOfPayment       : chr  &quot;MoneyWallet&quot; &quot;CreditCard&quot; &quot;MoneyWallet&quot; &quot;MoneyWallet&quot; ...
-##  $ ResidentCity        : chr  &quot;Madurai&quot; &quot;Kolkata&quot; &quot;Vijayawada&quot; &quot;Meerut&quot; ...
-##  $ PurchaseTenure      : int  4 4 10 6 3 3 13 1 9 8 ...
-##  $ Channel             : chr  &quot;Online&quot; &quot;Online&quot; &quot;Online&quot; &quot;Online&quot; ...
-##  $ IncomeClass         : chr  &quot;4&quot; &quot;7&quot; &quot;5&quot; &quot;4&quot; ...
-##  $ CustomerPropensity  : chr  &quot;Medium&quot; &quot;VeryHigh&quot; &quot;Unknown&quot; &quot;Low&quot; ...
-##  $ CustomerAge         : int  55 75 34 26 38 71 72 27 33 29 ...
-##  $ MartialStatus       : int  0 0 0 0 1 0 0 0 0 1 ...
-##  $ LastPurchaseDuration: int  4 15 15 6 6 10 5 4 15 6 ...
-##  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">917</span>)
-
-<span class="co"># Data preparation</span>
-<span class="kw">table</span>(Data_Purchase<span class="op">$</span>ProductChoice)</code></pre></div>
-<pre><code>## 
-##      1      2      3      4 
-## 106603 199286 143893  50218</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Data_Purchase &lt;-Data_Purchase[,<span class="kw">c</span>(<span class="st">&quot;CUSTOMER_ID&quot;</span>,<span class="st">&quot;ProductChoice&quot;</span>,<span class="st">&quot;MembershipPoints&quot;</span>, <span class="st">&quot;IncomeClass&quot;</span>,<span class="st">&quot;CustomerPropensity&quot;</span>,<span class="st">&quot;LastPurchaseDuration&quot;</span>)]
-
-<span class="co">#Delete NA from subset</span>
-Data_Purchase &lt;-<span class="kw">na.omit</span>(Data_Purchase)
-Data_Purchase<span class="op">$</span>CUSTOMER_ID &lt;-<span class="kw">as.character</span>(Data_Purchase<span class="op">$</span>CUSTOMER_ID)
-
-<span class="co">#Stratified Sampling</span>
-Data_Purchase_Model&lt;-<span class="kw">stratified</span>(Data_Purchase, <span class="dt">group=</span><span class="kw">c</span>(<span class="st">&quot;ProductChoice&quot;</span>), <span class="dt">size=</span><span class="dv">10000</span>,<span class="dt">replace=</span><span class="ot">FALSE</span>)
-
-<span class="kw">table</span>(Data_Purchase_Model<span class="op">$</span>ProductChoice)</code></pre></div>
-<pre><code>## 
-##     1     2     3     4 
-## 10000 10000 10000 10000</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Data_Purchase_Model<span class="op">$</span>ProductChoice &lt;-<span class="kw">as.factor</span>(Data_Purchase_Model<span class="op">$</span>ProductChoice)
-Data_Purchase_Model<span class="op">$</span>IncomeClass &lt;-<span class="kw">as.factor</span>(Data_Purchase_Model<span class="op">$</span>IncomeClass)
-Data_Purchase_Model<span class="op">$</span>CustomerPropensity &lt;-<span class="kw">as.factor</span>(Data_Purchase_Model<span class="op">$</span>CustomerPropensity)
-
-train &lt;-Data_Purchase_Model[<span class="kw">sample</span>(<span class="kw">nrow</span>(Data_Purchase_Model), <span class="dt">size=</span><span class="kw">nrow</span>(Data_Purchase_Model)<span class="op">*</span>(<span class="fl">0.7</span>), <span class="dt">replace =</span><span class="ot">TRUE</span>, <span class="dt">prob =</span><span class="ot">NULL</span>),]
-train &lt;-<span class="kw">as.data.frame</span>(train)
-
-test &lt;-<span class="kw">as.data.frame</span>(Data_Purchase_Model[<span class="op">!</span>(Data_Purchase_Model<span class="op">$</span>CUSTOMER_ID <span class="op">%in%</span>train<span class="op">$</span>CUSTOMER_ID),])
-
-<span class="co"># model NB</span>
-model_naiveBayes &lt;-<span class="kw">naiveBayes</span>(train[,<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)], train[,<span class="dv">2</span>])
-
-<span class="co">#evaluation</span>
-model_naiveBayes_pred &lt;-<span class="kw">predict</span>(model_naiveBayes, train)
-vtrain =<span class="st"> </span><span class="kw">CrossTable</span>(model_naiveBayes_pred, train[,<span class="dv">2</span>],<span class="dt">prop.chisq =</span><span class="ot">FALSE</span>,<span class="dt">dnn =</span><span class="kw">c</span>(<span class="st">&#39;predicted&#39;</span>, <span class="st">&#39;actual&#39;</span>))</code></pre></div>
-<pre><code>## 
-##  
-##    Cell Contents
-## |-------------------------|
-## |                       N |
-## |           N / Row Total |
-## |           N / Col Total |
-## |         N / Table Total |
-## |-------------------------|
-## 
-##  
-## Total Observations in Table:  28000 
-## 
-##  
-##              | actual 
-##    predicted |         1 |         2 |         3 |         4 | Row Total | 
-## -------------|-----------|-----------|-----------|-----------|-----------|
-##            1 |      4231 |      3384 |      2491 |      2420 |     12526 | 
-##              |     0.338 |     0.270 |     0.199 |     0.193 |     0.447 | 
-##              |     0.602 |     0.486 |     0.357 |     0.345 |           | 
-##              |     0.151 |     0.121 |     0.089 |     0.086 |           | 
-## -------------|-----------|-----------|-----------|-----------|-----------|
-##            2 |       363 |       417 |       265 |       258 |      1303 | 
-##              |     0.279 |     0.320 |     0.203 |     0.198 |     0.047 | 
-##              |     0.052 |     0.060 |     0.038 |     0.037 |           | 
-##              |     0.013 |     0.015 |     0.009 |     0.009 |           | 
-## -------------|-----------|-----------|-----------|-----------|-----------|
-##            3 |      1312 |      1601 |      2402 |      1851 |      7166 | 
-##              |     0.183 |     0.223 |     0.335 |     0.258 |     0.256 | 
-##              |     0.187 |     0.230 |     0.344 |     0.264 |           | 
-##              |     0.047 |     0.057 |     0.086 |     0.066 |           | 
-## -------------|-----------|-----------|-----------|-----------|-----------|
-##            4 |      1122 |      1568 |      1824 |      2491 |      7005 | 
-##              |     0.160 |     0.224 |     0.260 |     0.356 |     0.250 | 
-##              |     0.160 |     0.225 |     0.261 |     0.355 |           | 
-##              |     0.040 |     0.056 |     0.065 |     0.089 |           | 
-## -------------|-----------|-----------|-----------|-----------|-----------|
-## Column Total |      7028 |      6970 |      6982 |      7020 |     28000 | 
-##              |     0.251 |     0.249 |     0.249 |     0.251 |           | 
-## -------------|-----------|-----------|-----------|-----------|-----------|
-## 
-## </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model_naiveBayes_pred &lt;-<span class="kw">predict</span>(model_naiveBayes, test)
-vtest =<span class="st"> </span><span class="kw">CrossTable</span>(model_naiveBayes_pred, test[,<span class="dv">2</span>],<span class="dt">prop.chisq =</span><span class="ot">FALSE</span>,<span class="dt">dnn =</span><span class="kw">c</span>(<span class="st">&#39;predicted&#39;</span>, <span class="st">&#39;actual&#39;</span>))</code></pre></div>
-<pre><code>## 
-##  
-##    Cell Contents
-## |-------------------------|
-## |                       N |
-## |           N / Row Total |
-## |           N / Col Total |
-## |         N / Table Total |
-## |-------------------------|
-## 
-##  
-## Total Observations in Table:  19795 
-## 
-##  
-##              | actual 
-##    predicted |         1 |         2 |         3 |         4 | Row Total | 
-## -------------|-----------|-----------|-----------|-----------|-----------|
-##            1 |      3036 |      2500 |      1767 |      1689 |      8992 | 
-##              |     0.338 |     0.278 |     0.197 |     0.188 |     0.454 | 
-##              |     0.614 |     0.502 |     0.358 |     0.343 |           | 
-##              |     0.153 |     0.126 |     0.089 |     0.085 |           | 
-## -------------|-----------|-----------|-----------|-----------|-----------|
-##            2 |       257 |       294 |       215 |       159 |       925 | 
-##              |     0.278 |     0.318 |     0.232 |     0.172 |     0.047 | 
-##              |     0.052 |     0.059 |     0.044 |     0.032 |           | 
-##              |     0.013 |     0.015 |     0.011 |     0.008 |           | 
-## -------------|-----------|-----------|-----------|-----------|-----------|
-##            3 |       888 |      1062 |      1664 |      1332 |      4946 | 
-##              |     0.180 |     0.215 |     0.336 |     0.269 |     0.250 | 
-##              |     0.180 |     0.213 |     0.337 |     0.270 |           | 
-##              |     0.045 |     0.054 |     0.084 |     0.067 |           | 
-## -------------|-----------|-----------|-----------|-----------|-----------|
-##            4 |       763 |      1127 |      1292 |      1750 |      4932 | 
-##              |     0.155 |     0.229 |     0.262 |     0.355 |     0.249 | 
-##              |     0.154 |     0.226 |     0.262 |     0.355 |           | 
-##              |     0.039 |     0.057 |     0.065 |     0.088 |           | 
-## -------------|-----------|-----------|-----------|-----------|-----------|
-## Column Total |      4944 |      4983 |      4938 |      4930 |     19795 | 
-##              |     0.250 |     0.252 |     0.249 |     0.249 |           | 
-## -------------|-----------|-----------|-----------|-----------|-----------|
-## 
-## </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(<span class="kw">diag</span>(vtrain<span class="op">$</span>prop.tbl))</code></pre></div>
-<pre><code>## [1] 0.34075</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(<span class="kw">diag</span>(vtest<span class="op">$</span>prop.tbl))</code></pre></div>
-<pre><code>## [1] 0.3406921</code></pre>
-</div>
-<div id="other-bayes-model" class="section level2">
-<h2><span class="header-section-number">9.3</span> Other bayes model</h2>
-<ul>
-<li><strong>Gausian Naive Bayes</strong></li>
-<li><strong>Multinomial Naive Bayes</strong></li>
-<li><strong>Bayesian Belief Network</strong></li>
-<li><strong>Bayesien Network</strong></li>
-</ul>
-
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="text-mining.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="time-series.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="bayes-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="others-ml-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -225,7 +225,7 @@ summary(model_c50)
 ##  train[, "ProductChoice"], control = C5.0Control(CF = 0.001, minCases = 2))
 ## 
 ## 
-## C5.0 [Release 2.07 GPL Edition]  	Sun Sep 23 15:47:06 2018
+## C5.0 [Release 2.07 GPL Edition]  	Sun Sep 23 22:01:17 2018
 ## -------------------------------
 ## 
 ## Class specified by attribute `outcome'
@@ -234,13 +234,20 @@ summary(model_c50)
 ## 
 ## Decision tree:
 ## 
-## MembershipPoints <= 1: 4 (4728/2680)
-## MembershipPoints > 1:
-## :...CustomerPropensity = Unknown: 1 (8148/5056)
-##     CustomerPropensity in {High,VeryHigh}: 3 (7132/4545)
-##     CustomerPropensity in {Low,Medium}:
-##     :...LastPurchaseDuration <= 4: 1 (3879/2628)
-##         LastPurchaseDuration > 4: 3 (4113/2890)
+## CustomerPropensity in {High,VeryHigh}:
+## :...LastPurchaseDuration <= 5:
+## :   :...MembershipPoints <= 1: 4 (592/337)
+## :   :   MembershipPoints > 1: 3 (2953/1948)
+## :   LastPurchaseDuration > 5:
+## :   :...LastPurchaseDuration <= 14: 3 (3232/2011)
+## :       LastPurchaseDuration > 14: 4 (1931/1126)
+## CustomerPropensity in {Low,Medium,Unknown}:
+## :...MembershipPoints <= 1: 4 (3226/1778)
+##     MembershipPoints > 1:
+##     :...LastPurchaseDuration <= 4: 1 (8653/5291)
+##         LastPurchaseDuration > 4:
+##         :...CustomerPropensity in {Low,Medium}: 3 (4268/3009)
+##             CustomerPropensity = Unknown: 1 (3145/2125)
 ## 
 ## 
 ## Evaluation on training data (28000 cases):
@@ -249,22 +256,22 @@ summary(model_c50)
 ## 	  ----------------  
 ## 	  Size      Errors  
 ## 
-## 	     5 17799(63.6%)   <<
+## 	     8 17625(62.9%)   <<
 ## 
 ## 
 ## 	   (a)   (b)   (c)   (d)    <-classified as
 ## 	  ----  ----  ----  ----
-## 	  4343        1774   938    (a): class 1
-## 	  3501        2541   974    (b): class 2
-## 	  2327        3810   768    (c): class 3
-## 	  1856        3120  2048    (d): class 4
+## 	  4382        1709   964    (a): class 1
+## 	  3417        2452  1147    (b): class 2
+## 	  2290        3485  1130    (c): class 3
+## 	  1709        2807  2508    (d): class 4
 ## 
 ## 
 ## 	Attribute usage:
 ## 
-## 	100.00%	MembershipPoints
-## 	 83.11%	CustomerPropensity
-## 	 28.54%	LastPurchaseDuration
+## 	100.00%	CustomerPropensity
+## 	 88.48%	LastPurchaseDuration
+## 	 81.56%	MembershipPoints
 ## 
 ## 
 ## Time: 0.1 secs
@@ -297,19 +304,19 @@ vtrain = CrossTable(train$ProductChoice, purchase_pred_train, prop.chisq =FALSE,
 ##                | predicted default 
 ## actual default |         1 |         3 |         4 | Row Total | 
 ## ---------------|-----------|-----------|-----------|-----------|
-##              1 |      4343 |      1774 |       938 |      7055 | 
-##                |     0.155 |     0.063 |     0.034 |           | 
+##              1 |      4382 |      1709 |       964 |      7055 | 
+##                |     0.156 |     0.061 |     0.034 |           | 
 ## ---------------|-----------|-----------|-----------|-----------|
-##              2 |      3501 |      2541 |       974 |      7016 | 
-##                |     0.125 |     0.091 |     0.035 |           | 
+##              2 |      3417 |      2452 |      1147 |      7016 | 
+##                |     0.122 |     0.088 |     0.041 |           | 
 ## ---------------|-----------|-----------|-----------|-----------|
-##              3 |      2327 |      3810 |       768 |      6905 | 
-##                |     0.083 |     0.136 |     0.027 |           | 
+##              3 |      2290 |      3485 |      1130 |      6905 | 
+##                |     0.082 |     0.124 |     0.040 |           | 
 ## ---------------|-----------|-----------|-----------|-----------|
-##              4 |      1856 |      3120 |      2048 |      7024 | 
-##                |     0.066 |     0.111 |     0.073 |           | 
+##              4 |      1709 |      2807 |      2508 |      7024 | 
+##                |     0.061 |     0.100 |     0.090 |           | 
 ## ---------------|-----------|-----------|-----------|-----------|
-##   Column Total |     12027 |     11245 |      4728 |     28000 | 
+##   Column Total |     11798 |     10453 |      5749 |     28000 | 
 ## ---------------|-----------|-----------|-----------|-----------|
 ## 
 ## 
@@ -336,19 +343,19 @@ vtest = CrossTable(test$ProductChoice, purchase_pred_test, prop.chisq =FALSE, pr
 ##                | predicted default 
 ## actual default |         1 |         3 |         4 | Row Total | 
 ## ---------------|-----------|-----------|-----------|-----------|
-##              1 |      3059 |      1323 |       616 |      4998 | 
-##                |     0.153 |     0.066 |     0.031 |           | 
+##              1 |      3106 |      1202 |       690 |      4998 | 
+##                |     0.155 |     0.060 |     0.034 |           | 
 ## ---------------|-----------|-----------|-----------|-----------|
-##              2 |      2423 |      1867 |       705 |      4995 | 
-##                |     0.121 |     0.093 |     0.035 |           | 
+##              2 |      2419 |      1742 |       834 |      4995 | 
+##                |     0.121 |     0.087 |     0.042 |           | 
 ## ---------------|-----------|-----------|-----------|-----------|
-##              3 |      1770 |      2704 |       561 |      5035 | 
-##                |     0.088 |     0.135 |     0.028 |           | 
+##              3 |      1713 |      2504 |       818 |      5035 | 
+##                |     0.086 |     0.125 |     0.041 |           | 
 ## ---------------|-----------|-----------|-----------|-----------|
-##              4 |      1205 |      2345 |      1424 |      4974 | 
-##                |     0.060 |     0.117 |     0.071 |           | 
+##              4 |      1273 |      2000 |      1701 |      4974 | 
+##                |     0.064 |     0.100 |     0.085 |           | 
 ## ---------------|-----------|-----------|-----------|-----------|
-##   Column Total |      8457 |      8239 |      3306 |     20002 | 
+##   Column Total |      8511 |      7448 |      4043 |     20002 | 
 ## ---------------|-----------|-----------|-----------|-----------|
 ## 
 ## 
@@ -359,7 +366,7 @@ sum(diag(vtrain$prop.tbl))
 ```
 
 ```
-## [1] 0.2732857
+## [1] 0.2844286
 ```
 
 ```r
@@ -367,7 +374,7 @@ sum(diag(vtest$prop.tbl))
 ```
 
 ```
-## [1] 0.2743226
+## [1] 0.2832717
 ```
 
 
@@ -386,69 +393,58 @@ summary(CARTModel)
 ##   n= 28000 
 ## 
 ##           CP nsplit rel error    xerror        xstd
-## 1 0.09138219      0 1.0000000 1.0034376 0.003456583
-## 2 0.03232275      1 0.9086178 0.9086178 0.003727721
-## 3 0.01040821      2 0.8762951 0.8762951 0.003796467
-## 4 0.01000000      3 0.8658868 0.8718071 0.003805139
+## 1 0.09787539      0 1.0000000 1.0034376 0.003456583
+## 2 0.02363333      1 0.9021246 0.9070423 0.003731333
+## 3 0.01000000      2 0.8784913 0.8778706 0.003793373
 ## 
 ## Variable importance
-## CustomerPropensity   MembershipPoints 
-##                 59                 41 
+##   CustomerPropensity     MembershipPoints LastPurchaseDuration 
+##                   57                   32                   10 
+##          IncomeClass 
+##                    2 
 ## 
-## Node number 1: 28000 observations,    complexity param=0.09138219
+## Node number 1: 28000 observations,    complexity param=0.09787539
 ##   predicted class=1  expected loss=0.7480357  P(node) =1
 ##     class counts:  7055  7016  6905  7024
 ##    probabilities: 0.252 0.251 0.247 0.251 
-##   left son=2 (19513 obs) right son=3 (8487 obs)
+##   left son=2 (14314 obs) right son=3 (13686 obs)
 ##   Primary splits:
-##       CustomerPropensity   splits as  RLLLR,      improve=408.93580, (0 missing)
-##       MembershipPoints     < 1.5  to the right,   improve=256.98870, (0 missing)
-##       LastPurchaseDuration < 5.5  to the left,    improve=174.57440, (0 missing)
-##       IncomeClass          splits as  LLLLLLRRRR, improve= 17.76737, (0 missing)
+##       CustomerPropensity   splits as  RLRLR,      improve=405.19100, (0 missing)
+##       MembershipPoints     < 1.5 to the right,    improve=259.09140, (0 missing)
+##       LastPurchaseDuration < 4.5 to the left,     improve=225.67610, (0 missing)
+##       IncomeClass          splits as  LLRLLLRRRR, improve= 15.77757, (0 missing)
 ##   Surrogate splits:
-##       LastPurchaseDuration < 14.5 to the left,  agree=0.697, adj=0.001, (0 split)
+##       LastPurchaseDuration < 6.5 to the left,     agree=0.596, adj=0.173, (0 split)
+##       IncomeClass          splits as  LLRLLLRRRR, agree=0.524, adj=0.026, (0 split)
+##       MembershipPoints     < 8.5 to the left,     agree=0.513, adj=0.004, (0 split)
 ## 
-## Node number 2: 19513 observations,    complexity param=0.03232275
-##   predicted class=1  expected loss=0.6909752  P(node) =0.6968929
-##     class counts:  6030  5218  3966  4299
-##    probabilities: 0.309 0.267 0.203 0.220 
-##   left son=4 (16140 obs) right son=5 (3373 obs)
+## Node number 2: 14314 observations,    complexity param=0.02363333
+##   predicted class=1  expected loss=0.6610312  P(node) =0.5112143
+##     class counts:  4852  3875  2652  2935
+##    probabilities: 0.339 0.271 0.185 0.205 
+##   left son=4 (11858 obs) right son=5 (2456 obs)
 ##   Primary splits:
-##       MembershipPoints     < 1.5  to the right,   improve=258.47110, (0 missing)
-##       LastPurchaseDuration < 5.5  to the left,    improve= 82.53992, (0 missing)
-##       CustomerPropensity   splits as  -RRL-,      improve= 81.11621, (0 missing)
-##       IncomeClass          splits as  LLLRRRRRRR, improve= 15.46944, (0 missing)
+##       MembershipPoints     < 1.5 to the right,    improve=227.356300, (0 missing)
+##       LastPurchaseDuration < 3.5 to the left,     improve= 70.712250, (0 missing)
+##       CustomerPropensity   splits as  -R-L-,      improve= 42.399740, (0 missing)
+##       IncomeClass          splits as  LRRRRRRRRR, improve=  7.236327, (0 missing)
+##   Surrogate splits:
+##       IncomeClass splits as  RLLLLLLLLL, agree=0.829, adj=0.004, (0 split)
 ## 
-## Node number 3: 8487 observations,    complexity param=0.01040821
-##   predicted class=3  expected loss=0.6537057  P(node) =0.3031071
-##     class counts:  1025  1798  2939  2725
-##    probabilities: 0.121 0.212 0.346 0.321 
-##   left son=6 (7132 obs) right son=7 (1355 obs)
-##   Primary splits:
-##       MembershipPoints     < 1.5  to the right,   improve=28.753570, (0 missing)
-##       LastPurchaseDuration < 5.5  to the left,    improve=28.183280, (0 missing)
-##       CustomerPropensity   splits as  L---R,      improve=26.883550, (0 missing)
-##       IncomeClass          splits as  -LLLLLRRRL, improve= 5.327972, (0 missing)
+## Node number 3: 13686 observations
+##   predicted class=3  expected loss=0.6892445  P(node) =0.4887857
+##     class counts:  2203  3141  4253  4089
+##    probabilities: 0.161 0.230 0.311 0.299 
 ## 
-## Node number 4: 16140 observations
-##   predicted class=1  expected loss=0.6760223  P(node) =0.5764286
-##     class counts:  5229  4540  3550  2821
-##    probabilities: 0.324 0.281 0.220 0.175 
+## Node number 4: 11858 observations
+##   predicted class=1  expected loss=0.6410862  P(node) =0.4235
+##     class counts:  4256  3389  2369  1844
+##    probabilities: 0.359 0.286 0.200 0.156 
 ## 
-## Node number 5: 3373 observations
-##   predicted class=4  expected loss=0.5618144  P(node) =0.1204643
-##     class counts:   801   678   416  1478
-##    probabilities: 0.237 0.201 0.123 0.438 
-## 
-## Node number 6: 7132 observations
-##   predicted class=3  expected loss=0.6372686  P(node) =0.2547143
-##     class counts:   888  1502  2587  2155
-##    probabilities: 0.125 0.211 0.363 0.302 
-## 
-## Node number 7: 1355 observations
-##   predicted class=4  expected loss=0.5793358  P(node) =0.04839286
-##     class counts:   137   296   352   570
-##    probabilities: 0.101 0.218 0.260 0.421
+## Node number 5: 2456 observations
+##   predicted class=4  expected loss=0.5557818  P(node) =0.08771429
+##     class counts:   596   486   283  1091
+##    probabilities: 0.243 0.198 0.115 0.444
 ```
 
 ```r
@@ -496,22 +492,22 @@ vtrain = CrossTable(train$ProductChoice, purchase_pred_train, prop.chisq =FALSE,
 ## 
 ##  
 ##                | predicted default 
-## actual default |         1 |         2 |         3 | Row Total | 
-## ---------------|-----------|-----------|-----------|-----------|
-##              1 |      5127 |       487 |      1441 |      7055 | 
-##                |     0.183 |     0.017 |     0.051 |           | 
-## ---------------|-----------|-----------|-----------|-----------|
-##              2 |      4158 |       645 |      2213 |      7016 | 
-##                |     0.148 |     0.023 |     0.079 |           | 
-## ---------------|-----------|-----------|-----------|-----------|
-##              3 |      2883 |       572 |      3450 |      6905 | 
-##                |     0.103 |     0.020 |     0.123 |           | 
-## ---------------|-----------|-----------|-----------|-----------|
-##              4 |      3255 |       574 |      3195 |      7024 | 
-##                |     0.116 |     0.020 |     0.114 |           | 
-## ---------------|-----------|-----------|-----------|-----------|
-##   Column Total |     15423 |      2278 |     10299 |     28000 | 
-## ---------------|-----------|-----------|-----------|-----------|
+## actual default |         1 |         2 |         3 |         4 | Row Total | 
+## ---------------|-----------|-----------|-----------|-----------|-----------|
+##              1 |      4803 |       615 |      1192 |       445 |      7055 | 
+##                |     0.172 |     0.022 |     0.043 |     0.016 |           | 
+## ---------------|-----------|-----------|-----------|-----------|-----------|
+##              2 |      3798 |       710 |      2004 |       504 |      7016 | 
+##                |     0.136 |     0.025 |     0.072 |     0.018 |           | 
+## ---------------|-----------|-----------|-----------|-----------|-----------|
+##              3 |      2581 |       656 |      3141 |       527 |      6905 | 
+##                |     0.092 |     0.023 |     0.112 |     0.019 |           | 
+## ---------------|-----------|-----------|-----------|-----------|-----------|
+##              4 |      2876 |       584 |      2981 |       583 |      7024 | 
+##                |     0.103 |     0.021 |     0.106 |     0.021 |           | 
+## ---------------|-----------|-----------|-----------|-----------|-----------|
+##   Column Total |     14058 |      2565 |      9318 |      2059 |     28000 | 
+## ---------------|-----------|-----------|-----------|-----------|-----------|
 ## 
 ## 
 ```
@@ -521,7 +517,7 @@ sum(diag(vtrain$prop.tbl))
 ```
 
 ```
-## [1] 0.3293571
+## [1] 0.3298929
 ```
 
 ```r
@@ -603,7 +599,7 @@ sum(diag(vtrain$prop.tbl))
 ```
 
 ```
-## [1] 0.3293571
+## [1] 0.3298929
 ```
 
 ```r
@@ -611,7 +607,7 @@ sum(diag(vtest$prop.tbl))
 ```
 
 ```
-## [1] 0.2743226
+## [1] 0.2832717
 ```
 
 ```r

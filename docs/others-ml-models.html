@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="text-mining.html">
-<link rel="next" href="time-series.html">
+<link rel="prev" href="time-series.html">
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -232,178 +232,189 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="bayes-analysis" class="section level1">
-<h1><span class="header-section-number">Chapter 9</span> Bayes Analysis</h1>
-<div id="introduction-au-bayseien" class="section level2">
-<h2><span class="header-section-number">9.1</span> Introduction au bayseien</h2>
+<div id="others-ml-models" class="section level1">
+<h1><span class="header-section-number">Chapter 11</span> Others ML models</h1>
+<div id="support-vector-machines" class="section level2">
+<h2><span class="header-section-number">11.1</span> Support Vector Machines</h2>
 <ul>
-<li><p><strong>Bayes Theorem</strong> <span class="math display">\[P(A|B) = \frac{P(B|A)P(A)}{P(B)}\]</span> Ou P(A) est le prior, P(A|B) le posterior, P(B) est le marginal likelihood, et P(B|A) est le likelihood.</p>
+<li><strong>SVM</strong> A distance-based algorithm, trés bon pour la classification binaire dans les big dataset. Can deal with nonlinearity, overlapping classes, … etc.
 <ul>
-<li>Prior : the certainty of an event occurring before some evidence is considered</li>
-<li>Posterior : The probability of the event A happening conditioned on another event</li>
+<li><p>Classe separation : SVM Cherche the optimal hyperplane separating 2 classe by maximizing the margin between the closest points. The point lying on the margins are the Support Vectors. The line passing through the midpoint of the margins is the optimal hyperplane. <img src="C:/Users/007/Desktop/Data%20science%20with%20R/R/img/SVM.PNG" alt="SVM" /></p></li>
+<li>Overlapping classe : Si point on the wring side, il peut etre pond?rer pour r?duire sont influence. On utilise the Hinge loss function qui est proportionnel a la distince from the margin/</li>
+<li><p>Non liearity : Si une séparation linéaire ne peut etre trouvé, les observations sont projeté dans un espace a plus haute dimension using a kernel function ou les observations deviennent linéairement séparable. One popular Gaussian family kernel is the radial basis function. A radial basis function (RBF) is a real-valued function whose value depends only on the distance from the origin $ K(x,y) = (- ) $ . Il existe d’autre fonction kernel, kernel refet to a window function that is zero-valued outside of some chosen interval.</p></li>
+</ul></li>
+</ul>
+<blockquote>
+<p>c’est donc un probleme de minisation des distances</p>
+</blockquote>
+<ul>
+<li><strong>Binary SVM Classifier</strong></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(e1071)
+<span class="kw">library</span>(rpart)
+<span class="kw">library</span>(gmodels)
+
+### data pre <span class="al">###</span>
+breast_cancer_data &lt;-<span class="kw">read.table</span>(<span class="st">&quot;C:/Users/007/Desktop/Data science with R/R/Dataset/Chapter 6/breast-cancer-wisconsin.data.txt&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;,&quot;</span>)
+breast_cancer_data<span class="op">$</span>V11 =<span class="kw">as.factor</span>(breast_cancer_data<span class="op">$</span>V11)
+
+<span class="co"># split data into a train and test set</span>
+index &lt;-<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(breast_cancer_data)
+test_data_index &lt;-<span class="kw">sample</span>(index, <span class="kw">trunc</span>(<span class="kw">length</span>(index)<span class="op">/</span><span class="dv">3</span>))
+test_data &lt;-breast_cancer_data[test_data_index,]
+train_data &lt;-breast_cancer_data[<span class="op">-</span>test_data_index,]
+
+<span class="co"># model</span>
+svm.model &lt;-<span class="kw">svm</span>(V11 <span class="op">~</span>., <span class="dt">data =</span> train_data, <span class="dt">cost =</span><span class="dv">100</span>, <span class="dt">gamma =</span><span class="dv">1</span>)
+
+<span class="co"># note : in realworld dataset accurancy of 100% is not possible </span>
+<span class="co"># but un medical dignostic il est important d&#39;etre proche</span>
+
+svm_pred_train &lt;-<span class="kw">predict</span>(svm.model, train_data[,<span class="op">-</span><span class="dv">11</span>])
+<span class="kw">CrossTable</span>(train_data<span class="op">$</span>V11, svm_pred_train, <span class="dt">prop.chisq =</span><span class="ot">FALSE</span>, <span class="dt">prop.c =</span><span class="ot">FALSE</span>, <span class="dt">prop.r =</span><span class="ot">FALSE</span>, <span class="dt">dnn =</span><span class="kw">c</span>(<span class="st">&#39;actual default&#39;</span>, <span class="st">&#39;predicted default&#39;</span>))</code></pre></div>
+<pre><code>## 
+##  
+##    Cell Contents
+## |-------------------------|
+## |                       N |
+## |         N / Table Total |
+## |-------------------------|
+## 
+##  
+## Total Observations in Table:  466 
+## 
+##  
+##                | predicted default 
+## actual default |         2 |         4 | Row Total | 
+## ---------------|-----------|-----------|-----------|
+##              2 |       317 |         0 |       317 | 
+##                |     0.680 |     0.000 |           | 
+## ---------------|-----------|-----------|-----------|
+##              4 |         0 |       149 |       149 | 
+##                |     0.000 |     0.320 |           | 
+## ---------------|-----------|-----------|-----------|
+##   Column Total |       317 |       149 |       466 | 
+## ---------------|-----------|-----------|-----------|
+## 
+## </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">svm_pred_test &lt;-<span class="kw">predict</span>(svm.model, test_data[,<span class="op">-</span><span class="dv">11</span>])
+<span class="kw">CrossTable</span>(test_data<span class="op">$</span>V11, svm_pred_test,<span class="dt">prop.chisq =</span><span class="ot">FALSE</span>, <span class="dt">prop.c =</span><span class="ot">FALSE</span>, <span class="dt">prop.r =</span><span class="ot">FALSE</span>, <span class="dt">dnn =</span><span class="kw">c</span>(<span class="st">&#39;actual default&#39;</span>, <span class="st">&#39;predicted default&#39;</span>))</code></pre></div>
+<pre><code>## 
+##  
+##    Cell Contents
+## |-------------------------|
+## |                       N |
+## |         N / Table Total |
+## |-------------------------|
+## 
+##  
+## Total Observations in Table:  233 
+## 
+##  
+##                | predicted default 
+## actual default |         2 |         4 | Row Total | 
+## ---------------|-----------|-----------|-----------|
+##              2 |       123 |        18 |       141 | 
+##                |     0.528 |     0.077 |           | 
+## ---------------|-----------|-----------|-----------|
+##              4 |         0 |        92 |        92 | 
+##                |     0.000 |     0.395 |           | 
+## ---------------|-----------|-----------|-----------|
+##   Column Total |       123 |       110 |       233 | 
+## ---------------|-----------|-----------|-----------|
+## 
+## </code></pre>
+<ul>
+<li><strong>multiclasse SVM</strong> : SVM Peut etre étendu a du multiclasse by creating multible binary classifier.
+<ul>
+<li>create binary classifiers</li>
+<li>between one class and the rest of the classes</li>
+<li>between every pair of classe possibles</li>
+<li>For any new cases, the SVM classifier adopts a winner-takes-all strategy, in which the class with highest output is assigned.</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>( <span class="st">&#39;e1071&#39;</span> )
+
+Data_House_Worth &lt;-<span class="kw">read.csv</span>(<span class="st">&quot;C:/Users/007/Desktop/Data science with R/R/Dataset/Chapter 6//House Worth Data.csv&quot;</span>,<span class="dt">header=</span><span class="ot">TRUE</span>)
+
+<span class="co"># model</span>
+
+svm_multi_model &lt;-<span class="kw">svm</span>( HouseNetWorth <span class="op">~</span>StoreArea <span class="op">+</span>LawnArea, Data_House_Worth )
+svm_multi_model</code></pre></div>
+<pre><code>## 
+## Call:
+## svm(formula = HouseNetWorth ~ StoreArea + LawnArea, data = Data_House_Worth)
+## 
+## 
+## Parameters:
+##    SVM-Type:  C-classification 
+##  SVM-Kernel:  radial 
+##        cost:  1 
+##       gamma:  0.5 
+## 
+## Number of Support Vectors:  120</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res &lt;-<span class="kw">predict</span>( svm_multi_model, <span class="dt">newdata=</span>Data_House_Worth )
+
+<span class="kw">table</span>(Data_House_Worth<span class="op">$</span>HouseNetWorth,res)</code></pre></div>
+<pre><code>##         res
+##          High Low Medium
+##   High    122   1      7
+##   Low       6 122      7
+##   Medium    1   7     43</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(<span class="kw">diag</span>(<span class="kw">table</span>(Data_House_Worth<span class="op">$</span>HouseNetWorth,res)))<span class="op">/</span><span class="kw">nrow</span>(Data_House_Worth)</code></pre></div>
+<pre><code>## [1] 0.9082278</code></pre>
+<p>SVM est un non probalistic binary classifier mais trés efficace. Peut sappliquer a la classification d’image, d’hypertext, character recognition, …</p>
+</div>
+<div id="hadoop-introduction" class="section level2">
+<h2><span class="header-section-number">11.2</span> Hadoop introduction</h2>
+<ul>
+<li>Hadoop framework consists of the following three modules
+<ul>
+<li>Hadoop Distributed File System : This is the storage part of Hadoop</li>
+<li>Hadoop YARN: This is also known as the data operating system.</li>
+<li>Hadoop MapReduce: MapReduce decides the execution logic of what needs to be done with the data. The logic should be designed in such a way that it can execute in parallel with smaller chunks of data residing in a distributed cluster of machines.</li>
 </ul></li>
 </ul>
 </div>
-<div id="naive-bayes" class="section level2">
-<h2><span class="header-section-number">9.2</span> NAive bayes</h2>
-<p>Utilisé pour la classification des documents, filtre spam. Naive Bayes essentially assumes that each explanatory variable is independent of the others and uses the distribution of these for each category of data to construct the distribution of the response variable given the explanatory variables. utilisation pure et simple du theoreme de baye</p>
-<blockquote>
-<p>Avantage du baysien: real time implementation. just update information.</p>
-</blockquote>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table)
-<span class="kw">library</span>(gmodels)
-<span class="kw">library</span>(splitstackshape)
-<span class="kw">library</span>(e1071)
-Data_Purchase &lt;-<span class="kw">fread</span>(<span class="st">&quot;C:/Users/007/Desktop/Data science with R/R/Dataset/Chapter 6/PurchasePredictionDataset.csv&quot;</span>,<span class="dt">header=</span>T,<span class="dt">verbose =</span><span class="ot">FALSE</span>, <span class="dt">showProgress =</span><span class="ot">FALSE</span>)
-
-<span class="kw">str</span>(Data_Purchase)</code></pre></div>
-<pre><code>## Classes &#39;data.table&#39; and &#39;data.frame&#39;:   500000 obs. of  12 variables:
-##  $ CUSTOMER_ID         : chr  &quot;000001&quot; &quot;000002&quot; &quot;000003&quot; &quot;000004&quot; ...
-##  $ ProductChoice       : int  2 3 2 3 2 3 2 2 2 3 ...
-##  $ MembershipPoints    : int  6 2 4 2 6 6 5 9 5 3 ...
-##  $ ModeOfPayment       : chr  &quot;MoneyWallet&quot; &quot;CreditCard&quot; &quot;MoneyWallet&quot; &quot;MoneyWallet&quot; ...
-##  $ ResidentCity        : chr  &quot;Madurai&quot; &quot;Kolkata&quot; &quot;Vijayawada&quot; &quot;Meerut&quot; ...
-##  $ PurchaseTenure      : int  4 4 10 6 3 3 13 1 9 8 ...
-##  $ Channel             : chr  &quot;Online&quot; &quot;Online&quot; &quot;Online&quot; &quot;Online&quot; ...
-##  $ IncomeClass         : chr  &quot;4&quot; &quot;7&quot; &quot;5&quot; &quot;4&quot; ...
-##  $ CustomerPropensity  : chr  &quot;Medium&quot; &quot;VeryHigh&quot; &quot;Unknown&quot; &quot;Low&quot; ...
-##  $ CustomerAge         : int  55 75 34 26 38 71 72 27 33 29 ...
-##  $ MartialStatus       : int  0 0 0 0 1 0 0 0 0 1 ...
-##  $ LastPurchaseDuration: int  4 15 15 6 6 10 5 4 15 6 ...
-##  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">917</span>)
-
-<span class="co"># Data preparation</span>
-<span class="kw">table</span>(Data_Purchase<span class="op">$</span>ProductChoice)</code></pre></div>
-<pre><code>## 
-##      1      2      3      4 
-## 106603 199286 143893  50218</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Data_Purchase &lt;-Data_Purchase[,<span class="kw">c</span>(<span class="st">&quot;CUSTOMER_ID&quot;</span>,<span class="st">&quot;ProductChoice&quot;</span>,<span class="st">&quot;MembershipPoints&quot;</span>, <span class="st">&quot;IncomeClass&quot;</span>,<span class="st">&quot;CustomerPropensity&quot;</span>,<span class="st">&quot;LastPurchaseDuration&quot;</span>)]
-
-<span class="co">#Delete NA from subset</span>
-Data_Purchase &lt;-<span class="kw">na.omit</span>(Data_Purchase)
-Data_Purchase<span class="op">$</span>CUSTOMER_ID &lt;-<span class="kw">as.character</span>(Data_Purchase<span class="op">$</span>CUSTOMER_ID)
-
-<span class="co">#Stratified Sampling</span>
-Data_Purchase_Model&lt;-<span class="kw">stratified</span>(Data_Purchase, <span class="dt">group=</span><span class="kw">c</span>(<span class="st">&quot;ProductChoice&quot;</span>), <span class="dt">size=</span><span class="dv">10000</span>,<span class="dt">replace=</span><span class="ot">FALSE</span>)
-
-<span class="kw">table</span>(Data_Purchase_Model<span class="op">$</span>ProductChoice)</code></pre></div>
-<pre><code>## 
-##     1     2     3     4 
-## 10000 10000 10000 10000</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Data_Purchase_Model<span class="op">$</span>ProductChoice &lt;-<span class="kw">as.factor</span>(Data_Purchase_Model<span class="op">$</span>ProductChoice)
-Data_Purchase_Model<span class="op">$</span>IncomeClass &lt;-<span class="kw">as.factor</span>(Data_Purchase_Model<span class="op">$</span>IncomeClass)
-Data_Purchase_Model<span class="op">$</span>CustomerPropensity &lt;-<span class="kw">as.factor</span>(Data_Purchase_Model<span class="op">$</span>CustomerPropensity)
-
-train &lt;-Data_Purchase_Model[<span class="kw">sample</span>(<span class="kw">nrow</span>(Data_Purchase_Model), <span class="dt">size=</span><span class="kw">nrow</span>(Data_Purchase_Model)<span class="op">*</span>(<span class="fl">0.7</span>), <span class="dt">replace =</span><span class="ot">TRUE</span>, <span class="dt">prob =</span><span class="ot">NULL</span>),]
-train &lt;-<span class="kw">as.data.frame</span>(train)
-
-test &lt;-<span class="kw">as.data.frame</span>(Data_Purchase_Model[<span class="op">!</span>(Data_Purchase_Model<span class="op">$</span>CUSTOMER_ID <span class="op">%in%</span>train<span class="op">$</span>CUSTOMER_ID),])
-
-<span class="co"># model NB</span>
-model_naiveBayes &lt;-<span class="kw">naiveBayes</span>(train[,<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)], train[,<span class="dv">2</span>])
-
-<span class="co">#evaluation</span>
-model_naiveBayes_pred &lt;-<span class="kw">predict</span>(model_naiveBayes, train)
-vtrain =<span class="st"> </span><span class="kw">CrossTable</span>(model_naiveBayes_pred, train[,<span class="dv">2</span>],<span class="dt">prop.chisq =</span><span class="ot">FALSE</span>,<span class="dt">dnn =</span><span class="kw">c</span>(<span class="st">&#39;predicted&#39;</span>, <span class="st">&#39;actual&#39;</span>))</code></pre></div>
-<pre><code>## 
-##  
-##    Cell Contents
-## |-------------------------|
-## |                       N |
-## |           N / Row Total |
-## |           N / Col Total |
-## |         N / Table Total |
-## |-------------------------|
-## 
-##  
-## Total Observations in Table:  28000 
-## 
-##  
-##              | actual 
-##    predicted |         1 |         2 |         3 |         4 | Row Total | 
-## -------------|-----------|-----------|-----------|-----------|-----------|
-##            1 |      4231 |      3384 |      2491 |      2420 |     12526 | 
-##              |     0.338 |     0.270 |     0.199 |     0.193 |     0.447 | 
-##              |     0.602 |     0.486 |     0.357 |     0.345 |           | 
-##              |     0.151 |     0.121 |     0.089 |     0.086 |           | 
-## -------------|-----------|-----------|-----------|-----------|-----------|
-##            2 |       363 |       417 |       265 |       258 |      1303 | 
-##              |     0.279 |     0.320 |     0.203 |     0.198 |     0.047 | 
-##              |     0.052 |     0.060 |     0.038 |     0.037 |           | 
-##              |     0.013 |     0.015 |     0.009 |     0.009 |           | 
-## -------------|-----------|-----------|-----------|-----------|-----------|
-##            3 |      1312 |      1601 |      2402 |      1851 |      7166 | 
-##              |     0.183 |     0.223 |     0.335 |     0.258 |     0.256 | 
-##              |     0.187 |     0.230 |     0.344 |     0.264 |           | 
-##              |     0.047 |     0.057 |     0.086 |     0.066 |           | 
-## -------------|-----------|-----------|-----------|-----------|-----------|
-##            4 |      1122 |      1568 |      1824 |      2491 |      7005 | 
-##              |     0.160 |     0.224 |     0.260 |     0.356 |     0.250 | 
-##              |     0.160 |     0.225 |     0.261 |     0.355 |           | 
-##              |     0.040 |     0.056 |     0.065 |     0.089 |           | 
-## -------------|-----------|-----------|-----------|-----------|-----------|
-## Column Total |      7028 |      6970 |      6982 |      7020 |     28000 | 
-##              |     0.251 |     0.249 |     0.249 |     0.251 |           | 
-## -------------|-----------|-----------|-----------|-----------|-----------|
-## 
-## </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model_naiveBayes_pred &lt;-<span class="kw">predict</span>(model_naiveBayes, test)
-vtest =<span class="st"> </span><span class="kw">CrossTable</span>(model_naiveBayes_pred, test[,<span class="dv">2</span>],<span class="dt">prop.chisq =</span><span class="ot">FALSE</span>,<span class="dt">dnn =</span><span class="kw">c</span>(<span class="st">&#39;predicted&#39;</span>, <span class="st">&#39;actual&#39;</span>))</code></pre></div>
-<pre><code>## 
-##  
-##    Cell Contents
-## |-------------------------|
-## |                       N |
-## |           N / Row Total |
-## |           N / Col Total |
-## |         N / Table Total |
-## |-------------------------|
-## 
-##  
-## Total Observations in Table:  19795 
-## 
-##  
-##              | actual 
-##    predicted |         1 |         2 |         3 |         4 | Row Total | 
-## -------------|-----------|-----------|-----------|-----------|-----------|
-##            1 |      3036 |      2500 |      1767 |      1689 |      8992 | 
-##              |     0.338 |     0.278 |     0.197 |     0.188 |     0.454 | 
-##              |     0.614 |     0.502 |     0.358 |     0.343 |           | 
-##              |     0.153 |     0.126 |     0.089 |     0.085 |           | 
-## -------------|-----------|-----------|-----------|-----------|-----------|
-##            2 |       257 |       294 |       215 |       159 |       925 | 
-##              |     0.278 |     0.318 |     0.232 |     0.172 |     0.047 | 
-##              |     0.052 |     0.059 |     0.044 |     0.032 |           | 
-##              |     0.013 |     0.015 |     0.011 |     0.008 |           | 
-## -------------|-----------|-----------|-----------|-----------|-----------|
-##            3 |       888 |      1062 |      1664 |      1332 |      4946 | 
-##              |     0.180 |     0.215 |     0.336 |     0.269 |     0.250 | 
-##              |     0.180 |     0.213 |     0.337 |     0.270 |           | 
-##              |     0.045 |     0.054 |     0.084 |     0.067 |           | 
-## -------------|-----------|-----------|-----------|-----------|-----------|
-##            4 |       763 |      1127 |      1292 |      1750 |      4932 | 
-##              |     0.155 |     0.229 |     0.262 |     0.355 |     0.249 | 
-##              |     0.154 |     0.226 |     0.262 |     0.355 |           | 
-##              |     0.039 |     0.057 |     0.065 |     0.088 |           | 
-## -------------|-----------|-----------|-----------|-----------|-----------|
-## Column Total |      4944 |      4983 |      4938 |      4930 |     19795 | 
-##              |     0.250 |     0.252 |     0.249 |     0.249 |           | 
-## -------------|-----------|-----------|-----------|-----------|-----------|
-## 
-## </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(<span class="kw">diag</span>(vtrain<span class="op">$</span>prop.tbl))</code></pre></div>
-<pre><code>## [1] 0.34075</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(<span class="kw">diag</span>(vtest<span class="op">$</span>prop.tbl))</code></pre></div>
-<pre><code>## [1] 0.3406921</code></pre>
-</div>
-<div id="other-bayes-model" class="section level2">
-<h2><span class="header-section-number">9.3</span> Other bayes model</h2>
+<div id="machine-learning-in-r-with-spark" class="section level2">
+<h2><span class="header-section-number">11.3</span> Machine Learning in R with Spark</h2>
 <ul>
-<li><strong>Gausian Naive Bayes</strong></li>
-<li><strong>Multinomial Naive Bayes</strong></li>
-<li><strong>Bayesian Belief Network</strong></li>
-<li><strong>Bayesien Network</strong></li>
+<li>At a high level, it provides tools such as:
+<ul>
+<li>ML algorithms: Common learning algorithms such as classification, regression, clustering, and collaborative filtering</li>
+<li>Featurization: Feature extraction, transformation, dimensionality reduction, and selection</li>
+<li>Pipelines: Tools for constructing, evaluating, and tuning ML pipelines</li>
+<li>Persistence: Saving and loading algorithms, models, and pipelines</li>
+<li>Utilities: Linear algebra, statistics, data handling, etc.</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>Need to be download : follow “data science using R, p 541”</p>
+</blockquote>
+</div>
+<div id="machine-learning-in-r-with-h20" class="section level2">
+<h2><span class="header-section-number">11.4</span> Machine learning in R with H20</h2>
+<p>H2O is an open source high performance cluster for big data analysis. These techniques are not feasible to be executed on individual machines and need high-power computing. H2O is a Java Virtual Machine that is optimized for doing “in-memory” processing of distributed, parallel machine learning algorithms on clusters.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(&quot;h2o&quot;)</span>
+<span class="co"># Load the h2o library in R</span>
+<span class="co">#library(h2o)</span>
+
+<span class="co">#Initiate a cluster in your machine</span>
+<span class="co">#localH2O =h2o.init</span>
+
+<span class="co"># The function demo runs all at once and outputs the entire output at one go. However, for better understanding of what the function does, we have split the output and explainedeach part in detail.</span>
+
+<span class="co"># demo = demo(h2o.deeplearning)</span>
+
+<span class="co"># more demo : </span>
+<span class="co"># demo(package = &quot;h2o&quot;)</span></code></pre></div>
+<ul>
+<li>Additional parameters are:
+<ul>
+<li>Hidden, which specifies the hidden layer sizes,</li>
+<li>Activation, which specifies the type of activation function; the demo uses a Tanh function</li>
+<li>epochs, which directs the neural network with “How many times the dataset should be iterated (streamed)</li>
+</ul></li>
 </ul>
 
 </div>
@@ -413,8 +424,8 @@ vtest =<span class="st"> </span><span class="kw">CrossTable</span>(model_naiveBa
           </div>
         </div>
       </div>
-<a href="text-mining.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="time-series.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="time-series.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

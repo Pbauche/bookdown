@@ -3,6 +3,6 @@ chapter_name: "Chapter "
 output_dir: docs
 rmd_files: ["index.Rmd", "01-Feature_Engeneering.Rmd", "02-Data_visu.Rmd","03-regression.Rmd", 
             "04-unsupervized.Rmd", "05-Decision_Tree.Rmd", "06-NeuralNet.Rmd","09-TextMining.Rmd",
-	     "10-Bayes.Rmd"]
+	     "10-Bayes.Rmd", "11-TimeSeries.Rmd","12-others.Rmd"]
 clean: [packages.bib, bookdown.bbl]
 new_session: yes

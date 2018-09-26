@@ -1,0 +1,10 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+# Time Series
+
+```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+library(tidyverse)
+```

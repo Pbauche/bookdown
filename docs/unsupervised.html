@@ -205,6 +205,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.2" data-path="bayes-analysis.html"><a href="bayes-analysis.html#naive-bayes"><i class="fa fa-check"></i><b>9.2</b> NAive bayes</a></li>
 <li class="chapter" data-level="9.3" data-path="bayes-analysis.html"><a href="bayes-analysis.html#other-bayes-model"><i class="fa fa-check"></i><b>9.3</b> Other bayes model</a></li>
 </ul></li>
+<li class="chapter" data-level="10" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>10</b> Time Series</a></li>
+<li class="chapter" data-level="11" data-path="others-ml-models.html"><a href="others-ml-models.html"><i class="fa fa-check"></i><b>11</b> Others ML models</a><ul>
+<li class="chapter" data-level="11.1" data-path="others-ml-models.html"><a href="others-ml-models.html#support-vector-machines"><i class="fa fa-check"></i><b>11.1</b> Support Vector Machines</a></li>
+<li class="chapter" data-level="11.2" data-path="others-ml-models.html"><a href="others-ml-models.html#hadoop-introduction"><i class="fa fa-check"></i><b>11.2</b> Hadoop introduction</a></li>
+<li class="chapter" data-level="11.3" data-path="others-ml-models.html"><a href="others-ml-models.html#machine-learning-in-r-with-spark"><i class="fa fa-check"></i><b>11.3</b> Machine Learning in R with Spark</a></li>
+<li class="chapter" data-level="11.4" data-path="others-ml-models.html"><a href="others-ml-models.html#machine-learning-in-r-with-h20"><i class="fa fa-check"></i><b>11.4</b> Machine learning in R with H20</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -396,11 +403,11 @@ Cluster_kmean &lt;-<span class="kw">kmeans</span>(Data_House_Worth[,<span class=
 ret &lt;-<span class="kw">init.EM</span>(Data_House_Worth[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>], <span class="dt">nclass =</span><span class="dv">3</span>)
 ret</code></pre></div>
 <pre><code>## Method: em.EMRnd.EM
-##  n = 316, p = 2, nclass = 3, flag = 0, logL = -1871.0342.
+##  n = 316, p = 2, nclass = 3, flag = 0, logL = -1871.0333.
 ## nc: 
-## [1] 100 168  48
+## [1] 168  48 100
 ## pi: 
-## [1] 0.2509 0.5490 0.2001</code></pre>
+## [1] 0.5493 0.2000 0.2507</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># assign class</span>
 ret.new &lt;-<span class="kw">assign.class</span>(Data_House_Worth[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>], ret, <span class="dt">return.all =</span><span class="ot">FALSE</span>)
 
@@ -431,26 +438,26 @@ ret.new &lt;-<span class="kw">assign.class</span>(Data_House_Worth[,<span class=
 
 online_cmean &lt;-<span class="kw">cmeans</span>(Data_House_Worth[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>],<span class="dv">3</span>,<span class="dv">20</span>,<span class="dt">verbose=</span><span class="ot">TRUE</span>,
                       <span class="dt">method=</span><span class="st">&quot;ufcl&quot;</span>,<span class="dt">m=</span><span class="dv">2</span>)</code></pre></div>
-<pre><code>## Iteration:   1, Error: 97.7437022561
-## Iteration:   2, Error: 96.2966775189
-## Iteration:   3, Error: 95.0172268252
-## Iteration:   4, Error: 93.8733597700
-## Iteration:   5, Error: 92.8413319660
-## Iteration:   6, Error: 91.9039023818
-## Iteration:   7, Error: 91.0488501348
-## Iteration:   8, Error: 90.2677508833
-## Iteration:   9, Error: 89.5549921779
-## Iteration:  10, Error: 88.9069979787
-## Iteration:  11, Error: 88.3216299941
-## Iteration:  12, Error: 87.7977345222
-## Iteration:  13, Error: 87.3348062922
-## Iteration:  14, Error: 86.9327443940
-## Iteration:  15, Error: 86.5916791609
-## Iteration:  16, Error: 86.3118525244
-## Iteration:  17, Error: 86.0935377205
-## Iteration:  18, Error: 85.9369872264
-## Iteration:  19, Error: 85.8424004331
-## Iteration:  20, Error: 85.8099048428</code></pre>
+<pre><code>## Iteration:   1, Error: 157.6800940275
+## Iteration:   2, Error: 153.3555512941
+## Iteration:   3, Error: 149.5722270850
+## Iteration:   4, Error: 146.2536902161
+## Iteration:   5, Error: 143.3377048155
+## Iteration:   6, Error: 140.7730379664
+## Iteration:   7, Error: 138.5171559222
+## Iteration:   8, Error: 136.5345285546
+## Iteration:   9, Error: 134.7953545597
+## Iteration:  10, Error: 133.2745831698
+## Iteration:  11, Error: 131.9511498242
+## Iteration:  12, Error: 130.8073703789
+## Iteration:  13, Error: 129.8284560403
+## Iteration:  14, Error: 129.0021227087
+## Iteration:  15, Error: 128.3182760421
+## Iteration:  16, Error: 127.7687587132
+## Iteration:  17, Error: 127.3471499346
+## Iteration:  18, Error: 127.0486099210
+## Iteration:  19, Error: 126.8697639068
+## Iteration:  20, Error: 126.8086218641</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># print(online_cmean)</span>
 
 <span class="kw">ggplot</span>(Data_House_Worth, <span class="kw">aes</span>(StoreArea, LawnArea, <span class="dt">color =</span> HouseNetWorth)) <span class="op">+</span>

@@ -23,11 +23,14 @@ Utilisé pour la classification des documents, filtre spam. Naive Bayes essentia
 
 > Avantage du baysien: real time implementation. just update information.
 
-```{r NB, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+```{r NB, echo=TRUE, message=FALSE, warning=FALSE}
 
 library(data.table)
+library(gmodels)
 library(splitstackshape)
 library(e1071)
+Data_Purchase <-fread("C:/Users/007/Desktop/Data science with R/R/Dataset/Chapter 6/PurchasePredictionDataset.csv",header=T,verbose =FALSE, showProgress =FALSE)
+
 str(Data_Purchase)
 set.seed(917)
 
