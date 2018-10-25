@@ -1,0 +1,1621 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Handout_V2</title>
+  <meta name="description" content="Handout_V2">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Handout_V2" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Handout_V2" />
+  
+  
+  
+
+<meta name="author" content="Pierre Bauche">
+
+
+<meta name="date" content="2018-10-25">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">somethings</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> <strong>Information</strong></a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#usefull-ressource"><i class="fa fa-check"></i><b>1.1</b> Usefull ressource</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#todo"><i class="fa fa-check"></i><b>1.2</b> todo</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#interesting-stuff"><i class="fa fa-check"></i><b>1.3</b> interesting stuff</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#hint"><i class="fa fa-check"></i><b>1.4</b> Hint</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="caret-package.html"><a href="caret-package.html"><i class="fa fa-check"></i><b>2</b> Caret Package</a><ul>
+<li class="chapter" data-level="2.1" data-path="caret-package.html"><a href="caret-package.html#pre-processing"><i class="fa fa-check"></i><b>2.1</b> Pre-Processing</a></li>
+<li class="chapter" data-level="2.2" data-path="caret-package.html"><a href="caret-package.html#data-splitting"><i class="fa fa-check"></i><b>2.2</b> Data Splitting</a></li>
+<li class="chapter" data-level="2.3" data-path="caret-package.html"><a href="caret-package.html#model-training-and-tuning"><i class="fa fa-check"></i><b>2.3</b> Model Training and tuning</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="caret-package.html"><a href="caret-package.html#exemple-basic-tuning-for-boosted-tree-model-gbm"><i class="fa fa-check"></i><b>2.3.1</b> Exemple : Basic tuning for boosted tree model GBM</a></li>
+<li class="chapter" data-level="2.3.2" data-path="caret-package.html"><a href="caret-package.html#customizing-the-tuning-process"><i class="fa fa-check"></i><b>2.3.2</b> Customizing the Tuning Process</a></li>
+<li class="chapter" data-level="2.3.3" data-path="caret-package.html"><a href="caret-package.html#exploring-and-comparing-resampling-distributions"><i class="fa fa-check"></i><b>2.3.3</b> Exploring and Comparing Resampling Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="caret-package.html"><a href="caret-package.html#best-available-models"><i class="fa fa-check"></i><b>2.4</b> Best available Models</a></li>
+<li class="chapter" data-level="2.5" data-path="caret-package.html"><a href="caret-package.html#parallel-processing"><i class="fa fa-check"></i><b>2.5</b> Parallel Processing</a></li>
+<li class="chapter" data-level="2.6" data-path="caret-package.html"><a href="caret-package.html#subsampling-for-class-imbalances"><i class="fa fa-check"></i><b>2.6</b> Subsampling for class imbalances</a></li>
+<li class="chapter" data-level="2.7" data-path="caret-package.html"><a href="caret-package.html#variables-importance"><i class="fa fa-check"></i><b>2.7</b> Variables importance</a></li>
+<li class="chapter" data-level="2.8" data-path="caret-package.html"><a href="caret-package.html#measurung-performance"><i class="fa fa-check"></i><b>2.8</b> measurung performance</a></li>
+<li class="chapter" data-level="2.9" data-path="caret-package.html"><a href="caret-package.html#feature-selection"><i class="fa fa-check"></i><b>2.9</b> feature selection</a><ul>
+<li class="chapter" data-level="2.9.1" data-path="caret-package.html"><a href="caret-package.html#overview"><i class="fa fa-check"></i><b>2.9.1</b> Overview</a></li>
+<li class="chapter" data-level="2.9.2" data-path="caret-package.html"><a href="caret-package.html#univariate-approach"><i class="fa fa-check"></i><b>2.9.2</b> Univariate approach</a></li>
+<li class="chapter" data-level="2.9.3" data-path="caret-package.html"><a href="caret-package.html#recursive-feature-elimination"><i class="fa fa-check"></i><b>2.9.3</b> recursive feature elimination</a></li>
+<li class="chapter" data-level="2.9.4" data-path="caret-package.html"><a href="caret-package.html#genetic-algorimth"><i class="fa fa-check"></i><b>2.9.4</b> genetic algorimth</a></li>
+<li class="chapter" data-level="2.9.5" data-path="caret-package.html"><a href="caret-package.html#simulated-annealing"><i class="fa fa-check"></i><b>2.9.5</b> simulated annealing</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Handout_V2</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="caret-package" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Caret Package</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(caret)</code></pre></div>
+<pre><code>## Warning: package &#39;caret&#39; was built under R version 3.3.3</code></pre>
+<pre><code>## Loading required package: lattice</code></pre>
+<pre><code>## Loading required package: ggplot2</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.3.3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">orange &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/selva86/datasets/master/orange_juice_withmissing.csv&#39;</span>)
+
+path =<span class="st"> &quot;C:/Website Rmarkdown/bookdown/save/&quot;</span></code></pre></div>
+<div id="pre-processing" class="section level2">
+<h2><span class="header-section-number">2.1</span> Pre-Processing</h2>
+<p>Serveral function can be use to preprocess the data. Caret package assume that variables are numeric. Factor have been converted to dummy.</p>
+<ul>
+<li><strong>Create Dummy variables</strong>
+<ul>
+<li>dummyVars() : create dummy from one or more factors. In caret, one-hot-encodings can be created using dummyVars(). Just pass in all the features to dummyVars() as the training data and all the factor columns will automatically be converted to one-hot-encodings.</li>
+</ul></li>
+<li><strong>Near Zero Variance PrÃ©dictors</strong>
+<ul>
+<li>Si variables as un seul facteur ou trÃ¨s peu de varianc, elles peuvent biasÃ© une les modÃ¨les prÃ©dictifs. Si predictor trop unballanced, when we split data in subsample for crossvalidation or other subsample, predictor may become zero variance.</li>
+<li>some metric :</li>
+<li>frÃ©quency ratio : frequency of the most prevalent value over the second most frequent. (proche de 1 si bien equilibrÃ©)</li>
+<li>percent of unique values : number of unique values divided by the total number of samples. Approaches zero as the granularity of the data increases</li>
+</ul></li>
+<li><strong>Identifying correlated predictors</strong>
+<ul>
+<li>findCorrelation() function uses the following algorithm to flag predictors for removal.</li>
+</ul></li>
+<li><strong>Linear dependencies</strong>
+<ul>
+<li>findLinearCombos() function uses the QR decomposition of a matrix to enumerate sets of linear combinations</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Dummy variable    
+<span class="kw">library</span>(earth)</code></pre></div>
+<pre><code>## Warning: package &#39;earth&#39; was built under R version 3.3.3</code></pre>
+<pre><code>## Loading required package: plotmo</code></pre>
+<pre><code>## Loading required package: plotrix</code></pre>
+<pre><code>## Loading required package: TeachingDemos</code></pre>
+<pre><code>## Warning: package &#39;TeachingDemos&#39; was built under R version 3.3.3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(etitanic)
+<span class="kw">head</span>(<span class="kw">model.matrix</span>(survived <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> etitanic))</code></pre></div>
+<pre><code>##   (Intercept) pclass2nd pclass3rd sexmale     age sibsp parch
+## 1           1         0         0       0 29.0000     0     0
+## 2           1         0         0       1  0.9167     1     2
+## 3           1         0         0       0  2.0000     1     2
+## 4           1         0         0       1 30.0000     1     2
+## 5           1         0         0       0 25.0000     1     2
+## 6           1         0         0       1 48.0000     0     0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Use dummyVars to create dummy</span>
+dummies &lt;-<span class="st"> </span><span class="kw">dummyVars</span>(survived <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> etitanic)
+<span class="kw">head</span>(<span class="kw">predict</span>(dummies, <span class="dt">newdata =</span> etitanic))</code></pre></div>
+<pre><code>##   pclass.1st pclass.2nd pclass.3rd sex.female sex.male     age sibsp parch
+## 1          1          0          0          1        0 29.0000     0     0
+## 2          1          0          0          0        1  0.9167     1     2
+## 3          1          0          0          1        0  2.0000     1     2
+## 4          1          0          0          0        1 30.0000     1     2
+## 5          1          0          0          1        0 25.0000     1     2
+## 6          1          0          0          0        1 48.0000     0     0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Near zero variance
+<span class="kw">data</span>(mdrr)
+<span class="kw">data.frame</span>(<span class="kw">table</span>(mdrrDescr<span class="op">$</span>nR11))</code></pre></div>
+<pre><code>##   Var1 Freq
+## 1    0  501
+## 2    1    4
+## 3    2   23</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nzv &lt;-<span class="st"> </span><span class="kw">nearZeroVar</span>(mdrrDescr, <span class="dt">saveMetrics=</span> <span class="ot">TRUE</span>)
+nzv[nzv<span class="op">$</span>nzv,][<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,]</code></pre></div>
+<pre><code>##        freqRatio percentUnique zeroVar  nzv
+## nTB     23.00000     0.3787879   FALSE TRUE
+## nBR    131.00000     0.3787879   FALSE TRUE
+## nI     527.00000     0.3787879   FALSE TRUE
+## nR03   527.00000     0.3787879   FALSE TRUE
+## nR08   527.00000     0.3787879   FALSE TRUE
+## nR11    21.78261     0.5681818   FALSE TRUE
+## nR12    57.66667     0.3787879   FALSE TRUE
+## D.Dr03 527.00000     0.3787879   FALSE TRUE
+## D.Dr07 123.50000     5.8712121   FALSE TRUE
+## D.Dr08 527.00000     0.3787879   FALSE TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nzv &lt;-<span class="st"> </span><span class="kw">nearZeroVar</span>(mdrrDescr)
+filteredDescr &lt;-<span class="st"> </span>mdrrDescr[, <span class="op">-</span>nzv]
+<span class="kw">dim</span>(filteredDescr)</code></pre></div>
+<pre><code>## [1] 528 297</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## correlated predictors
+descrCor &lt;-<span class="st">  </span><span class="kw">cor</span>(filteredDescr)
+highCorr &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="kw">abs</span>(descrCor[<span class="kw">upper.tri</span>(descrCor)]) <span class="op">&gt;</span><span class="st"> </span>.<span class="dv">999</span>)
+<span class="co"># there are 65 descriptors that are almost perfectly correlated</span>
+
+<span class="kw">summary</span>(descrCor[<span class="kw">upper.tri</span>(descrCor)])</code></pre></div>
+<pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## -0.99610 -0.05373  0.25010  0.26080  0.65530  1.00000</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># remove var with corr above 0.75</span>
+highlyCorDescr &lt;-<span class="st"> </span><span class="kw">findCorrelation</span>(descrCor, <span class="dt">cutoff =</span> .<span class="dv">75</span>)
+filteredDescr &lt;-<span class="st"> </span>filteredDescr[,<span class="op">-</span>highlyCorDescr]
+descrCor2 &lt;-<span class="st"> </span><span class="kw">cor</span>(filteredDescr)
+<span class="kw">summary</span>(descrCor2[<span class="kw">upper.tri</span>(descrCor2)])</code></pre></div>
+<pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## -0.70730 -0.05378  0.04418  0.06692  0.18860  0.74460</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Linear dependencies
+<span class="co"># comboInfo &lt;- findLinearCombos(ltfrDesign)</span>
+<span class="co"># comboInfo</span>
+<span class="co"># ltfrDesign[, -comboInfo$remove]</span></code></pre></div></li>
+<li><strong>preProcess</strong>
+<ul>
+<li>Operation on predictor like centering, scaling, …</li>
+<li>can be use in train() function</li>
+<li>Imputation
+<ul>
+<li>KNN : For an arbitrary sample, the K closest neighbors are found in the training set and the value for the predictor is imputed using these values (e.g. using the mean)</li>
+<li>Bagged tree : For each predictor in the data, a bagged tree is created using all of the other predictors in the training set. When a new sample has a missing predictor value, the bagged model is used to predict the value.</li>
+</ul></li>
+<li>TRansforming predictor : need to be centered and scaled</li>
+<li>PCA</li>
+<li>boxcox : data need to be greater than zero</li>
+<li>exponential transformation, Yeo-Johnson ..</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(AppliedPredictiveModeling)
+<span class="kw">data</span>(schedulingData)
+
+<span class="co"># The data are a mix of categorical and numeric predictors. </span>
+<span class="co">#  Yeo-Johnson transformation on the continuous predictors then center and scale them. </span>
+
+pp_hpc &lt;-<span class="st"> </span><span class="kw">preProcess</span>(schedulingData[, <span class="op">-</span><span class="dv">8</span>], 
+                     <span class="dt">method =</span> <span class="kw">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;scale&quot;</span>, <span class="st">&quot;YeoJohnson&quot;</span>))
+pp_hpc</code></pre></div>
+<pre><code>## Created from 4331 samples and 7 variables
+## 
+## Pre-processing:
+##   - centered (5)
+##   - ignored (2)
+##   - scaled (5)
+##   - Yeo-Johnson transformation (5)
+## 
+## Lambda estimates for Yeo-Johnson transformation:
+## -0.08, -0.03, -1.05, -1.1, 1.44</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Use predict to get transformed data</span>
+transformed &lt;-<span class="st"> </span><span class="kw">predict</span>(pp_hpc, <span class="dt">newdata =</span> schedulingData[, <span class="op">-</span><span class="dv">8</span>])
+<span class="kw">head</span>(transformed)</code></pre></div>
+<pre><code>##   Protocol  Compounds InputFields Iterations NumPending         Hour Day
+## 1        E  1.2289592  -0.6324580 -0.0615593  -0.554123  0.004586516 Tue
+## 2        E -0.6065826  -0.8120473 -0.0615593  -0.554123 -0.043733201 Tue
+## 3        E -0.5719534  -1.0131504 -2.7894869  -0.554123 -0.034967177 Thu
+## 4        E -0.6427737  -1.0047277 -0.0615593  -0.554123 -0.964170752 Fri
+## 5        E -0.5804713  -0.9564504 -0.0615593  -0.554123 -0.902085020 Fri
+## 6        E -0.5804713  -0.9564504 -0.0615593  -0.554123  0.698108782 Wed</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># the predictor for the number of pending jobs, has a very sparse and unbalanced distribution:</span>
+<span class="kw">mean</span>(schedulingData<span class="op">$</span>NumPending <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)</code></pre></div>
+<pre><code>## [1] 0.7561764</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># We can add a filter to check for zero- or near zero-variance predictors prior to running the pre-processing calculations : </span>
+
+pp_no_nzv &lt;-<span class="st"> </span><span class="kw">preProcess</span>(schedulingData[, <span class="op">-</span><span class="dv">8</span>], 
+                        <span class="dt">method =</span> <span class="kw">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;scale&quot;</span>, <span class="st">&quot;YeoJohnson&quot;</span>, <span class="st">&quot;nzv&quot;</span>))
+pp_no_nzv</code></pre></div>
+<pre><code>## Created from 4331 samples and 7 variables
+## 
+## Pre-processing:
+##   - centered (4)
+##   - ignored (2)
+##   - removed (1)
+##   - scaled (4)
+##   - Yeo-Johnson transformation (4)
+## 
+## Lambda estimates for Yeo-Johnson transformation:
+## -0.08, -0.03, -1.05, 1.44</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">predict</span>(pp_no_nzv, <span class="dt">newdata =</span> schedulingData[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="op">-</span><span class="dv">8</span>])</code></pre></div>
+<pre><code>##   Protocol  Compounds InputFields Iterations         Hour Day
+## 1        E  1.2289592  -0.6324580 -0.0615593  0.004586516 Tue
+## 2        E -0.6065826  -0.8120473 -0.0615593 -0.043733201 Tue
+## 3        E -0.5719534  -1.0131504 -2.7894869 -0.034967177 Thu
+## 4        E -0.6427737  -1.0047277 -0.0615593 -0.964170752 Fri
+## 5        E -0.5804713  -0.9564504 -0.0615593 -0.902085020 Fri
+## 6        E -0.5804713  -0.9564504 -0.0615593  0.698108782 Wed</code></pre>
+<ul>
+<li><strong>Class distance calculations</strong></li>
+</ul>
+<p>caret contain fonction to generate new predictors variables based on distance to class centroids (see linear discriminant analysis). For each level of a factor variable, the class centroid and covariance matrix is calculated. For new samples, the Mahalanobis distance to each of the class centroids is computed and can be used as an additional predictor. This can be helpful for non-linear models when the true decision boundary is actually linear.</p>
+</div>
+<div id="data-splitting" class="section level2">
+<h2><span class="header-section-number">2.2</span> Data Splitting</h2>
+<ul>
+<li><strong>Simple splitting based on the outcome</strong>
+<ul>
+<li>createDataPartition : create balanced split of the data</li>
+<li>list = FALSE avoids returning the data as a list</li>
+<li>times, that can create multiple splits at once</li>
+<li>the data indices are returned in a list of integer vectors</li>
+<li>createResample can be used to make simple bootstrap samples createFolds can be used to generate balanced crossvalidation groupings from a set of data.</li>
+</ul></li>
+<li><strong>splitting based on the predictors</strong>
+<ul>
+<li>maxDissim can be used to create subsamples using a maximum dissimilarity approach.</li>
+</ul></li>
+<li><strong>Data splitting for time series</strong>
+<ul>
+<li>createTimeSlices</li>
+<li>initialWindow: the initial number of consecutive values in each training set sample</li>
+<li>horizon: The number of consecutive values in test set sample</li>
+<li>fixedWindow: A logical: if FALSE, the training set always start at the first sample and the training set size will vary over data splits.</li>
+</ul></li>
+<li><strong>splitting with important groups</strong>
+<ul>
+<li>see documentation package</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(mlbench)</code></pre></div>
+<pre><code>## Warning: package &#39;mlbench&#39; was built under R version 3.3.3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="dt">file =</span> <span class="st">&quot;C:/Website Rmarkdown/bookdown/save/Sonar.RData&quot;</span>)
+ 
+<span class="co"># inTraining &lt;- createDataPartition(Sonar$Class, p = .75, list = FALSE)</span>
+<span class="co"># training &lt;- Sonar[ inTraining,]</span>
+training =<span class="st"> </span>sonar_train
+<span class="co"># testing  &lt;- Sonar[-inTraining,]</span>
+testing =<span class="st"> </span>sonar_test</code></pre></div>
+</div>
+<div id="model-training-and-tuning" class="section level2">
+<h2><span class="header-section-number">2.3</span> Model Training and tuning</h2>
+<ul>
+<li>** train() function**
+<ul>
+<li>evaluate, using resampling, the effect of model tuning parameters on performance</li>
+<li>Choose the optimalâ model across these parameters</li>
+<li>Estimate model performance from a training set</li>
+</ul></li>
+<li><strong>Train() algorithm</strong>
+<ul>
+<li>for each parameter set
+<ul>
+<li>for each resampling iteration
+<ul>
+<li>fit</li>
+<li>predict on train set out of sample</li>
+</ul></li>
+<li>end</li>
+<li>calculate average perfomance</li>
+</ul></li>
+<li>end</li>
+<li>determine optimal paramater set</li>
+<li>fit final model</li>
+</ul></li>
+<li><strong>information to done</strong>
+<ul>
+<li>model type</li>
+<li>parameter value</li>
+<li>resampling solution</li>
+<li><p>k fold crossvalidation : Te original sample is randomly partitioned into k equal sized subsamples. Of the k subsamples, a single subsample is retained as the validation data for testing the model, and the remaining k-1 subsamples are used as training data. And repeated. The k results can then be averaged to produce a single estimation.</p></li>
+<li>Leave one out</li>
+<li><p>Bootstrap : random sampling with replacement</p></li>
+</ul></li>
+</ul>
+<div id="exemple-basic-tuning-for-boosted-tree-model-gbm" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Exemple : Basic tuning for boosted tree model GBM</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fitControl &lt;-<span class="st"> </span><span class="kw">trainControl</span>(    <span class="dt">method =</span> <span class="st">&quot;repeatedcv&quot;</span>  
+                             , <span class="dt">number =</span> <span class="dv">10</span>,          ## 10-fold CV  : number of fold or number of resampling iteration
+                               <span class="dt">repeats =</span> <span class="dv">10</span>)         ## repeated ten times
+ 
+<span class="co"># gbmFit1 &lt;- train(Class ~ ., data = training, </span>
+<span class="co">#                  method = &quot;gbm&quot;, </span>
+<span class="co">#                  trControl = fitControl,</span>
+<span class="co">#                  ## This last option is actually one for gbm() that passes through</span>
+<span class="co">#                  verbose = FALSE)</span>
+
+<span class="co"># save(gbmFit1, file= paste(path, &quot;gbmfit1.RData&quot;,sep=&quot;&quot; ))</span>
+<span class="kw">load</span>(<span class="dt">file=</span> <span class="kw">paste</span>(path, <span class="st">&quot;gbmfit1.RData&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;&quot;</span> ))
+
+gbmFit1 </code></pre></div>
+<pre><code>## Stochastic Gradient Boosting 
+## 
+## 125 samples
+##  60 predictor
+##   2 classes: &#39;M&#39;, &#39;R&#39; 
+## 
+## No pre-processing
+## Resampling: Cross-Validated (10 fold, repeated 10 times) 
+## Summary of sample sizes: 113, 111, 113, 112, 113, 113, ... 
+## Resampling results across tuning parameters:
+## 
+##   interaction.depth  n.trees  Accuracy   Kappa    
+##   1                   50      0.7951923  0.5889691
+##   1                  100      0.8030403  0.6043046
+##   1                  150      0.8131868  0.6246497
+##   2                   50      0.8161630  0.6305226
+##   2                  100      0.8253938  0.6491769
+##   2                  150      0.8308059  0.6599040
+##   3                   50      0.8129945  0.6245649
+##   3                  100      0.8247344  0.6475546
+##   3                  150      0.8336630  0.6657373
+## 
+## Tuning parameter &#39;shrinkage&#39; was held constant at a value of 0.1
+## 
+## Tuning parameter &#39;n.minobsinnode&#39; was held constant at a value of 10
+## Accuracy was used to select the optimal model using the largest value.
+## The final values used for the model were n.trees = 150,
+##  interaction.depth = 3, shrinkage = 0.1 and n.minobsinnode = 10.</code></pre>
+<ul>
+<li>For a gradient boosting machine (GBM) model, there are three main tuning parameters:
+<ul>
+<li>number of iterations, i.e.trees, (called n.trees in the gbm function)</li>
+<li>complexity of the tree, called interaction.depth</li>
+<li>learning rate: how quickly the algorithm adapts, called shrinkage</li>
+<li>the minimum number of training set samples in a node to commence splitting (n.minobsinnode)</li>
+</ul></li>
+</ul>
+<p>Train() can automatically create a grid of tuning parameters. By default, if p is the number of tuning parameters, the grid size is 3^p.</p>
+</div>
+<div id="customizing-the-tuning-process" class="section level3">
+<h3><span class="header-section-number">2.3.2</span> Customizing the Tuning Process</h3>
+<ul>
+<li>**Alternate Tuning Grid*s** : tuneGrid option in train
+<ul>
+<li>Par dÃ©faut train chose model with largest perfomance value.</li>
+<li>Il existe d’autr methode de recherche pour le uning des paramÃ¨tre comme random search ( option search = “random” in the call to trainControl)</li>
+</ul></li>
+<li><strong>Plotting the resampling profile</strong>
+<ul>
+<li>Plot function to examine the relationship between the estimates of the performance and the tuning parameters.</li>
+</ul></li>
+<li><strong>trainControl</strong> : generates parameters that further control how models are created
+<ul>
+<li>Method = boot, cv, repeatedcv , …</li>
+<li>oob = out-of-bag estimates (for DT or RF)</li>
+<li>number and repeats (only if repeatedcv): number controls with the numbe r of folds in K-fold cross-validation or number of resampling iterations for bootstrapping</li>
+<li>allowParallel: a logical that governs whether train should use parallel processing (if availible).</li>
+<li>summaryFunction that specifies a function for computing performance for user defined performance metrics</li>
+</ul></li>
+<li><strong>Alternate Performance Metrics</strong>
+<ul>
+<li>defaut ; RMSE, MSA, R2 for regression and accurancy , kappa for classification.</li>
+<li>twoClassSummary() function, will compute the sensitivity, specificity and area under the ROC curve:</li>
+</ul></li>
+<li><strong>Choosing the Final model</strong>
+<ul>
+<li>train allows the user to specify alternate rules for selecting the final model. The argument selectionFunction can be used to supply a function to algorithmically determine the final model. User-defined functions can be used.</li>
+<li>tolerance function could be used to find a less complex model.</li>
+</ul></li>
+<li><strong>Extracting Predictions and Class Probabilities</strong>
+<ul>
+<li>objects produced by the train function contain the optimized model in the finalModel sub-object</li>
+<li>predict.train, the type options are standardized to be “class” and “prob”</li>
+</ul></li>
+<li><strong>Fitting Models Without Parameter Tuning</strong>
+<ul>
+<li>In cases where the model tuning values are known, train can be used to fit the model to the entire training set without any resampling or parameter tuning. Using the method = “none” option in trainControl</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gbmGrid &lt;-<span class="st">  </span><span class="kw">expand.grid</span>(<span class="dt">interaction.depth =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">9</span>), 
+                        <span class="dt">n.trees =</span> (<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>)<span class="op">*</span><span class="dv">50</span>, 
+                        <span class="dt">shrinkage =</span> <span class="fl">0.1</span>,
+                        <span class="dt">n.minobsinnode =</span> <span class="dv">20</span>)
+ 
+<span class="co"># gbmFit2 &lt;- train(Class ~ ., data = training, </span>
+<span class="co">#                  method = &quot;gbm&quot;, </span>
+<span class="co">#                  trControl = fitControl, </span>
+<span class="co">#                  verbose = FALSE, </span>
+<span class="co">#                  ## Now specify the exact models </span>
+<span class="co">#                  ## to evaluate:</span>
+<span class="co">#                  tuneGrid = gbmGrid)</span>
+<span class="co"># </span>
+<span class="co"># save(gbmFit2,file= paste(path, &quot;gbmFit2.RData&quot;,sep=&quot;&quot; ))</span>
+
+<span class="kw">load</span>(<span class="dt">file=</span><span class="kw">paste</span>(path, <span class="st">&quot;gbmFit2.RData&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;&quot;</span> ))
+gbmFit2</code></pre></div>
+<pre><code>## Stochastic Gradient Boosting 
+## 
+## 125 samples
+##  60 predictor
+##   2 classes: &#39;M&#39;, &#39;R&#39; 
+## 
+## No pre-processing
+## Resampling: Cross-Validated (10 fold, repeated 10 times) 
+## Summary of sample sizes: 112, 113, 113, 113, 113, 113, ... 
+## Resampling results across tuning parameters:
+## 
+##   interaction.depth  n.trees  Accuracy   Kappa    
+##   1                    50     0.7952747  0.5890794
+##   1                   100     0.8237271  0.6458003
+##   1                   150     0.8209524  0.6401562
+##   1                   200     0.8243407  0.6472826
+##   1                   250     0.8191117  0.6363364
+##   1                   300     0.8352656  0.6690219
+##   1                   350     0.8219139  0.6419521
+##   1                   400     0.8243407  0.6467396
+##   1                   450     0.8229304  0.6436160
+##   1                   500     0.8267857  0.6516025
+##   1                   550     0.8261996  0.6507117
+##   1                   600     0.8246062  0.6471799
+##   1                   650     0.8245330  0.6471900
+##   1                   700     0.8245513  0.6470475
+##   1                   750     0.8229945  0.6441716
+##   1                   800     0.8230037  0.6439807
+##   1                   850     0.8253205  0.6488246
+##   1                   900     0.8254396  0.6489119
+##   1                   950     0.8228205  0.6438626
+##   1                  1000     0.8205128  0.6393080
+##   1                  1050     0.8219780  0.6421932
+##   1                  1100     0.8244139  0.6468354
+##   1                  1150     0.8242949  0.6467066
+##   1                  1200     0.8227473  0.6435008
+##   1                  1250     0.8234615  0.6450454
+##   1                  1300     0.8232784  0.6446687
+##   1                  1350     0.8218681  0.6418844
+##   1                  1400     0.8235256  0.6452181
+##   1                  1450     0.8260256  0.6502181
+##   1                  1500     0.8259615  0.6499707
+##   5                    50     0.8094322  0.6172790
+##   5                   100     0.8355952  0.6698408
+##   5                   150     0.8370696  0.6729793
+##   5                   200     0.8377106  0.6739154
+##   5                   250     0.8417491  0.6821800
+##   5                   300     0.8418040  0.6819201
+##   5                   350     0.8349359  0.6679888
+##   5                   400     0.8348077  0.6677639
+##   5                   450     0.8355220  0.6694073
+##   5                   500     0.8347985  0.6683104
+##   5                   550     0.8293407  0.6570683
+##   5                   600     0.8322436  0.6627737
+##   5                   650     0.8285165  0.6553292
+##   5                   700     0.8292216  0.6567569
+##   5                   750     0.8275549  0.6532773
+##   5                   800     0.8283883  0.6549422
+##   5                   850     0.8291575  0.6565849
+##   5                   900     0.8299267  0.6580735
+##   5                   950     0.8299908  0.6581782
+##   5                  1000     0.8282692  0.6547392
+##   5                  1050     0.8332051  0.6647494
+##   5                  1100     0.8330128  0.6643746
+##   5                  1150     0.8290385  0.6563774
+##   5                  1200     0.8306410  0.6596469
+##   5                  1250     0.8298718  0.6580788
+##   5                  1300     0.8298718  0.6580788
+##   5                  1350     0.8282692  0.6549547
+##   5                  1400     0.8291667  0.6567222
+##   5                  1450     0.8282692  0.6549874
+##   5                  1500     0.8307051  0.6598866
+##   9                    50     0.8039377  0.6058817
+##   9                   100     0.8198901  0.6380325
+##   9                   150     0.8278938  0.6544494
+##   9                   200     0.8328846  0.6640918
+##   9                   250     0.8241026  0.6467630
+##   9                   300     0.8203205  0.6384411
+##   9                   350     0.8204487  0.6391572
+##   9                   400     0.8197527  0.6375170
+##   9                   450     0.8205678  0.6393621
+##   9                   500     0.8267308  0.6514263
+##   9                   550     0.8210897  0.6400578
+##   9                   600     0.8219872  0.6420808
+##   9                   650     0.8226923  0.6437323
+##   9                   700     0.8219139  0.6421279
+##   9                   750     0.8220513  0.6422191
+##   9                   800     0.8189744  0.6358772
+##   9                   850     0.8239011  0.6459592
+##   9                   900     0.8254396  0.6490944
+##   9                   950     0.8253114  0.6490100
+##   9                  1000     0.8237729  0.6458428
+##   9                  1050     0.8246703  0.6476778
+##   9                  1100     0.8244780  0.6473060
+##   9                  1150     0.8230678  0.6445128
+##   9                  1200     0.8208150  0.6399585
+##   9                  1250     0.8256227  0.6495035
+##   9                  1300     0.8254396  0.6491686
+##   9                  1350     0.8294139  0.6569814
+##   9                  1400     0.8231227  0.6444333
+##   9                  1450     0.8230678  0.6442198
+##   9                  1500     0.8260897  0.6503138
+## 
+## Tuning parameter &#39;shrinkage&#39; was held constant at a value of 0.1
+## 
+## Tuning parameter &#39;n.minobsinnode&#39; was held constant at a value of 20
+## Accuracy was used to select the optimal model using the largest value.
+## The final values used for the model were n.trees = 300,
+##  interaction.depth = 5, shrinkage = 0.1 and n.minobsinnode = 20.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">trellis.par.set</span>(<span class="kw">caretTheme</span>())
+<span class="kw">ggplot</span>(gbmFit2, <span class="dt">metric =</span> <span class="st">&quot;Kappa&quot;</span>)</code></pre></div>
+<p><img src="13-caret_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fitControl &lt;-<span class="st"> </span><span class="kw">trainControl</span>(<span class="dt">method =</span> <span class="st">&quot;repeatedcv&quot;</span>,
+                           <span class="dt">number =</span> <span class="dv">10</span>,
+                           <span class="dt">repeats =</span> <span class="dv">10</span>,           
+                           <span class="dt">classProbs =</span> <span class="ot">TRUE</span>, ## Estimate class probabilities
+                           ## Evaluate performance using 
+                           ## the following function
+                           <span class="dt">summaryFunction =</span> twoClassSummary)
+
+<span class="co"># gbmFit3 &lt;- train(Class ~ ., data = training, </span>
+<span class="co">#                  method = &quot;gbm&quot;, </span>
+<span class="co">#                  trControl = fitControl, </span>
+<span class="co">#                  verbose = FALSE, </span>
+<span class="co">#                  tuneGrid = gbmGrid,</span>
+<span class="co">#                  ## Specify which metric to optimize</span>
+<span class="co">#                  metric = &quot;ROC&quot;)</span>
+<span class="co"># save(gbmFit3,file= paste(path, &quot;gbmFit3.RData&quot;,sep=&quot;&quot; ))</span>
+
+<span class="kw">load</span>(<span class="dt">file=</span><span class="kw">paste</span>(path, <span class="st">&quot;gbmFit3.RData&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;&quot;</span> ))
+
+gbmFit3</code></pre></div>
+<pre><code>## Stochastic Gradient Boosting 
+## 
+## 125 samples
+##  60 predictor
+##   2 classes: &#39;M&#39;, &#39;R&#39; 
+## 
+## No pre-processing
+## Resampling: Cross-Validated (10 fold, repeated 10 times) 
+## Summary of sample sizes: 113, 112, 113, 113, 111, 113, ... 
+## Resampling results across tuning parameters:
+## 
+##   interaction.depth  n.trees  ROC        Sens       Spec     
+##   1                    50     0.8777211  0.8304762  0.7542857
+##   1                   100     0.8940363  0.8545238  0.8016667
+##   1                   150     0.8937075  0.8583333  0.8042857
+##   1                   200     0.8940023  0.8583333  0.7964286
+##   1                   250     0.8933333  0.8626190  0.8011905
+##   1                   300     0.8944898  0.8678571  0.8061905
+##   1                   350     0.8995181  0.8692857  0.8092857
+##   1                   400     0.8976474  0.8676190  0.8169048
+##   1                   450     0.8972222  0.8633333  0.8104762
+##   1                   500     0.8977438  0.8614286  0.8123810
+##   1                   550     0.8960714  0.8597619  0.8088095
+##   1                   600     0.8984580  0.8597619  0.8057143
+##   1                   650     0.8985034  0.8514286  0.8057143
+##   1                   700     0.8979535  0.8533333  0.8071429
+##   1                   750     0.8969558  0.8535714  0.8071429
+##   1                   800     0.8960034  0.8535714  0.8038095
+##   1                   850     0.8954478  0.8519048  0.8054762
+##   1                   900     0.8944501  0.8530952  0.8021429
+##   1                   950     0.8962302  0.8533333  0.8002381
+##   1                  1000     0.8965873  0.8516667  0.8121429
+##   1                  1050     0.8968707  0.8516667  0.8038095
+##   1                  1100     0.8956009  0.8516667  0.8092857
+##   1                  1150     0.8960374  0.8483333  0.8057143
+##   1                  1200     0.8954819  0.8485714  0.8104762
+##   1                  1250     0.8936961  0.8435714  0.8095238
+##   1                  1300     0.8954025  0.8497619  0.8057143
+##   1                  1350     0.8938946  0.8464286  0.8040476
+##   1                  1400     0.8923866  0.8464286  0.8040476
+##   1                  1450     0.8916327  0.8480952  0.8054762
+##   1                  1500     0.8923073  0.8497619  0.8054762
+##   5                    50     0.8746542  0.8269048  0.7692857
+##   5                   100     0.8948016  0.8423810  0.7840476
+##   5                   150     0.8944331  0.8502381  0.7980952
+##   5                   200     0.8927664  0.8588095  0.7959524
+##   5                   250     0.8954989  0.8554762  0.8023810
+##   5                   300     0.8937925  0.8552381  0.8054762
+##   5                   350     0.8918481  0.8554762  0.8073810
+##   5                   400     0.8942120  0.8602381  0.8092857
+##   5                   450     0.8898696  0.8602381  0.8126190
+##   5                   500     0.8920181  0.8504762  0.8076190
+##   5                   550     0.8919274  0.8504762  0.8059524
+##   5                   600     0.8931236  0.8488095  0.8028571
+##   5                   650     0.8930499  0.8523810  0.8042857
+##   5                   700     0.8940420  0.8440476  0.8073810
+##   5                   750     0.8946372  0.8473810  0.8040476
+##   5                   800     0.8959070  0.8440476  0.8073810
+##   5                   850     0.8949603  0.8485714  0.8090476
+##   5                   900     0.8946882  0.8421429  0.8076190
+##   5                   950     0.8942120  0.8433333  0.8092857
+##   5                  1000     0.8926644  0.8435714  0.8076190
+##   5                  1050     0.8933390  0.8483333  0.8107143
+##   5                  1100     0.8941723  0.8469048  0.8107143
+##   5                  1150     0.8947279  0.8483333  0.8171429
+##   5                  1200     0.8940079  0.8452381  0.8171429
+##   5                  1250     0.8909977  0.8469048  0.8138095
+##   5                  1300     0.8926984  0.8416667  0.8090476
+##   5                  1350     0.8918651  0.8435714  0.8140476
+##   5                  1400     0.8937358  0.8454762  0.8104762
+##   5                  1450     0.8936961  0.8450000  0.8090476
+##   5                  1500     0.8944104  0.8483333  0.8138095
+##   9                    50     0.8792517  0.8414286  0.7738095
+##   9                   100     0.8923696  0.8421429  0.7907143
+##   9                   150     0.8922846  0.8633333  0.7971429
+##   9                   200     0.8911905  0.8561905  0.7921429
+##   9                   250     0.8906009  0.8611905  0.8014286
+##   9                   300     0.8902324  0.8614286  0.7945238
+##   9                   350     0.8909127  0.8595238  0.7957143
+##   9                   400     0.8907937  0.8611905  0.7959524
+##   9                   450     0.8890873  0.8583333  0.7978571
+##   9                   500     0.8908333  0.8580952  0.7959524
+##   9                   550     0.8895125  0.8547619  0.8026190
+##   9                   600     0.8905045  0.8511905  0.8009524
+##   9                   650     0.8901814  0.8466667  0.8011905
+##   9                   700     0.8901474  0.8483333  0.8009524
+##   9                   750     0.8924490  0.8469048  0.8059524
+##   9                   800     0.8942347  0.8471429  0.8061905
+##   9                   850     0.8926190  0.8407143  0.8045238
+##   9                   900     0.8939966  0.8464286  0.8045238
+##   9                   950     0.8926927  0.8435714  0.8028571
+##   9                  1000     0.8917857  0.8388095  0.7995238
+##   9                  1050     0.8926134  0.8466667  0.8059524
+##   9                  1100     0.8923753  0.8438095  0.8109524
+##   9                  1150     0.8935261  0.8421429  0.8142857
+##   9                  1200     0.8928401  0.8390476  0.8126190
+##   9                  1250     0.8920522  0.8359524  0.8109524
+##   9                  1300     0.8923299  0.8373810  0.8126190
+##   9                  1350     0.8924093  0.8407143  0.8126190
+##   9                  1400     0.8921429  0.8407143  0.8092857
+##   9                  1450     0.8932143  0.8409524  0.8109524
+##   9                  1500     0.8926247  0.8392857  0.8109524
+## 
+## Tuning parameter &#39;shrinkage&#39; was held constant at a value of 0.1
+## 
+## Tuning parameter &#39;n.minobsinnode&#39; was held constant at a value of 20
+## ROC was used to select the optimal model using the largest value.
+## The final values used for the model were n.trees = 350,
+##  interaction.depth = 1, shrinkage = 0.1 and n.minobsinnode = 20.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">whichTwoPct &lt;-<span class="st"> </span><span class="kw">tolerance</span>(gbmFit3<span class="op">$</span>results, <span class="dt">metric =</span> <span class="st">&quot;ROC&quot;</span>, 
+                         <span class="dt">tol =</span> <span class="dv">2</span>, <span class="dt">maximize =</span> <span class="ot">TRUE</span>)  
+gbmFit3<span class="op">$</span>results[whichTwoPct,<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]</code></pre></div>
+<pre><code>##   shrinkage interaction.depth n.minobsinnode n.trees       ROC      Sens
+## 2       0.1                 1             20     100 0.8940363 0.8545238</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># This indicates that we can get a less complex model with an area under the ROC curve of 0.901 (compared to the pick the best value of 0.914).</span>
+
+<span class="co"># predict(gbmFit3, newdata = head(testing))</span>
+
+<span class="co"># predict(gbmFit3, newdata = head(testing), type = &quot;prob&quot;)</span>
+
+
+<span class="co"># Fitting Models Without Parameter Tuning</span>
+
+fitControl &lt;-<span class="st"> </span><span class="kw">trainControl</span>(<span class="dt">method =</span> <span class="st">&quot;none&quot;</span>, <span class="dt">classProbs =</span> <span class="ot">TRUE</span>)
+
+<span class="kw">set.seed</span>(<span class="dv">825</span>)
+<span class="co"># gbmFit4 &lt;- train(Class ~ ., data = training, </span>
+<span class="co">#                  method = &quot;gbm&quot;, </span>
+<span class="co">#                  trControl = fitControl, </span>
+<span class="co">#                  verbose = FALSE, </span>
+<span class="co">#                  ## Only a single model can be passed to the</span>
+<span class="co">#                  ## function when no resampling is used:</span>
+<span class="co">#                  tuneGrid = data.frame(interaction.depth = 4,</span>
+<span class="co">#                                        n.trees = 100,</span>
+<span class="co">#                                        shrinkage = .1,</span>
+<span class="co">#                                        n.minobsinnode = 20),</span>
+<span class="co">#                  metric = &quot;ROC&quot;)</span>
+
+<span class="co"># save(gbmFit4,file= paste(path, &quot;gbmFit4.RData&quot;,sep=&quot;&quot; ))</span>
+
+<span class="kw">load</span>(<span class="dt">file=</span><span class="kw">paste</span>(path, <span class="st">&quot;gbmFit4.RData&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;&quot;</span> ))
+
+gbmFit4</code></pre></div>
+<pre><code>## Stochastic Gradient Boosting 
+## 
+## 125 samples
+##  60 predictor
+##   2 classes: &#39;M&#39;, &#39;R&#39; 
+## 
+## No pre-processing
+## Resampling: None</code></pre>
+<ul>
+<li><strong>Random hyperparameter search</strong></li>
+</ul>
+<p>To use random search, another option is available in trainControl called search. Possible values of this argument are “grid” and “random”. The built-in models contained in caret contain code to generate random tuning parameter combinations. The total number of unique combinations is specified by the tuneLength option to train.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fitControl &lt;-<span class="st"> </span><span class="kw">trainControl</span>(<span class="dt">method =</span> <span class="st">&quot;repeatedcv&quot;</span>,
+                           <span class="dt">number =</span> <span class="dv">5</span>,
+                           <span class="dt">repeats =</span> <span class="dv">3</span>,
+                           <span class="dt">classProbs =</span> <span class="ot">TRUE</span>,
+                           <span class="dt">summaryFunction =</span> twoClassSummary,
+                           <span class="dt">search =</span> <span class="st">&quot;random&quot;</span>,
+                           <span class="dt">verboseIter =</span>  <span class="ot">FALSE</span>)
+
+<span class="co"># rda_fit &lt;- train(Class ~ ., data = training, </span>
+<span class="co">#                   method = &quot;rda&quot;,</span>
+<span class="co">#                   metric = &quot;ROC&quot;,</span>
+<span class="co">#                   tuneLength = 30,</span>
+<span class="co">#                   trControl = fitControl)</span>
+<span class="co"># </span>
+<span class="co"># save(rda_fit,file= paste(path, &quot;rda_fit.RData&quot;,sep=&quot;&quot; ))</span>
+
+<span class="kw">load</span>(<span class="dt">file=</span><span class="kw">paste</span>(path, <span class="st">&quot;rda_fit.RData&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;&quot;</span> ))
+
+rda_fit</code></pre></div>
+<pre><code>## Regularized Discriminant Analysis 
+## 
+## 125 samples
+##  60 predictor
+##   2 classes: &#39;M&#39;, &#39;R&#39; 
+## 
+## No pre-processing
+## Resampling: Cross-Validated (5 fold, repeated 3 times) 
+## Summary of sample sizes: 100, 99, 101, 100, 100, 100, ... 
+## Resampling results across tuning parameters:
+## 
+##   gamma       lambda       ROC        Sens       Spec     
+##   0.03177874  0.767664044  0.8443677  0.8153846  0.7529915
+##   0.03868192  0.499283304  0.8470113  0.8158120  0.7692308
+##   0.11834801  0.974493793  0.8548214  0.8094017  0.7414530
+##   0.12391186  0.018063038  0.8332950  0.8209402  0.7688034
+##   0.13442487  0.868918547  0.8590757  0.8572650  0.7307692
+##   0.19249104  0.335761243  0.8475619  0.8320513  0.7380342
+##   0.23568481  0.064135040  0.8410585  0.8324786  0.7431624
+##   0.23814584  0.986270274  0.8543694  0.8205128  0.7692308
+##   0.25082994  0.674919744  0.8686199  0.8688034  0.7307692
+##   0.28285931  0.576888058  0.8632287  0.8423077  0.7098291
+##   0.29099029  0.474277013  0.8614152  0.8423077  0.7059829
+##   0.29601805  0.002963208  0.8413516  0.8324786  0.7482906
+##   0.33633553  0.283586169  0.8554350  0.8376068  0.7115385
+##   0.41798776  0.881581948  0.8562158  0.8414530  0.7264957
+##   0.45885413  0.701431940  0.8620781  0.8893162  0.7102564
+##   0.48684373  0.545997273  0.8705375  0.8735043  0.6837607
+##   0.48845661  0.377704420  0.8678364  0.8585470  0.6786325
+##   0.51491517  0.592224877  0.8669242  0.8893162  0.7047009
+##   0.53206420  0.339941226  0.8661900  0.8585470  0.6794872
+##   0.54020648  0.253930177  0.8619521  0.8585470  0.6846154
+##   0.56009903  0.183772303  0.8602756  0.8427350  0.6846154
+##   0.56472058  0.995162379  0.8480304  0.7833333  0.7585470
+##   0.58045730  0.773613530  0.8595880  0.8628205  0.7106838
+##   0.67085142  0.287354882  0.8641984  0.8841880  0.6521368
+##   0.69503284  0.348973440  0.8597304  0.8841880  0.6410256
+##   0.72206263  0.653406920  0.8582512  0.8576923  0.6619658
+##   0.76035804  0.183676074  0.8548050  0.8632479  0.6465812
+##   0.81091174  0.317173641  0.8526052  0.8581197  0.6141026
+##   0.86234436  0.272931617  0.8494549  0.8482906  0.6192308
+##   0.98847635  0.580160726  0.7629684  0.7153846  0.6350427
+## 
+## ROC was used to select the optimal model using the largest value.
+## The final values used for the model were gamma = 0.4868437 and lambda
+##  = 0.5459973.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># view of the random search</span>
+<span class="kw">ggplot</span>(rda_fit) <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;top&quot;</span>)</code></pre></div>
+<p><img src="13-caret_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="exploring-and-comparing-resampling-distributions" class="section level3">
+<h3><span class="header-section-number">2.3.3</span> Exploring and Comparing Resampling Distributions</h3>
+<ul>
+<li><strong>Within Model</strong>
+<ul>
+<li>explore relationships between tuning parameters and the resampling results for a specific model</li>
+<li>xyplot and stripplot can be used to plot resampling statistics against (numeric) tuning parameters.</li>
+<li>histogram and densityplot can also be used to look at distributions of the tuning parameters</li>
+</ul></li>
+<li><strong>Between models</strong>
+<ul>
+<li>resample() can be use to collect the resampling result and make statistical statements about their performance differences of different model.</li>
+<li>several lattice plot methods that can be used to visualize the resampling distributions</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># svmFit &lt;- train(Class ~ ., data = training, </span>
+<span class="co">#                  method = &quot;svmRadial&quot;, </span>
+<span class="co">#                  trControl = fitControl, </span>
+<span class="co">#                  preProc = c(&quot;center&quot;, &quot;scale&quot;),</span>
+<span class="co">#                  tuneLength = 8,</span>
+<span class="co">#                  metric = &quot;ROC&quot;)</span>
+<span class="co"># </span>
+<span class="co"># save(svmFit,file= paste(path, &quot;svmFit.RData&quot;,sep=&quot;&quot; ))</span>
+
+<span class="kw">load</span>(<span class="dt">file=</span><span class="kw">paste</span>(path, <span class="st">&quot;svmFit.RData&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;&quot;</span> ))
+
+resamps &lt;-<span class="st"> </span><span class="kw">resamples</span>(<span class="kw">list</span>(<span class="dt">GBM =</span> rda_fit,
+                          <span class="dt">SVM =</span> svmFit))
+<span class="kw">summary</span>(resamps)</code></pre></div>
+<pre><code>## 
+## Call:
+## summary.resamples(object = resamps)
+## 
+## Models: GBM, SVM 
+## Number of resamples: 15 
+## 
+## ROC 
+##       Min. 1st Qu. Median   Mean 3rd Qu.   Max. NA&#39;s
+## GBM 0.6923  0.8429 0.8750 0.8705  0.9071 0.9808    0
+## SVM 0.8403  0.9046 0.9423 0.9335  0.9744 0.9941    0
+## 
+## Sens 
+##       Min. 1st Qu. Median   Mean 3rd Qu. Max. NA&#39;s
+## GBM 0.7500  0.8397 0.9167 0.8735  0.9231    1    0
+## SVM 0.8333  0.9231 1.0000 0.9577  1.0000    1    0
+## 
+## Spec 
+##       Min. 1st Qu. Median   Mean 3rd Qu.   Max. NA&#39;s
+## GBM 0.3846  0.5833 0.6667 0.6838  0.8013 0.9231    0
+## SVM 0.4615  0.7083 0.7692 0.7735  0.9167 0.9231    0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">theme1 &lt;-<span class="st"> </span><span class="kw">trellis.par.get</span>()
+theme1<span class="op">$</span>plot.symbol<span class="op">$</span>col =<span class="st"> </span><span class="kw">rgb</span>(.<span class="dv">2</span>, .<span class="dv">2</span>, .<span class="dv">2</span>, .<span class="dv">4</span>)
+theme1<span class="op">$</span>plot.symbol<span class="op">$</span>pch =<span class="st"> </span><span class="dv">16</span>
+theme1<span class="op">$</span>plot.line<span class="op">$</span>col =<span class="st"> </span><span class="kw">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, .<span class="dv">7</span>)
+theme1<span class="op">$</span>plot.line<span class="op">$</span>lwd &lt;-<span class="st"> </span><span class="dv">2</span>
+<span class="kw">trellis.par.set</span>(theme1)
+<span class="kw">bwplot</span>(resamps, <span class="dt">layout =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">1</span>))</code></pre></div>
+<p><img src="13-caret_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dotplot</span>(resamps, <span class="dt">metric =</span> <span class="st">&quot;ROC&quot;</span>)</code></pre></div>
+<p><img src="13-caret_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">splom</span>(resamps)</code></pre></div>
+<p><img src="13-caret_files/figure-html/unnamed-chunk-7-3.png" width="672" /></p>
+</div>
+</div>
+<div id="best-available-models" class="section level2">
+<h2><span class="header-section-number">2.4</span> Best available Models</h2>
+<ul>
+<li><strong>Logit</strong></li>
+<li><strong>ababoost</strong></li>
+<li><strong>random forest</strong></li>
+<li><strong>xgboost</strong></li>
+<li><strong>SVM</strong></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">trainRowNumbers &lt;-<span class="st"> </span><span class="kw">createDataPartition</span>(orange<span class="op">$</span>Purchase, <span class="dt">p=</span><span class="fl">0.8</span>, <span class="dt">list=</span><span class="ot">FALSE</span>)
+
+trainData &lt;-<span class="st"> </span>orange[trainRowNumbers,]
+testData &lt;-<span class="st"> </span>orange[<span class="op">-</span>trainRowNumbers,]
+
+x =<span class="st"> </span>trainData[, <span class="dv">2</span><span class="op">:</span><span class="dv">18</span>]
+y =<span class="st"> </span>trainData<span class="op">$</span>Purchase
+
+<span class="co"># library(skimr)</span>
+<span class="co"># skimmed &lt;- skim_to_wide(trainData)</span>
+<span class="co"># skimmed[, c(1:5, 9:11, 13, 15:16)]</span>
+
+preProcess_missingdata_model &lt;-<span class="st"> </span><span class="kw">preProcess</span>(trainData, <span class="dt">method=</span><span class="st">&#39;knnImpute&#39;</span>)
+preProcess_missingdata_model</code></pre></div>
+<pre><code>## Created from 823 samples and 18 variables
+## 
+## Pre-processing:
+##   - centered (16)
+##   - ignored (2)
+##   - 5 nearest neighbor imputation (16)
+##   - scaled (16)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">trainData &lt;-<span class="st"> </span><span class="kw">predict</span>(preProcess_missingdata_model, <span class="dt">newdata =</span> trainData)
+<span class="kw">anyNA</span>(trainData)</code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Creating dummy variables is converting a categorical variable to as many binary variables as here are categories.</span>
+dummies_model &lt;-<span class="st"> </span><span class="kw">dummyVars</span>(Purchase <span class="op">~</span><span class="st"> </span>., <span class="dt">data=</span>trainData)
+trainData_mat &lt;-<span class="st"> </span><span class="kw">predict</span>(dummies_model, <span class="dt">newdata =</span> trainData)</code></pre></div>
+<pre><code>## Warning in model.frame.default(Terms, newdata, na.action = na.action, xlev
+## = object$lvls): variable &#39;Purchase&#39; is not a factor</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">trainData &lt;-<span class="st"> </span><span class="kw">data.frame</span>(trainData_mat)
+
+preProcess_range_model &lt;-<span class="st"> </span><span class="kw">preProcess</span>(trainData, <span class="dt">method=</span><span class="st">&#39;range&#39;</span>)
+trainData &lt;-<span class="st"> </span><span class="kw">predict</span>(preProcess_range_model, <span class="dt">newdata =</span> trainData)
+
+<span class="co"># Append the Y variable</span>
+trainData<span class="op">$</span>Purchase &lt;-<span class="st"> </span>y
+
+<span class="kw">featurePlot</span>(<span class="dt">x =</span> trainData[, <span class="dv">1</span><span class="op">:</span><span class="dv">18</span>], 
+            <span class="dt">y =</span> trainData<span class="op">$</span>Purchase, 
+            <span class="dt">plot =</span> <span class="st">&quot;box&quot;</span>,
+            <span class="dt">strip=</span><span class="kw">strip.custom</span>(<span class="dt">par.strip.text=</span><span class="kw">list</span>(<span class="dt">cex=</span>.<span class="dv">7</span>)),
+            <span class="dt">scales =</span> <span class="kw">list</span>(<span class="dt">x =</span> <span class="kw">list</span>(<span class="dt">relation=</span><span class="st">&quot;free&quot;</span>), 
+                          <span class="dt">y =</span> <span class="kw">list</span>(<span class="dt">relation=</span><span class="st">&quot;free&quot;</span>)))</code></pre></div>
+<p><img src="13-caret_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">featurePlot</span>(<span class="dt">x =</span> trainData[, <span class="dv">1</span><span class="op">:</span><span class="dv">18</span>], 
+            <span class="dt">y =</span> trainData<span class="op">$</span>Purchase, 
+            <span class="dt">plot =</span> <span class="st">&quot;density&quot;</span>,
+            <span class="dt">strip=</span><span class="kw">strip.custom</span>(<span class="dt">par.strip.text=</span><span class="kw">list</span>(<span class="dt">cex=</span>.<span class="dv">7</span>)),
+            <span class="dt">scales =</span> <span class="kw">list</span>(<span class="dt">x =</span> <span class="kw">list</span>(<span class="dt">relation=</span><span class="st">&quot;free&quot;</span>), 
+                          <span class="dt">y =</span> <span class="kw">list</span>(<span class="dt">relation=</span><span class="st">&quot;free&quot;</span>)))</code></pre></div>
+<p><img src="13-caret_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># feature selection</span>
+
+subsets &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">18</span>)
+
+ctrl &lt;-<span class="st"> </span><span class="kw">rfeControl</span>(<span class="dt">functions =</span> rfFuncs,
+                   <span class="dt">method =</span> <span class="st">&quot;repeatedcv&quot;</span>,
+                   <span class="dt">repeats =</span> <span class="dv">5</span>,
+                   <span class="dt">verbose =</span> <span class="ot">FALSE</span>)
+
+<span class="co"># lmProfile &lt;- rfe(x=trainData[, 1:4], y=trainData$Purchase, </span>
+<span class="co">#                sizes = subsets,</span>
+<span class="co">#                 rfeControl = ctrl)</span>
+
+<span class="co"># lmProfile</span>
+
+<span class="co"># modeling</span>
+## get some info
+<span class="kw">modelLookup</span>(<span class="st">&#39;earth&#39;</span>)</code></pre></div>
+<pre><code>##   model parameter          label forReg forClass probModel
+## 1 earth    nprune         #Terms   TRUE     TRUE      TRUE
+## 2 earth    degree Product Degree   TRUE     TRUE      TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model_mars =<span class="st"> </span><span class="kw">train</span>(Purchase <span class="op">~</span><span class="st"> </span>., <span class="dt">data=</span>trainData, <span class="dt">method=</span><span class="st">&#39;earth&#39;</span>)</code></pre></div>
+<pre><code>## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred</code></pre>
+<pre><code>## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fitted &lt;-<span class="st"> </span><span class="kw">predict</span>(model_mars)
+<span class="kw">plot</span>(model_mars, <span class="dt">main=</span><span class="st">&quot;Model Accuracies with MARS&quot;</span>)</code></pre></div>
+<p><img src="13-caret_files/figure-html/unnamed-chunk-8-3.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">varimp_mars &lt;-<span class="st"> </span><span class="kw">varImp</span>(model_mars)
+<span class="kw">plot</span>(varimp_mars, <span class="dt">main=</span><span class="st">&quot;Variable Importance with MARS&quot;</span>)</code></pre></div>
+<p><img src="13-caret_files/figure-html/unnamed-chunk-8-4.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># same imputation for test set</span>
+testData2 &lt;-<span class="st"> </span><span class="kw">predict</span>(preProcess_missingdata_model, testData)  
+testData3 &lt;-<span class="st"> </span><span class="kw">predict</span>(dummies_model, testData2)</code></pre></div>
+<pre><code>## Warning in model.frame.default(Terms, newdata, na.action = na.action, xlev
+## = object$lvls): variable &#39;Purchase&#39; is not a factor</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">testData4 &lt;-<span class="st"> </span><span class="kw">predict</span>(preProcess_range_model, testData3)
+predicted &lt;-<span class="st"> </span><span class="kw">predict</span>(model_mars, testData4)
+<span class="kw">confusionMatrix</span>(<span class="dt">reference =</span> testData<span class="op">$</span>Purchase, <span class="dt">data =</span> predicted, <span class="dt">mode=</span><span class="st">&#39;everything&#39;</span>, <span class="dt">positive=</span><span class="st">&#39;MM&#39;</span>)</code></pre></div>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction  CH  MM
+##         CH 112  17
+##         MM  18  66
+##                                          
+##                Accuracy : 0.8357         
+##                  95% CI : (0.779, 0.8828)
+##     No Information Rate : 0.6103         
+##     P-Value [Acc &gt; NIR] : 7.167e-13      
+##                                          
+##                   Kappa : 0.6553         
+##  Mcnemar&#39;s Test P-Value : 1              
+##                                          
+##             Sensitivity : 0.7952         
+##             Specificity : 0.8615         
+##          Pos Pred Value : 0.7857         
+##          Neg Pred Value : 0.8682         
+##               Precision : 0.7857         
+##                  Recall : 0.7952         
+##                      F1 : 0.7904         
+##              Prevalence : 0.3897         
+##          Detection Rate : 0.3099         
+##    Detection Prevalence : 0.3944         
+##       Balanced Accuracy : 0.8284         
+##                                          
+##        &#39;Positive&#39; Class : MM             
+## </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># tuning model</span>
+
+## by tunelength
+
+fitControl &lt;-<span class="st"> </span><span class="kw">trainControl</span>(
+    <span class="dt">method =</span> <span class="st">&#39;cv&#39;</span>,                   <span class="co"># k-fold cross validation</span>
+    <span class="dt">number =</span> <span class="dv">5</span>,                      <span class="co"># number of folds</span>
+    <span class="dt">savePredictions =</span> <span class="st">&#39;final&#39;</span>,       <span class="co"># saves predictions for optimal tuning parameter</span>
+    <span class="dt">classProbs =</span> T,                  <span class="co"># should class probabilities be returned</span>
+    <span class="dt">summaryFunction=</span>twoClassSummary  <span class="co"># results summary function</span>
+) 
+
+<span class="co"># tuneLength corresponds to the number of unique values for the tuning parameters caret will consider while forming the hyper parameter combinations.</span>
+
+
+<span class="co"># Step 1: Tune hyper parameters by setting tuneLength</span>
+model_mars2 =<span class="st"> </span><span class="kw">train</span>(Purchase <span class="op">~</span><span class="st"> </span>., <span class="dt">data=</span>trainData, <span class="dt">method=</span><span class="st">&#39;earth&#39;</span>, <span class="dt">tuneLength =</span> <span class="dv">5</span>, <span class="dt">metric=</span><span class="st">&#39;ROC&#39;</span>, <span class="dt">trControl =</span> fitControl)</code></pre></div>
+<pre><code>## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model_mars2</code></pre></div>
+<pre><code>## Multivariate Adaptive Regression Spline 
+## 
+## 857 samples
+##  18 predictor
+##   2 classes: &#39;CH&#39;, &#39;MM&#39; 
+## 
+## No pre-processing
+## Resampling: Cross-Validated (5 fold) 
+## Summary of sample sizes: 685, 685, 686, 685, 687 
+## Resampling results across tuning parameters:
+## 
+##   nprune  ROC        Sens       Spec     
+##    2      0.8724471  0.8699084  0.7036183
+##    6      0.8961577  0.8660989  0.7336047
+##   11      0.8938492  0.8584799  0.7395749
+##   15      0.8888883  0.8623077  0.7276346
+##   20      0.8894142  0.8661172  0.7216644
+## 
+## Tuning parameter &#39;degree&#39; was held constant at a value of 1
+## ROC was used to select the optimal model using the largest value.
+## The final values used for the model were nprune = 6 and degree = 1.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Step 2: Predict on testData and Compute the confusion matrix</span>
+predicted2 &lt;-<span class="st"> </span><span class="kw">predict</span>(model_mars2, testData4)
+<span class="kw">confusionMatrix</span>(<span class="dt">reference =</span> testData<span class="op">$</span>Purchase, <span class="dt">data =</span> predicted2, <span class="dt">mode=</span><span class="st">&#39;everything&#39;</span>, <span class="dt">positive=</span><span class="st">&#39;MM&#39;</span>)</code></pre></div>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction  CH  MM
+##         CH 112  17
+##         MM  18  66
+##                                          
+##                Accuracy : 0.8357         
+##                  95% CI : (0.779, 0.8828)
+##     No Information Rate : 0.6103         
+##     P-Value [Acc &gt; NIR] : 7.167e-13      
+##                                          
+##                   Kappa : 0.6553         
+##  Mcnemar&#39;s Test P-Value : 1              
+##                                          
+##             Sensitivity : 0.7952         
+##             Specificity : 0.8615         
+##          Pos Pred Value : 0.7857         
+##          Neg Pred Value : 0.8682         
+##               Precision : 0.7857         
+##                  Recall : 0.7952         
+##                      F1 : 0.7904         
+##              Prevalence : 0.3897         
+##          Detection Rate : 0.3099         
+##    Detection Prevalence : 0.3944         
+##       Balanced Accuracy : 0.8284         
+##                                          
+##        &#39;Positive&#39; Class : MM             
+## </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># by tunegrid</span>
+
+marsGrid &lt;-<span class="st">  </span><span class="kw">expand.grid</span>(<span class="dt">nprune =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>), 
+                        <span class="dt">degree =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))
+
+<span class="co"># Step 2: Tune hyper parameters by setting tuneGrid</span>
+ model_mars3 =<span class="st"> </span><span class="kw">train</span>(Purchase <span class="op">~</span><span class="st"> </span>., <span class="dt">data=</span>trainData, <span class="dt">method=</span><span class="st">&#39;earth&#39;</span>, <span class="dt">metric=</span><span class="st">&#39;ROC&#39;</span>, <span class="dt">tuneGrid =</span> marsGrid, <span class="dt">trControl =</span> fitControl)</code></pre></div>
+<pre><code>## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> model_mars3</code></pre></div>
+<pre><code>## Multivariate Adaptive Regression Spline 
+## 
+## 857 samples
+##  18 predictor
+##   2 classes: &#39;CH&#39;, &#39;MM&#39; 
+## 
+## No pre-processing
+## Resampling: Cross-Validated (5 fold) 
+## Summary of sample sizes: 687, 685, 685, 686, 685 
+## Resampling results across tuning parameters:
+## 
+##   degree  nprune  ROC        Sens       Spec     
+##   1        2      0.8725588  0.8700366  0.7093623
+##   1        4      0.8952736  0.8796703  0.7333786
+##   1        6      0.8944987  0.8642674  0.7483492
+##   1        8      0.8907373  0.8681319  0.7483944
+##   1       10      0.8902256  0.8738462  0.7483944
+##   2        2      0.8615232  0.8146337  0.7904116
+##   2        4      0.8929948  0.8815568  0.7483492
+##   2        6      0.8888741  0.8548535  0.7395296
+##   2        8      0.8879558  0.8566850  0.7454093
+##   2       10      0.8871599  0.8433333  0.7543193
+##   3        2      0.8253030  0.8491026  0.6795115
+##   3        4      0.8952165  0.8815385  0.7513795
+##   3        6      0.8898686  0.8586081  0.7483492
+##   3        8      0.8932491  0.8547436  0.7633650
+##   3       10      0.8857792  0.8489744  0.7482587
+## 
+## ROC was used to select the optimal model using the largest value.
+## The final values used for the model were nprune = 4 and degree = 1.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Step 3: Predict on testData and Compute the confusion matrix</span>
+predicted3 &lt;-<span class="st"> </span><span class="kw">predict</span>(model_mars3, testData4)
+<span class="kw">confusionMatrix</span>(<span class="dt">reference =</span> testData<span class="op">$</span>Purchase, <span class="dt">data =</span> predicted3, <span class="dt">mode=</span><span class="st">&#39;everything&#39;</span>, <span class="dt">positive=</span><span class="st">&#39;MM&#39;</span>)</code></pre></div>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction  CH  MM
+##         CH 110  18
+##         MM  20  65
+##                                           
+##                Accuracy : 0.8216          
+##                  95% CI : (0.7635, 0.8705)
+##     No Information Rate : 0.6103          
+##     P-Value [Acc &gt; NIR] : 2.139e-11       
+##                                           
+##                   Kappa : 0.6266          
+##  Mcnemar&#39;s Test P-Value : 0.8711          
+##                                           
+##             Sensitivity : 0.7831          
+##             Specificity : 0.8462          
+##          Pos Pred Value : 0.7647          
+##          Neg Pred Value : 0.8594          
+##               Precision : 0.7647          
+##                  Recall : 0.7831          
+##                      F1 : 0.7738          
+##              Prevalence : 0.3897          
+##          Detection Rate : 0.3052          
+##    Detection Prevalence : 0.3991          
+##       Balanced Accuracy : 0.8146          
+##                                           
+##        &#39;Positive&#39; Class : MM              
+## </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Compare model</span>
+
+<span class="co"># model_adaboost = train(Purchase ~ ., data=trainData[1:100,], method=&#39;adaboost&#39;, tuneLength=2, trControl = fitControl)</span>
+
+<span class="co"># model_rf = train(Purchase ~ ., data=trainData[1:100,], method=&#39;rf&#39;, tuneLength=5, trControl = fitControl)</span>
+
+<span class="co"># model_xgbDART = train(Purchase ~ ., data=trainData, method=&#39;xgbDART&#39;, tuneLength=5, trControl = fitControl, verbose=F)</span>
+
+<span class="co"># model_svmRadial = train(Purchase ~ ., data=trainData, method=&#39;svmRadial&#39;, tuneLength=15, trControl = fitControl)</span>
+
+<span class="co"># models_compare &lt;- resamples(list(ADABOOST=model_adaboost, RF=model_rf)) #, XGBDART=model_xgbDART, MARS=model_mars3, SVM=model_svmRadial))</span>
+
+<span class="co"># save(models_compare,file= paste(path, &quot;models_compare.RData&quot;,sep=&quot;&quot; ))</span>
+
+<span class="kw">load</span>(<span class="dt">file=</span><span class="kw">paste</span>(path, <span class="st">&quot;models_compare.RData&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;&quot;</span> ))
+
+<span class="kw">summary</span>(models_compare)</code></pre></div>
+<pre><code>## 
+## Call:
+## summary.resamples(object = models_compare)
+## 
+## Models: ADABOOST, RF 
+## Number of resamples: 5 
+## 
+## ROC 
+##            Min. 1st Qu. Median   Mean 3rd Qu.   Max. NA&#39;s
+## ADABOOST 0.5000  0.5417 0.5741 0.6172  0.6759 0.7941    0
+## RF       0.2353  0.4352 0.5278 0.5439  0.6324 0.8889    0
+## 
+## Sens 
+##            Min. 1st Qu. Median   Mean 3rd Qu. Max. NA&#39;s
+## ADABOOST 0.8333  0.8889 0.8889 0.9105  0.9412    1    0
+## RF       0.9444  1.0000 1.0000 0.9889  1.0000    1    0
+## 
+## Spec 
+##          Min. 1st Qu. Median Mean 3rd Qu. Max. NA&#39;s
+## ADABOOST    0       0      0    0       0    0    0
+## RF          0       0      0    0       0    0    0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">scales &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">x=</span><span class="kw">list</span>(<span class="dt">relation=</span><span class="st">&quot;free&quot;</span>), <span class="dt">y=</span><span class="kw">list</span>(<span class="dt">relation=</span><span class="st">&quot;free&quot;</span>))
+<span class="kw">bwplot</span>(models_compare, <span class="dt">scales=</span>scales)</code></pre></div>
+<p><img src="13-caret_files/figure-html/unnamed-chunk-8-5.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#  ensemble predictions from multiple models using caretEnsemble</span>
+
+<span class="kw">library</span>(caretEnsemble)</code></pre></div>
+<pre><code>## Warning: package &#39;caretEnsemble&#39; was built under R version 3.3.3</code></pre>
+<pre><code>## 
+## Attaching package: &#39;caretEnsemble&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     autoplot</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">trainControl &lt;-<span class="st"> </span><span class="kw">trainControl</span>(<span class="dt">method=</span><span class="st">&quot;repeatedcv&quot;</span>, 
+                             <span class="dt">number=</span><span class="dv">3</span>, 
+                             <span class="dt">repeats=</span><span class="dv">2</span>,
+                             <span class="dt">savePredictions=</span><span class="ot">TRUE</span>, 
+                             <span class="dt">classProbs=</span><span class="ot">TRUE</span>)
+
+algorithmList &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;rf&#39;</span>, <span class="st">&#39;adaboost&#39;</span>) <span class="co">#, &#39;earth&#39;, &#39;xgbDART&#39;, &#39;svmRadial&#39;)</span>
+
+<span class="co"># models &lt;- caretList(Purchase ~ ., data=trainData[1:50,], trControl=trainControl, methodList=algorithmList) </span>
+<span class="co"># save(models,file= paste(path, &quot;models.RData&quot;,sep=&quot;&quot; ))</span>
+
+<span class="kw">load</span>(<span class="dt">file=</span><span class="kw">paste</span>(path, <span class="st">&quot;models.RData&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;&quot;</span> ))
+
+results &lt;-<span class="st"> </span><span class="kw">resamples</span>(models)
+<span class="kw">summary</span>(results)</code></pre></div>
+<pre><code>## 
+## Call:
+## summary.resamples(object = results)
+## 
+## Models: rf, adaboost 
+## Number of resamples: 6 
+## 
+## Accuracy 
+##            Min. 1st Qu. Median   Mean 3rd Qu.   Max. NA&#39;s
+## rf       0.7500  0.7537 0.7647 0.7794  0.8088 0.8235    0
+## adaboost 0.6471  0.6921 0.7353 0.7402  0.8006 0.8235    0
+## 
+## Kappa 
+##             Min. 1st Qu.   Median     Mean  3rd Qu.   Max. NA&#39;s
+## rf       -0.1034 -0.1018 -0.04839 -0.01887  0.00000 0.1905    0
+## adaboost -0.2143 -0.1734 -0.13060 -0.05963 -0.02419 0.2941    0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Combine the predictions of multiple models to form a final prediction</span>
+
+<span class="co"># Create the trainControl</span>
+<span class="kw">set.seed</span>(<span class="dv">101</span>)
+stackControl &lt;-<span class="st"> </span><span class="kw">trainControl</span>(<span class="dt">method=</span><span class="st">&quot;repeatedcv&quot;</span>, 
+                             <span class="dt">number=</span><span class="dv">3</span>, 
+                             <span class="dt">repeats=</span><span class="dv">3</span>,
+                             <span class="dt">savePredictions=</span><span class="ot">TRUE</span>, 
+                             <span class="dt">classProbs=</span><span class="ot">TRUE</span>)
+
+<span class="co"># Ensemble the predictions of `models` to form a new combined prediction based on glm</span>
+stack.glm &lt;-<span class="st"> </span><span class="kw">caretStack</span>(models, <span class="dt">method=</span><span class="st">&quot;glm&quot;</span>, <span class="dt">metric=</span><span class="st">&quot;Accuracy&quot;</span>, <span class="dt">trControl=</span>stackControl)
+
+<span class="co"># /!\ The ensembles tend to perform better if the predictions are less correlated with each other.</span>
+
+<span class="co"># Predict on testData</span>
+stack_predicteds &lt;-<span class="st"> </span><span class="kw">predict</span>(stack.glm, <span class="dt">newdata=</span>testData4)</code></pre></div>
+</div>
+<div id="parallel-processing" class="section level2">
+<h2><span class="header-section-number">2.5</span> Parallel Processing</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># library(doParallel)</span>
+<span class="co"># cl &lt;- detectCores() </span>
+<span class="co"># cl &lt;- makePSOCKcluster(3)</span>
+<span class="co"># registerDoParallel(cl)</span>
+<span class="co"># </span>
+<span class="co"># ## All subsequent models are then run in parallel</span>
+<span class="co"># model &lt;- train(Class ~ ., data = training, method = &quot;rf&quot;)</span>
+<span class="co"># </span>
+<span class="co"># ## When you are done:</span>
+<span class="co"># stopCluster(cl)</span>
+<span class="co"># registerDoSEQ()</span></code></pre></div>
+</div>
+<div id="subsampling-for-class-imbalances" class="section level2">
+<h2><span class="header-section-number">2.6</span> Subsampling for class imbalances</h2>
+<p>Examples of sampling methods :</p>
+<ul>
+<li><strong>down-sampling</strong>: randomly subset all the classes in the training set so that their class frequencies match the least prevalent class (downSample option)</li>
+<li><strong>up-sampling</strong>: randomly sample (with replacement) the minority class to be the same size as the majority class (upSample option)</li>
+<li><strong>hybrid methods</strong>: techniques such as SMOTE and ROSE down-sample the majority class and synthesize new data points in the minority class. There are two packages (DMwR and ROSE) that implement these procedures</li>
+</ul>
+<p>In practice, one could take the training set and, before model fitting, sample the data. During model may not reflect the class imbalance that future predictions would encounter. This is likely to lead to overly optimistic estimates of performance.</p>
+<p>The default behavior is to subsample the data prior to pre-processing. This can be easily changed and an example is given below.</p>
+<p>Deux aporoche - Use sampling before model crossvalidation - use sampling in the model crossvalidation - Repeating the subsampling procedures for every resample produces results that are more consistent with the test set.</p>
+</div>
+<div id="variables-importance" class="section level2">
+<h2><span class="header-section-number">2.7</span> Variables importance</h2>
+<ul>
+<li><strong>Model Specific Metrics</strong>
+<ul>
+<li>Linear Models: the absolute value of the t-statistic</li>
+<li>Random Forest</li>
+<li>..</li>
+</ul></li>
+<li><strong>Model Independent Metrics</strong>
+<ul>
+<li>the importance of each predictor is evaluated individually using a “filter” approach.</li>
+</ul></li>
+</ul>
+<p>The function automatically scales the importance scores to be between 0 and 100. Using scale = FALSE avoids this normalization step.</p>
+<p>Alternatively, for models where no built-in importance score is implemented (or exists), the varImp can still be used to get scores. For SVM classification models, the default behavior is to compute the area under the ROC curve.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># library(gbm)</span>
+<span class="co"># gbmImp &lt;- varImp(gbmFit3, scale = FALSE)</span>
+<span class="co"># gbmImp</span>
+<span class="co"># </span>
+<span class="co"># roc_imp &lt;- filterVarImp(x = training[, -ncol(training)], y = training$Class)</span>
+<span class="co"># head(roc_imp)</span>
+<span class="co"># </span>
+<span class="co"># roc_imp2 &lt;- varImp(svmFit, scale = FALSE)</span>
+<span class="co"># roc_imp2</span>
+<span class="co"># </span>
+<span class="co"># plot(gbmImp, top = 20)</span></code></pre></div>
+</div>
+<div id="measurung-performance" class="section level2">
+<h2><span class="header-section-number">2.8</span> measurung performance</h2>
+<ul>
+<li><strong>Measure for Regression</strong>
+<ul>
+<li>postResample() function : estimate RMSE, MAE</li>
+</ul></li>
+<li><strong>Measure for predicted classes</strong>
+<ul>
+<li>confusionMatrix() function : compute a cross-tabulation of the observed and predicted classes. IF Generating the predicted classes based on <strong>50% cutoff</strong> for the probabilities.</li>
+<li>this function assumes that the class corresponding to an event is the first class level (but this can be changed using the positive argument.</li>
+<li>If there are three or more classes, confusionMatrix will show the confusion matrix and a set of “one-versus-all” results</li>
+</ul></li>
+</ul>
+<p>add png : <a href="http://topepo.github.io/caret/measuring-performance.html" class="uri">http://topepo.github.io/caret/measuring-performance.html</a></p>
+<ul>
+<li><strong>Measure for class probabilities</strong>
+<ul>
+<li>twoClassSummary() function computes the area under the ROC curve and the specificity and sensitivity under the <strong>50% cutoff</strong></li>
+<li>this function uses the first class level to define the “event” of interest. To change this, use the lev option to the function.</li>
+<li>there must be columns in the data for each of the class probabilities (named the same as the outcome’s class levels)</li>
+</ul></li>
+<li><strong>For multi-class problems</strong>
+<ul>
+<li>mnLogLoss computes the negative of the multinomial log-likelihood (smaller is better) based on the class probabilities</li>
+<li>multiClassSummary() : computes a number of relevant metrics:</li>
+</ul></li>
+<li><strong>Lift Curves</strong>
+<ul>
+<li>The function requires a set of sample probability predictions and the true class labels</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Regression</span>
+<span class="kw">data</span>(BostonHousing)
+
+bh_index &lt;-<span class="st"> </span><span class="kw">createDataPartition</span>(BostonHousing<span class="op">$</span>medv, <span class="dt">p =</span> .<span class="dv">75</span>, <span class="dt">list =</span> <span class="ot">FALSE</span>)
+bh_tr &lt;-<span class="st"> </span>BostonHousing[ bh_index, ]
+bh_te &lt;-<span class="st"> </span>BostonHousing[<span class="op">-</span>bh_index, ]
+
+lm_fit &lt;-<span class="st"> </span><span class="kw">train</span>(medv <span class="op">~</span><span class="st"> </span>. <span class="op">+</span><span class="st"> </span>rm<span class="op">:</span>lstat,
+                <span class="dt">data =</span> bh_tr, 
+                <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)
+bh_pred &lt;-<span class="st"> </span><span class="kw">predict</span>(lm_fit, bh_te)
+
+lm_fit</code></pre></div>
+<pre><code>## Linear Regression 
+## 
+## 381 samples
+##  13 predictor
+## 
+## No pre-processing
+## Resampling: Bootstrapped (25 reps) 
+## Summary of sample sizes: 381, 381, 381, 381, 381, 381, ... 
+## Resampling results:
+## 
+##   RMSE      Rsquared   MAE     
+##   4.714064  0.7462923  3.216896
+## 
+## Tuning parameter &#39;intercept&#39; was held constant at a value of TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">postResample</span>(<span class="dt">pred =</span> bh_pred, <span class="dt">obs =</span> bh_te<span class="op">$</span>medv)</code></pre></div>
+<pre><code>##      RMSE  Rsquared       MAE 
+## 3.3278532 0.8676174 2.5663551</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># classification</span>
+## create dataset
+true_class &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">sample</span>(<span class="kw">paste0</span>(<span class="st">&quot;Class&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>), 
+                            <span class="dt">size =</span> <span class="dv">1000</span>,
+                            <span class="dt">prob =</span> <span class="kw">c</span>(.<span class="dv">2</span>, .<span class="dv">8</span>), <span class="dt">replace =</span> <span class="ot">TRUE</span>))
+true_class &lt;-<span class="st"> </span><span class="kw">sort</span>(true_class)
+class1_probs &lt;-<span class="st"> </span><span class="kw">rbeta</span>(<span class="kw">sum</span>(true_class <span class="op">==</span><span class="st"> &quot;Class1&quot;</span>), <span class="dv">4</span>, <span class="dv">1</span>)
+class2_probs &lt;-<span class="st"> </span><span class="kw">rbeta</span>(<span class="kw">sum</span>(true_class <span class="op">==</span><span class="st"> &quot;Class2&quot;</span>), <span class="dv">1</span>, <span class="fl">2.5</span>)
+test_set &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">obs =</span> true_class,
+                       <span class="dt">Class1 =</span> <span class="kw">c</span>(class1_probs, class2_probs))
+test_set<span class="op">$</span>Class2 &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>test_set<span class="op">$</span>Class1
+test_set<span class="op">$</span>pred &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">ifelse</span>(test_set<span class="op">$</span>Class1 <span class="op">&gt;=</span><span class="st"> </span>.<span class="dv">5</span>, <span class="st">&quot;Class1&quot;</span>, <span class="st">&quot;Class2&quot;</span>))
+
+<span class="kw">ggplot</span>(test_set, <span class="kw">aes</span>(<span class="dt">x =</span> Class1)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> .<span class="dv">05</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>obs) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Probability of Class #1&quot;</span>)</code></pre></div>
+<p><img src="13-caret_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">confusionMatrix</span>(<span class="dt">data =</span> test_set<span class="op">$</span>pred, <span class="dt">reference =</span> test_set<span class="op">$</span>obs)</code></pre></div>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction Class1 Class2
+##     Class1    184    142
+##     Class2     11    663
+##                                           
+##                Accuracy : 0.847           
+##                  95% CI : (0.8232, 0.8688)
+##     No Information Rate : 0.805           
+##     P-Value [Acc &gt; NIR] : 0.0003334       
+##                                           
+##                   Kappa : 0.6115          
+##  Mcnemar&#39;s Test P-Value : &lt; 2.2e-16       
+##                                           
+##             Sensitivity : 0.9436          
+##             Specificity : 0.8236          
+##          Pos Pred Value : 0.5644          
+##          Neg Pred Value : 0.9837          
+##              Prevalence : 0.1950          
+##          Detection Rate : 0.1840          
+##    Detection Prevalence : 0.3260          
+##       Balanced Accuracy : 0.8836          
+##                                           
+##        &#39;Positive&#39; Class : Class1          
+## </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">twoClassSummary</span>(test_set, <span class="dt">lev =</span> <span class="kw">levels</span>(test_set<span class="op">$</span>obs))</code></pre></div>
+<pre><code>##       ROC      Sens      Spec 
+## 0.9542857 0.9435897 0.8236025</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">prSummary</span>(test_set, <span class="dt">lev =</span> <span class="kw">levels</span>(test_set<span class="op">$</span>obs))</code></pre></div>
+<pre><code>##       AUC Precision    Recall         F 
+## 0.8430141 0.5644172 0.9435897 0.7063340</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mnLogLoss</span>(test_set, <span class="dt">lev =</span> <span class="kw">levels</span>(test_set<span class="op">$</span>obs))</code></pre></div>
+<pre><code>##  logLoss 
+## 0.369638</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lift curves</span>
+
+lift_training &lt;-<span class="st"> </span><span class="kw">twoClassSim</span>(<span class="dv">1000</span>)
+lift_testing  &lt;-<span class="st"> </span><span class="kw">twoClassSim</span>(<span class="dv">1000</span>)
+
+ctrl &lt;-<span class="st"> </span><span class="kw">trainControl</span>(<span class="dt">method =</span> <span class="st">&quot;cv&quot;</span>, <span class="dt">classProbs =</span> <span class="ot">TRUE</span>,
+                     <span class="dt">summaryFunction =</span> twoClassSummary)
+
+fda_lift &lt;-<span class="st"> </span><span class="kw">train</span>(Class <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> lift_training,
+                  <span class="dt">method =</span> <span class="st">&quot;fda&quot;</span>, <span class="dt">metric =</span> <span class="st">&quot;ROC&quot;</span>,
+                  <span class="dt">tuneLength =</span> <span class="dv">20</span>,
+                  <span class="dt">trControl =</span> ctrl)
+
+lda_lift &lt;-<span class="st"> </span><span class="kw">train</span>(Class <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> lift_training,
+                  <span class="dt">method =</span> <span class="st">&quot;lda&quot;</span>, <span class="dt">metric =</span> <span class="st">&quot;ROC&quot;</span>,
+                  <span class="dt">trControl =</span> ctrl)
+
+ <span class="co"># c5_lift &lt;- train(Class ~ ., data = lift_training,</span>
+ <span class="co">#                 method = &quot;C5.0&quot;, metric = &quot;ROC&quot;,</span>
+ <span class="co">#                 tuneLength = 10,</span>
+ <span class="co">#                 trControl = ctrl,</span>
+ <span class="co">#                 control = C5.0Control(earlyStopping = FALSE))</span>
+
+## Generate the test set results
+lift_results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Class =</span> lift_testing<span class="op">$</span>Class)
+lift_results<span class="op">$</span>FDA &lt;-<span class="st"> </span><span class="kw">predict</span>(fda_lift, lift_testing, <span class="dt">type =</span> <span class="st">&quot;prob&quot;</span>)[,<span class="st">&quot;Class1&quot;</span>]
+lift_results<span class="op">$</span>LDA &lt;-<span class="st"> </span><span class="kw">predict</span>(lda_lift, lift_testing, <span class="dt">type =</span> <span class="st">&quot;prob&quot;</span>)[,<span class="st">&quot;Class1&quot;</span>]
+<span class="co">#lift_results$C5.0 &lt;- predict(c5_lift, lift_testing, type = &quot;prob&quot;)[,&quot;Class1&quot;]</span>
+<span class="kw">head</span>(lift_results)</code></pre></div>
+<pre><code>##    Class         FDA        LDA
+## 1 Class2 0.007109969 0.02113239
+## 2 Class2 0.388105122 0.05378358
+## 3 Class1 0.483342537 0.36243116
+## 4 Class2 0.206283858 0.10469846
+## 5 Class1 0.973166737 0.92394495
+## 6 Class1 0.640375854 0.59014966</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">trellis.par.set</span>(<span class="kw">caretTheme</span>())
+lift_obj &lt;-<span class="st"> </span><span class="kw">lift</span>(Class <span class="op">~</span><span class="st"> </span>FDA <span class="op">+</span><span class="st"> </span>LDA , <span class="dt">data =</span> lift_results)
+<span class="kw">ggplot</span>(lift_obj, <span class="dt">values =</span> <span class="dv">60</span>)</code></pre></div>
+<p><img src="13-caret_files/figure-html/unnamed-chunk-11-2.png" width="672" /></p>
+</div>
+<div id="feature-selection" class="section level2">
+<h2><span class="header-section-number">2.9</span> feature selection</h2>
+<div id="overview" class="section level3">
+<h3><span class="header-section-number">2.9.1</span> Overview</h3>
+<ul>
+<li><strong>Wrapper</strong>
+<ul>
+<li>evaluate multiple models using procedures that add and/or remove predictors to find the optimal combination that maximizes model performance.</li>
+</ul></li>
+<li>wrapper methods are search algorithms that treat the predictors as the inputs and utilize model performance as the output to be optimized.</li>
+<li><p>caret has wrapper methods based on recursive feature elimination, genetic algorithms, and simulated annealing.</p></li>
+<li><strong>Filter</strong>
+<ul>
+<li>evaluate the relevance of the predictors outside of the predictive models and subsequently model only the predictors that pass some criterion.</li>
+<li>Only predictors with important relationships would then be included in a classification model</li>
+</ul></li>
+</ul>
+</div>
+<div id="univariate-approach" class="section level3">
+<h3><span class="header-section-number">2.9.2</span> Univariate approach</h3>
+</div>
+<div id="recursive-feature-elimination" class="section level3">
+<h3><span class="header-section-number">2.9.3</span> recursive feature elimination</h3>
+<ul>
+<li><strong>rfe function</strong>
+<ul>
+<li>x : matrix of predictor variables</li>
+<li>y : a vector of outcomes</li>
+<li>sizes : specifie the subset sizes that should be tested</li>
+<li>rfeControl : a list of options that can be used</li>
+</ul></li>
+</ul>
+<p>There are a number of pre-defined sets of functions for several models, including: linear regression (in the object lmFuncs), random forests (rfFuncs), naive Bayes (nbFuncs), bagged trees (treebagFuncs) and functions that can be used with caret’s train function (caretFuncs).</p>
+<p>RFE works in 3 broad steps:</p>
+<ul>
+<li>Step 1: Build a ML model on a training dataset and estimate the feature importances on the test dataset.</li>
+<li>Step 2: Keeping priority to the most important variables, iterate through by building models of given subset sizes, that is, subgroups of most important predictors determined from step 1. Ranking of the predictors is recalculated in each iteration.</li>
+<li>Step 3: The model performances are compared across different subset sizes to arrive at the optimal number and list of final predictors.</li>
+</ul>
+</div>
+<div id="genetic-algorimth" class="section level3">
+<h3><span class="header-section-number">2.9.4</span> genetic algorimth</h3>
+</div>
+<div id="simulated-annealing" class="section level3">
+<h3><span class="header-section-number">2.9.5</span> simulated annealing</h3>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-start.pdf", "bookdown-start.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
